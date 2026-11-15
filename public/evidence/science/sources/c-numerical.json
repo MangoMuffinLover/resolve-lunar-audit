@@ -1,0 +1,1731 @@
+{
+  "main_ladder_passed": true,
+  "cutoff_checks": [
+    {
+      "configuration": "P78_5m",
+      "observer_convention": "fixed_absolute",
+      "cutoff_m": 150000,
+      "all_horizon_samples_identical": false,
+      "maximum_horizon_change_deg": 0.11868604939673055,
+      "checks": [
+        {
+          "check": "cutoff",
+          "metric": "sun",
+          "relevant_interval_counts": [
+            2,
+            2
+          ],
+          "event_episode_counts_equal": true,
+          "maximum_transition_or_duration_change_s": 0.0,
+          "threshold_states_stable": true,
+          "passed": true
+        },
+        {
+          "check": "cutoff",
+          "metric": "earth",
+          "relevant_interval_counts": [
+            1,
+            1
+          ],
+          "event_episode_counts_equal": true,
+          "maximum_transition_or_duration_change_s": 0.0,
+          "threshold_states_stable": true,
+          "passed": true
+        },
+        {
+          "check": "cutoff",
+          "metric": "simultaneous",
+          "relevant_interval_counts": [
+            1,
+            1
+          ],
+          "event_episode_counts_equal": true,
+          "maximum_transition_or_duration_change_s": 0.0,
+          "threshold_states_stable": true,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "configuration": "P78_5m",
+      "observer_convention": "fixed_absolute",
+      "cutoff_m": 200000,
+      "all_horizon_samples_identical": true,
+      "maximum_horizon_change_deg": 0.0,
+      "checks": [],
+      "passed": true
+    },
+    {
+      "configuration": "P78_5m",
+      "observer_convention": "each_surface_2m",
+      "cutoff_m": 150000,
+      "all_horizon_samples_identical": false,
+      "maximum_horizon_change_deg": 0.11868604939673055,
+      "checks": [
+        {
+          "check": "cutoff",
+          "metric": "sun",
+          "relevant_interval_counts": [
+            2,
+            2
+          ],
+          "event_episode_counts_equal": true,
+          "maximum_transition_or_duration_change_s": 0.0,
+          "threshold_states_stable": true,
+          "passed": true
+        },
+        {
+          "check": "cutoff",
+          "metric": "earth",
+          "relevant_interval_counts": [
+            1,
+            1
+          ],
+          "event_episode_counts_equal": true,
+          "maximum_transition_or_duration_change_s": 0.0,
+          "threshold_states_stable": true,
+          "passed": true
+        },
+        {
+          "check": "cutoff",
+          "metric": "simultaneous",
+          "relevant_interval_counts": [
+            1,
+            1
+          ],
+          "event_episode_counts_equal": true,
+          "maximum_transition_or_duration_change_s": 0.0,
+          "threshold_states_stable": true,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "configuration": "P78_5m",
+      "observer_convention": "each_surface_2m",
+      "cutoff_m": 200000,
+      "all_horizon_samples_identical": true,
+      "maximum_horizon_change_deg": 0.0,
+      "checks": [],
+      "passed": true
+    },
+    {
+      "configuration": "P90_20m",
+      "observer_convention": "fixed_absolute",
+      "cutoff_m": 150000,
+      "all_horizon_samples_identical": false,
+      "maximum_horizon_change_deg": 0.11868604939673055,
+      "checks": [
+        {
+          "check": "cutoff",
+          "metric": "sun",
+          "relevant_interval_counts": [
+            2,
+            2
+          ],
+          "event_episode_counts_equal": true,
+          "maximum_transition_or_duration_change_s": 0.0,
+          "threshold_states_stable": true,
+          "passed": true
+        },
+        {
+          "check": "cutoff",
+          "metric": "earth",
+          "relevant_interval_counts": [
+            1,
+            1
+          ],
+          "event_episode_counts_equal": true,
+          "maximum_transition_or_duration_change_s": 0.0,
+          "threshold_states_stable": true,
+          "passed": true
+        },
+        {
+          "check": "cutoff",
+          "metric": "simultaneous",
+          "relevant_interval_counts": [
+            1,
+            1
+          ],
+          "event_episode_counts_equal": true,
+          "maximum_transition_or_duration_change_s": 0.0,
+          "threshold_states_stable": true,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "configuration": "P90_20m",
+      "observer_convention": "fixed_absolute",
+      "cutoff_m": 200000,
+      "all_horizon_samples_identical": true,
+      "maximum_horizon_change_deg": 0.0,
+      "checks": [],
+      "passed": true
+    },
+    {
+      "configuration": "P90_20m",
+      "observer_convention": "each_surface_2m",
+      "cutoff_m": 150000,
+      "all_horizon_samples_identical": false,
+      "maximum_horizon_change_deg": 0.181580122642085,
+      "checks": [
+        {
+          "check": "cutoff",
+          "metric": "sun",
+          "relevant_interval_counts": [
+            2,
+            2
+          ],
+          "event_episode_counts_equal": true,
+          "maximum_transition_or_duration_change_s": 0.0,
+          "threshold_states_stable": true,
+          "passed": true
+        },
+        {
+          "check": "cutoff",
+          "metric": "earth",
+          "relevant_interval_counts": [
+            1,
+            1
+          ],
+          "event_episode_counts_equal": true,
+          "maximum_transition_or_duration_change_s": 0.0,
+          "threshold_states_stable": true,
+          "passed": true
+        },
+        {
+          "check": "cutoff",
+          "metric": "simultaneous",
+          "relevant_interval_counts": [
+            1,
+            1
+          ],
+          "event_episode_counts_equal": true,
+          "maximum_transition_or_duration_change_s": 0.0,
+          "threshold_states_stable": true,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "configuration": "P90_20m",
+      "observer_convention": "each_surface_2m",
+      "cutoff_m": 200000,
+      "all_horizon_samples_identical": true,
+      "maximum_horizon_change_deg": 0.0,
+      "checks": [],
+      "passed": true
+    },
+    {
+      "configuration": "P90_40m",
+      "observer_convention": "fixed_absolute",
+      "cutoff_m": 150000,
+      "all_horizon_samples_identical": false,
+      "maximum_horizon_change_deg": 0.11868604939673055,
+      "checks": [
+        {
+          "check": "cutoff",
+          "metric": "sun",
+          "relevant_interval_counts": [
+            2,
+            2
+          ],
+          "event_episode_counts_equal": true,
+          "maximum_transition_or_duration_change_s": 0.0,
+          "threshold_states_stable": true,
+          "passed": true
+        },
+        {
+          "check": "cutoff",
+          "metric": "earth",
+          "relevant_interval_counts": [
+            1,
+            1
+          ],
+          "event_episode_counts_equal": true,
+          "maximum_transition_or_duration_change_s": 0.0,
+          "threshold_states_stable": true,
+          "passed": true
+        },
+        {
+          "check": "cutoff",
+          "metric": "simultaneous",
+          "relevant_interval_counts": [
+            1,
+            1
+          ],
+          "event_episode_counts_equal": true,
+          "maximum_transition_or_duration_change_s": 0.0,
+          "threshold_states_stable": true,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "configuration": "P90_40m",
+      "observer_convention": "fixed_absolute",
+      "cutoff_m": 200000,
+      "all_horizon_samples_identical": true,
+      "maximum_horizon_change_deg": 0.0,
+      "checks": [],
+      "passed": true
+    },
+    {
+      "configuration": "P90_40m",
+      "observer_convention": "each_surface_2m",
+      "cutoff_m": 150000,
+      "all_horizon_samples_identical": false,
+      "maximum_horizon_change_deg": 0.1187053730227623,
+      "checks": [
+        {
+          "check": "cutoff",
+          "metric": "sun",
+          "relevant_interval_counts": [
+            2,
+            2
+          ],
+          "event_episode_counts_equal": true,
+          "maximum_transition_or_duration_change_s": 0.0,
+          "threshold_states_stable": true,
+          "passed": true
+        },
+        {
+          "check": "cutoff",
+          "metric": "earth",
+          "relevant_interval_counts": [
+            1,
+            1
+          ],
+          "event_episode_counts_equal": true,
+          "maximum_transition_or_duration_change_s": 0.0,
+          "threshold_states_stable": true,
+          "passed": true
+        },
+        {
+          "check": "cutoff",
+          "metric": "simultaneous",
+          "relevant_interval_counts": [
+            1,
+            1
+          ],
+          "event_episode_counts_equal": true,
+          "maximum_transition_or_duration_change_s": 0.0,
+          "threshold_states_stable": true,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "configuration": "P90_40m",
+      "observer_convention": "each_surface_2m",
+      "cutoff_m": 200000,
+      "all_horizon_samples_identical": true,
+      "maximum_horizon_change_deg": 0.0,
+      "checks": [],
+      "passed": true
+    },
+    {
+      "configuration": "P90_60m",
+      "observer_convention": "fixed_absolute",
+      "cutoff_m": 150000,
+      "all_horizon_samples_identical": false,
+      "maximum_horizon_change_deg": 0.24476570459166913,
+      "checks": [
+        {
+          "check": "cutoff",
+          "metric": "sun",
+          "relevant_interval_counts": [
+            2,
+            2
+          ],
+          "event_episode_counts_equal": true,
+          "maximum_transition_or_duration_change_s": 0.0,
+          "threshold_states_stable": true,
+          "passed": true
+        },
+        {
+          "check": "cutoff",
+          "metric": "earth",
+          "relevant_interval_counts": [
+            1,
+            1
+          ],
+          "event_episode_counts_equal": true,
+          "maximum_transition_or_duration_change_s": 0.0,
+          "threshold_states_stable": true,
+          "passed": true
+        },
+        {
+          "check": "cutoff",
+          "metric": "simultaneous",
+          "relevant_interval_counts": [
+            1,
+            1
+          ],
+          "event_episode_counts_equal": true,
+          "maximum_transition_or_duration_change_s": 0.0,
+          "threshold_states_stable": true,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "configuration": "P90_60m",
+      "observer_convention": "fixed_absolute",
+      "cutoff_m": 200000,
+      "all_horizon_samples_identical": true,
+      "maximum_horizon_change_deg": 0.0,
+      "checks": [],
+      "passed": true
+    },
+    {
+      "configuration": "P90_60m",
+      "observer_convention": "each_surface_2m",
+      "cutoff_m": 150000,
+      "all_horizon_samples_identical": false,
+      "maximum_horizon_change_deg": 0.4934004140803938,
+      "checks": [
+        {
+          "check": "cutoff",
+          "metric": "sun",
+          "relevant_interval_counts": [
+            2,
+            2
+          ],
+          "event_episode_counts_equal": true,
+          "maximum_transition_or_duration_change_s": 0.0,
+          "threshold_states_stable": true,
+          "passed": true
+        },
+        {
+          "check": "cutoff",
+          "metric": "earth",
+          "relevant_interval_counts": [
+            1,
+            1
+          ],
+          "event_episode_counts_equal": true,
+          "maximum_transition_or_duration_change_s": 0.0,
+          "threshold_states_stable": true,
+          "passed": true
+        },
+        {
+          "check": "cutoff",
+          "metric": "simultaneous",
+          "relevant_interval_counts": [
+            1,
+            1
+          ],
+          "event_episode_counts_equal": true,
+          "maximum_transition_or_duration_change_s": 0.0,
+          "threshold_states_stable": true,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "configuration": "P90_60m",
+      "observer_convention": "each_surface_2m",
+      "cutoff_m": 200000,
+      "all_horizon_samples_identical": true,
+      "maximum_horizon_change_deg": 0.0,
+      "checks": [],
+      "passed": true
+    },
+    {
+      "configuration": "P90_80m",
+      "observer_convention": "fixed_absolute",
+      "cutoff_m": 150000,
+      "all_horizon_samples_identical": false,
+      "maximum_horizon_change_deg": 0.3318567200990825,
+      "checks": [
+        {
+          "check": "cutoff",
+          "metric": "sun",
+          "relevant_interval_counts": [
+            2,
+            2
+          ],
+          "event_episode_counts_equal": true,
+          "maximum_transition_or_duration_change_s": 0.0,
+          "threshold_states_stable": true,
+          "passed": true
+        },
+        {
+          "check": "cutoff",
+          "metric": "earth",
+          "relevant_interval_counts": [
+            1,
+            1
+          ],
+          "event_episode_counts_equal": true,
+          "maximum_transition_or_duration_change_s": 0.0,
+          "threshold_states_stable": true,
+          "passed": true
+        },
+        {
+          "check": "cutoff",
+          "metric": "simultaneous",
+          "relevant_interval_counts": [
+            1,
+            1
+          ],
+          "event_episode_counts_equal": true,
+          "maximum_transition_or_duration_change_s": 0.0,
+          "threshold_states_stable": true,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "configuration": "P90_80m",
+      "observer_convention": "fixed_absolute",
+      "cutoff_m": 200000,
+      "all_horizon_samples_identical": true,
+      "maximum_horizon_change_deg": 0.0,
+      "checks": [],
+      "passed": true
+    },
+    {
+      "configuration": "P90_80m",
+      "observer_convention": "each_surface_2m",
+      "cutoff_m": 150000,
+      "all_horizon_samples_identical": false,
+      "maximum_horizon_change_deg": 0.2954870826762499,
+      "checks": [
+        {
+          "check": "cutoff",
+          "metric": "sun",
+          "relevant_interval_counts": [
+            2,
+            2
+          ],
+          "event_episode_counts_equal": true,
+          "maximum_transition_or_duration_change_s": 0.0,
+          "threshold_states_stable": true,
+          "passed": true
+        },
+        {
+          "check": "cutoff",
+          "metric": "earth",
+          "relevant_interval_counts": [
+            1,
+            1
+          ],
+          "event_episode_counts_equal": true,
+          "maximum_transition_or_duration_change_s": 0.0,
+          "threshold_states_stable": true,
+          "passed": true
+        },
+        {
+          "check": "cutoff",
+          "metric": "simultaneous",
+          "relevant_interval_counts": [
+            1,
+            1
+          ],
+          "event_episode_counts_equal": true,
+          "maximum_transition_or_duration_change_s": 0.0,
+          "threshold_states_stable": true,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "configuration": "P90_80m",
+      "observer_convention": "each_surface_2m",
+      "cutoff_m": 200000,
+      "all_horizon_samples_identical": true,
+      "maximum_horizon_change_deg": 0.0,
+      "checks": [],
+      "passed": true
+    },
+    {
+      "configuration": "P90_240m",
+      "observer_convention": "fixed_absolute",
+      "cutoff_m": 150000,
+      "all_horizon_samples_identical": false,
+      "maximum_horizon_change_deg": 0.9524187731036291,
+      "checks": [
+        {
+          "check": "cutoff",
+          "metric": "sun",
+          "relevant_interval_counts": [
+            2,
+            2
+          ],
+          "event_episode_counts_equal": true,
+          "maximum_transition_or_duration_change_s": 0.0,
+          "threshold_states_stable": true,
+          "passed": true
+        },
+        {
+          "check": "cutoff",
+          "metric": "earth",
+          "relevant_interval_counts": [
+            1,
+            1
+          ],
+          "event_episode_counts_equal": true,
+          "maximum_transition_or_duration_change_s": 0.0,
+          "threshold_states_stable": true,
+          "passed": true
+        },
+        {
+          "check": "cutoff",
+          "metric": "simultaneous",
+          "relevant_interval_counts": [
+            1,
+            1
+          ],
+          "event_episode_counts_equal": true,
+          "maximum_transition_or_duration_change_s": 0.0,
+          "threshold_states_stable": true,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "configuration": "P90_240m",
+      "observer_convention": "fixed_absolute",
+      "cutoff_m": 200000,
+      "all_horizon_samples_identical": true,
+      "maximum_horizon_change_deg": 0.0,
+      "checks": [],
+      "passed": true
+    },
+    {
+      "configuration": "P90_240m",
+      "observer_convention": "each_surface_2m",
+      "cutoff_m": 150000,
+      "all_horizon_samples_identical": false,
+      "maximum_horizon_change_deg": 0.4565245031146037,
+      "checks": [
+        {
+          "check": "cutoff",
+          "metric": "sun",
+          "relevant_interval_counts": [
+            2,
+            2
+          ],
+          "event_episode_counts_equal": true,
+          "maximum_transition_or_duration_change_s": 0.0,
+          "threshold_states_stable": true,
+          "passed": true
+        },
+        {
+          "check": "cutoff",
+          "metric": "earth",
+          "relevant_interval_counts": [
+            1,
+            1
+          ],
+          "event_episode_counts_equal": true,
+          "maximum_transition_or_duration_change_s": 0.0,
+          "threshold_states_stable": true,
+          "passed": true
+        },
+        {
+          "check": "cutoff",
+          "metric": "simultaneous",
+          "relevant_interval_counts": [
+            1,
+            1
+          ],
+          "event_episode_counts_equal": true,
+          "maximum_transition_or_duration_change_s": 0.0,
+          "threshold_states_stable": true,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "configuration": "P90_240m",
+      "observer_convention": "each_surface_2m",
+      "cutoff_m": 200000,
+      "all_horizon_samples_identical": true,
+      "maximum_horizon_change_deg": 0.0,
+      "checks": [],
+      "passed": true
+    },
+    {
+      "configuration": "P104_5m",
+      "observer_convention": "fixed_absolute",
+      "cutoff_m": 150000,
+      "all_horizon_samples_identical": true,
+      "maximum_horizon_change_deg": 0.0,
+      "checks": [],
+      "passed": true
+    },
+    {
+      "configuration": "P104_5m",
+      "observer_convention": "fixed_absolute",
+      "cutoff_m": 200000,
+      "all_horizon_samples_identical": true,
+      "maximum_horizon_change_deg": 0.0,
+      "checks": [],
+      "passed": true
+    },
+    {
+      "configuration": "P104_5m",
+      "observer_convention": "each_surface_2m",
+      "cutoff_m": 150000,
+      "all_horizon_samples_identical": false,
+      "maximum_horizon_change_deg": 0.082061557545694,
+      "checks": [
+        {
+          "check": "cutoff",
+          "metric": "sun",
+          "relevant_interval_counts": [
+            2,
+            2
+          ],
+          "event_episode_counts_equal": true,
+          "maximum_transition_or_duration_change_s": 0.0,
+          "threshold_states_stable": true,
+          "passed": true
+        },
+        {
+          "check": "cutoff",
+          "metric": "earth",
+          "relevant_interval_counts": [
+            1,
+            1
+          ],
+          "event_episode_counts_equal": true,
+          "maximum_transition_or_duration_change_s": 0.0,
+          "threshold_states_stable": true,
+          "passed": true
+        },
+        {
+          "check": "cutoff",
+          "metric": "simultaneous",
+          "relevant_interval_counts": [
+            1,
+            1
+          ],
+          "event_episode_counts_equal": true,
+          "maximum_transition_or_duration_change_s": 0.0,
+          "threshold_states_stable": true,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "configuration": "P104_5m",
+      "observer_convention": "each_surface_2m",
+      "cutoff_m": 200000,
+      "all_horizon_samples_identical": true,
+      "maximum_horizon_change_deg": 0.0,
+      "checks": [],
+      "passed": true
+    },
+    {
+      "configuration": "SYNTHETIC_59p88m",
+      "observer_convention": "fixed_absolute",
+      "cutoff_m": 150000,
+      "all_horizon_samples_identical": false,
+      "maximum_horizon_change_deg": 0.11868604939673055,
+      "checks": [
+        {
+          "check": "cutoff",
+          "metric": "sun",
+          "relevant_interval_counts": [
+            2,
+            2
+          ],
+          "event_episode_counts_equal": true,
+          "maximum_transition_or_duration_change_s": 0.0,
+          "threshold_states_stable": true,
+          "passed": true
+        },
+        {
+          "check": "cutoff",
+          "metric": "earth",
+          "relevant_interval_counts": [
+            1,
+            1
+          ],
+          "event_episode_counts_equal": true,
+          "maximum_transition_or_duration_change_s": 0.0,
+          "threshold_states_stable": true,
+          "passed": true
+        },
+        {
+          "check": "cutoff",
+          "metric": "simultaneous",
+          "relevant_interval_counts": [
+            1,
+            1
+          ],
+          "event_episode_counts_equal": true,
+          "maximum_transition_or_duration_change_s": 0.0,
+          "threshold_states_stable": true,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "configuration": "SYNTHETIC_59p88m",
+      "observer_convention": "fixed_absolute",
+      "cutoff_m": 200000,
+      "all_horizon_samples_identical": true,
+      "maximum_horizon_change_deg": 0.0,
+      "checks": [],
+      "passed": true
+    },
+    {
+      "configuration": "SYNTHETIC_59p88m",
+      "observer_convention": "each_surface_2m",
+      "cutoff_m": 150000,
+      "all_horizon_samples_identical": false,
+      "maximum_horizon_change_deg": 0.36560086304485595,
+      "checks": [
+        {
+          "check": "cutoff",
+          "metric": "sun",
+          "relevant_interval_counts": [
+            2,
+            2
+          ],
+          "event_episode_counts_equal": true,
+          "maximum_transition_or_duration_change_s": 0.0,
+          "threshold_states_stable": true,
+          "passed": true
+        },
+        {
+          "check": "cutoff",
+          "metric": "earth",
+          "relevant_interval_counts": [
+            1,
+            1
+          ],
+          "event_episode_counts_equal": true,
+          "maximum_transition_or_duration_change_s": 0.0,
+          "threshold_states_stable": true,
+          "passed": true
+        },
+        {
+          "check": "cutoff",
+          "metric": "simultaneous",
+          "relevant_interval_counts": [
+            1,
+            1
+          ],
+          "event_episode_counts_equal": true,
+          "maximum_transition_or_duration_change_s": 0.0,
+          "threshold_states_stable": true,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "configuration": "SYNTHETIC_59p88m",
+      "observer_convention": "each_surface_2m",
+      "cutoff_m": 200000,
+      "all_horizon_samples_identical": true,
+      "maximum_horizon_change_deg": 0.0,
+      "checks": [],
+      "passed": true
+    }
+  ],
+  "saved_dense_engine_check": [
+    {
+      "check": "R01B_dense_vs_R01C_final",
+      "metric": "sun",
+      "relevant_interval_counts": [
+        2,
+        2
+      ],
+      "event_episode_counts_equal": true,
+      "maximum_transition_or_duration_change_s": 201.2692447900772,
+      "threshold_states_stable": true,
+      "passed": true
+    },
+    {
+      "check": "R01B_dense_vs_R01C_final",
+      "metric": "earth",
+      "relevant_interval_counts": [
+        1,
+        1
+      ],
+      "event_episode_counts_equal": true,
+      "maximum_transition_or_duration_change_s": 36.70225656032562,
+      "threshold_states_stable": true,
+      "passed": true
+    },
+    {
+      "check": "R01B_dense_vs_R01C_final",
+      "metric": "simultaneous",
+      "relevant_interval_counts": [
+        1,
+        1
+      ],
+      "event_episode_counts_equal": true,
+      "maximum_transition_or_duration_change_s": 201.17957532405853,
+      "threshold_states_stable": true,
+      "passed": true
+    }
+  ],
+  "observer_ground_difference_check": {
+    "nominal": 1533.774658203125,
+    "sdem": 1535.1004638671875,
+    "difference": 1.325820803642273,
+    "sdem_minus_nominal_m": 1.3258056640625,
+    "residual_after_own_difference_m": -1.5139579772949219e-05
+  },
+  "projected_coordinate_consistency": [
+    {
+      "path": "data/raw/terrain/SL2_final_adj_5mpp_surf.tif",
+      "maximum_projected_coordinate_difference_m": 0.0,
+      "reference_radius_m": 1737400.0,
+      "passed": true
+    },
+    {
+      "path": "data/raw/r01c/LDEM_80S_20MPP_ADJ.TIF.native_window.tif",
+      "maximum_projected_coordinate_difference_m": 0.0,
+      "reference_radius_m": 1737400.0,
+      "passed": true
+    },
+    {
+      "path": "data/raw/r01c/LDEM_80S_40MPP_ADJ.TIF.native_window.tif",
+      "maximum_projected_coordinate_difference_m": 0.0,
+      "reference_radius_m": 1737400.0,
+      "passed": true
+    },
+    {
+      "path": "data/raw/r01c/LDEM_60S_60MPP_ADJ.TIF.native_window.tif",
+      "maximum_projected_coordinate_difference_m": 0.0,
+      "reference_radius_m": 1737400.0,
+      "passed": true
+    },
+    {
+      "path": "data/raw/r01c/LDEM_80S_80MPP_ADJ.TIF.native_window.tif",
+      "maximum_projected_coordinate_difference_m": 0.0,
+      "reference_radius_m": 1737400.0,
+      "passed": true
+    },
+    {
+      "path": "data/raw/r01c/LDEM_60S_240MPP_ADJ.TIF.native_window.tif",
+      "maximum_projected_coordinate_difference_m": 0.0,
+      "reference_radius_m": 1737400.0,
+      "passed": true
+    },
+    {
+      "path": "data/raw/terrain/A304_GLDELEV_005.tif",
+      "maximum_projected_coordinate_difference_m": 0.0,
+      "reference_radius_m": 1737400.0,
+      "passed": true
+    },
+    {
+      "path": "data/processed/r01b/SL2_average_334.tif",
+      "maximum_projected_coordinate_difference_m": 0.0,
+      "reference_radius_m": 1737400.0,
+      "passed": true
+    },
+    {
+      "path": "data/raw/terrain/LDEM_80S_80MPP_ADJ.TIF",
+      "maximum_projected_coordinate_difference_m": 0.0,
+      "reference_radius_m": 1737400.0,
+      "passed": true
+    },
+    {
+      "path": "data/raw/terrain/LDEM_60S_240MPP_ADJ.TIF",
+      "maximum_projected_coordinate_difference_m": 0.0,
+      "reference_radius_m": 1737400.0,
+      "passed": true
+    },
+    {
+      "path": "data/raw/r01c/LDEC_60S_240MPP_ADJ.TIF.native_window.tif",
+      "maximum_projected_coordinate_difference_m": 0.0,
+      "reference_radius_m": 1737400.0,
+      "passed": true
+    },
+    {
+      "path": "data/raw/r01c/LDEC_60S_60MPP_ADJ.TIF.native_window.tif",
+      "maximum_projected_coordinate_difference_m": 0.0,
+      "reference_radius_m": 1737400.0,
+      "passed": true
+    },
+    {
+      "path": "data/raw/r01c/LDEC_80S_20MPP_ADJ.TIF.native_window.tif",
+      "maximum_projected_coordinate_difference_m": 0.0,
+      "reference_radius_m": 1737400.0,
+      "passed": true
+    },
+    {
+      "path": "data/raw/r01c/LDEC_80S_40MPP_ADJ.TIF.native_window.tif",
+      "maximum_projected_coordinate_difference_m": 0.0,
+      "reference_radius_m": 1737400.0,
+      "passed": true
+    },
+    {
+      "path": "data/raw/r01c/LDEC_80S_80MPP_ADJ.TIF.native_window.tif",
+      "maximum_projected_coordinate_difference_m": 0.0,
+      "reference_radius_m": 1737400.0,
+      "passed": true
+    },
+    {
+      "path": "data/raw/r01c/LDEM_60S_240MPP_ADJ_EFFRES.TIF.native_window.tif",
+      "maximum_projected_coordinate_difference_m": 0.0,
+      "reference_radius_m": 1737400.0,
+      "passed": true
+    },
+    {
+      "path": "data/raw/r01c/LDEM_60S_240MPP_ADJ_ERR.TIF.native_window.tif",
+      "maximum_projected_coordinate_difference_m": 0.0,
+      "reference_radius_m": 1737400.0,
+      "passed": true
+    },
+    {
+      "path": "data/raw/r01c/LDEM_60S_60MPP_ADJ_EFFRES.TIF.native_window.tif",
+      "maximum_projected_coordinate_difference_m": 0.0,
+      "reference_radius_m": 1737400.0,
+      "passed": true
+    },
+    {
+      "path": "data/raw/r01c/LDEM_60S_60MPP_ADJ_ERR.TIF.native_window.tif",
+      "maximum_projected_coordinate_difference_m": 0.0,
+      "reference_radius_m": 1737400.0,
+      "passed": true
+    },
+    {
+      "path": "data/raw/r01c/LDEM_80S_20MPP_ADJ_EFFRES.TIF.native_window.tif",
+      "maximum_projected_coordinate_difference_m": 0.0,
+      "reference_radius_m": 1737400.0,
+      "passed": true
+    },
+    {
+      "path": "data/raw/r01c/LDEM_80S_20MPP_ADJ_ERR.TIF.native_window.tif",
+      "maximum_projected_coordinate_difference_m": 0.0,
+      "reference_radius_m": 1737400.0,
+      "passed": true
+    },
+    {
+      "path": "data/raw/r01c/LDEM_80S_40MPP_ADJ_EFFRES.TIF.native_window.tif",
+      "maximum_projected_coordinate_difference_m": 0.0,
+      "reference_radius_m": 1737400.0,
+      "passed": true
+    },
+    {
+      "path": "data/raw/r01c/LDEM_80S_40MPP_ADJ_ERR.TIF.native_window.tif",
+      "maximum_projected_coordinate_difference_m": 0.0,
+      "reference_radius_m": 1737400.0,
+      "passed": true
+    },
+    {
+      "path": "data/raw/r01c/LDEM_80S_80MPP_ADJ_EFFRES.TIF.native_window.tif",
+      "maximum_projected_coordinate_difference_m": 0.0,
+      "reference_radius_m": 1737400.0,
+      "passed": true
+    },
+    {
+      "path": "data/raw/r01c/LDEM_80S_80MPP_ADJ_ERR.TIF.native_window.tif",
+      "maximum_projected_coordinate_difference_m": 0.0,
+      "reference_radius_m": 1737400.0,
+      "passed": true
+    },
+    {
+      "path": "data/raw/terrain/SL2_final_adj_5mpp_ldec.tif",
+      "maximum_projected_coordinate_difference_m": 0.0,
+      "reference_radius_m": 1737400.0,
+      "passed": true
+    },
+    {
+      "path": "data/raw/terrain/SL2_final_adj_5mpp_toterr.tif",
+      "maximum_projected_coordinate_difference_m": 0.0,
+      "reference_radius_m": 1737400.0,
+      "passed": true
+    },
+    {
+      "path": "data/raw/terrain/SL2_final_adj_5mpp_slperr.tif",
+      "maximum_projected_coordinate_difference_m": 0.0,
+      "reference_radius_m": 1737400.0,
+      "passed": true
+    },
+    {
+      "path": "data/raw/terrain/A304_GLDMASK_005.tif",
+      "maximum_projected_coordinate_difference_m": 0.0,
+      "reference_radius_m": 1737400.0,
+      "passed": true
+    },
+    {
+      "path": "data/raw/terrain/A304_GLDBRES_005.tif",
+      "maximum_projected_coordinate_difference_m": 0.0,
+      "reference_radius_m": 1737400.0,
+      "passed": true
+    },
+    {
+      "path": "data/raw/terrain/A304_GLDDIFF_005.tif",
+      "maximum_projected_coordinate_difference_m": 0.0,
+      "reference_radius_m": 1737400.0,
+      "passed": true
+    },
+    {
+      "path": "data/raw/terrain/A304_GLDSIGM_005.tif",
+      "maximum_projected_coordinate_difference_m": 0.0,
+      "reference_radius_m": 1737400.0,
+      "passed": true
+    }
+  ],
+  "critical_boundary_witness_checks": [
+    {
+      "configuration": "P78_5m",
+      "observer_convention": "fixed_absolute",
+      "diagnostic": "own_late_solar_onset",
+      "bracketing_ray": "lower",
+      "distance_to_nearest_local_boundary_m": 3284.3234832507005,
+      "local_pixel_spacing_m": 5,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P78_5m"
+    },
+    {
+      "configuration": "P78_5m",
+      "observer_convention": "fixed_absolute",
+      "diagnostic": "own_late_solar_onset",
+      "bracketing_ray": "upper",
+      "distance_to_nearest_local_boundary_m": 3284.2836755889366,
+      "local_pixel_spacing_m": 5,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P78_5m"
+    },
+    {
+      "configuration": "P78_5m",
+      "observer_convention": "fixed_absolute",
+      "diagnostic": "own_late_simultaneous_end",
+      "bracketing_ray": "lower",
+      "distance_to_nearest_local_boundary_m": 3297.164171458142,
+      "local_pixel_spacing_m": 5,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P78_5m"
+    },
+    {
+      "configuration": "P78_5m",
+      "observer_convention": "fixed_absolute",
+      "diagnostic": "own_late_simultaneous_end",
+      "bracketing_ray": "upper",
+      "distance_to_nearest_local_boundary_m": 3297.1200194475314,
+      "local_pixel_spacing_m": 5,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P78_5m"
+    },
+    {
+      "configuration": "P78_5m",
+      "observer_convention": "each_surface_2m",
+      "diagnostic": "own_late_solar_onset",
+      "bracketing_ray": "lower",
+      "distance_to_nearest_local_boundary_m": 3284.3234832507005,
+      "local_pixel_spacing_m": 5,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P78_5m"
+    },
+    {
+      "configuration": "P78_5m",
+      "observer_convention": "each_surface_2m",
+      "diagnostic": "own_late_solar_onset",
+      "bracketing_ray": "upper",
+      "distance_to_nearest_local_boundary_m": 3284.2836755889366,
+      "local_pixel_spacing_m": 5,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P78_5m"
+    },
+    {
+      "configuration": "P78_5m",
+      "observer_convention": "each_surface_2m",
+      "diagnostic": "own_late_simultaneous_end",
+      "bracketing_ray": "lower",
+      "distance_to_nearest_local_boundary_m": 3297.164171458142,
+      "local_pixel_spacing_m": 5,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P78_5m"
+    },
+    {
+      "configuration": "P78_5m",
+      "observer_convention": "each_surface_2m",
+      "diagnostic": "own_late_simultaneous_end",
+      "bracketing_ray": "upper",
+      "distance_to_nearest_local_boundary_m": 3297.1200194475314,
+      "local_pixel_spacing_m": 5,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P78_5m"
+    },
+    {
+      "configuration": "P90_20m",
+      "observer_convention": "fixed_absolute",
+      "diagnostic": "own_late_solar_onset",
+      "bracketing_ray": "lower",
+      "distance_to_nearest_local_boundary_m": 3275.733155451715,
+      "local_pixel_spacing_m": 20,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P90_20m"
+    },
+    {
+      "configuration": "P90_20m",
+      "observer_convention": "fixed_absolute",
+      "diagnostic": "own_late_solar_onset",
+      "bracketing_ray": "upper",
+      "distance_to_nearest_local_boundary_m": 3275.4860452835783,
+      "local_pixel_spacing_m": 20,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P90_20m"
+    },
+    {
+      "configuration": "P90_20m",
+      "observer_convention": "fixed_absolute",
+      "diagnostic": "own_late_simultaneous_end",
+      "bracketing_ray": "lower",
+      "distance_to_nearest_local_boundary_m": 3296.9454255101737,
+      "local_pixel_spacing_m": 20,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P90_20m"
+    },
+    {
+      "configuration": "P90_20m",
+      "observer_convention": "fixed_absolute",
+      "diagnostic": "own_late_simultaneous_end",
+      "bracketing_ray": "upper",
+      "distance_to_nearest_local_boundary_m": 3296.899099557915,
+      "local_pixel_spacing_m": 20,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P90_20m"
+    },
+    {
+      "configuration": "P90_20m",
+      "observer_convention": "each_surface_2m",
+      "diagnostic": "own_late_solar_onset",
+      "bracketing_ray": "lower",
+      "distance_to_nearest_local_boundary_m": 3269.9632109989616,
+      "local_pixel_spacing_m": 20,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P90_20m"
+    },
+    {
+      "configuration": "P90_20m",
+      "observer_convention": "each_surface_2m",
+      "diagnostic": "own_late_solar_onset",
+      "bracketing_ray": "upper",
+      "distance_to_nearest_local_boundary_m": 3269.9353541577875,
+      "local_pixel_spacing_m": 20,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P90_20m"
+    },
+    {
+      "configuration": "P90_20m",
+      "observer_convention": "each_surface_2m",
+      "diagnostic": "own_late_simultaneous_end",
+      "bracketing_ray": "lower",
+      "distance_to_nearest_local_boundary_m": 3296.7601477009885,
+      "local_pixel_spacing_m": 20,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P90_20m"
+    },
+    {
+      "configuration": "P90_20m",
+      "observer_convention": "each_surface_2m",
+      "diagnostic": "own_late_simultaneous_end",
+      "bracketing_ray": "upper",
+      "distance_to_nearest_local_boundary_m": 3296.713839201868,
+      "local_pixel_spacing_m": 20,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P90_20m"
+    },
+    {
+      "configuration": "P90_40m",
+      "observer_convention": "fixed_absolute",
+      "diagnostic": "own_late_solar_onset",
+      "bracketing_ray": "lower",
+      "distance_to_nearest_local_boundary_m": 3278.088777100762,
+      "local_pixel_spacing_m": 40,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P90_40m"
+    },
+    {
+      "configuration": "P90_40m",
+      "observer_convention": "fixed_absolute",
+      "diagnostic": "own_late_solar_onset",
+      "bracketing_ray": "upper",
+      "distance_to_nearest_local_boundary_m": 3277.977613527786,
+      "local_pixel_spacing_m": 40,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P90_40m"
+    },
+    {
+      "configuration": "P90_40m",
+      "observer_convention": "fixed_absolute",
+      "diagnostic": "own_late_simultaneous_end",
+      "bracketing_ray": "lower",
+      "distance_to_nearest_local_boundary_m": 3295.673826521248,
+      "local_pixel_spacing_m": 40,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P90_40m"
+    },
+    {
+      "configuration": "P90_40m",
+      "observer_convention": "fixed_absolute",
+      "diagnostic": "own_late_simultaneous_end",
+      "bracketing_ray": "upper",
+      "distance_to_nearest_local_boundary_m": 3295.6188419522805,
+      "local_pixel_spacing_m": 40,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P90_40m"
+    },
+    {
+      "configuration": "P90_40m",
+      "observer_convention": "each_surface_2m",
+      "diagnostic": "own_late_solar_onset",
+      "bracketing_ray": "lower",
+      "distance_to_nearest_local_boundary_m": 3263.704695187407,
+      "local_pixel_spacing_m": 40,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P90_40m"
+    },
+    {
+      "configuration": "P90_40m",
+      "observer_convention": "each_surface_2m",
+      "diagnostic": "own_late_solar_onset",
+      "bracketing_ray": "upper",
+      "distance_to_nearest_local_boundary_m": 3263.5771533919833,
+      "local_pixel_spacing_m": 40,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P90_40m"
+    },
+    {
+      "configuration": "P90_40m",
+      "observer_convention": "each_surface_2m",
+      "diagnostic": "own_late_simultaneous_end",
+      "bracketing_ray": "lower",
+      "distance_to_nearest_local_boundary_m": 3295.563862664603,
+      "local_pixel_spacing_m": 40,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P90_40m"
+    },
+    {
+      "configuration": "P90_40m",
+      "observer_convention": "each_surface_2m",
+      "diagnostic": "own_late_simultaneous_end",
+      "bracketing_ray": "upper",
+      "distance_to_nearest_local_boundary_m": 3295.508888710807,
+      "local_pixel_spacing_m": 40,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P90_40m"
+    },
+    {
+      "configuration": "P90_60m",
+      "observer_convention": "fixed_absolute",
+      "diagnostic": "own_late_solar_onset",
+      "bracketing_ray": "lower",
+      "distance_to_nearest_local_boundary_m": 3242.868999478407,
+      "local_pixel_spacing_m": 60,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P90_60m"
+    },
+    {
+      "configuration": "P90_60m",
+      "observer_convention": "fixed_absolute",
+      "diagnostic": "own_late_solar_onset",
+      "bracketing_ray": "upper",
+      "distance_to_nearest_local_boundary_m": 3243.41255588043,
+      "local_pixel_spacing_m": 60,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P90_60m"
+    },
+    {
+      "configuration": "P90_60m",
+      "observer_convention": "fixed_absolute",
+      "diagnostic": "own_late_simultaneous_end",
+      "bracketing_ray": "lower",
+      "distance_to_nearest_local_boundary_m": 3294.3826367433576,
+      "local_pixel_spacing_m": 60,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P90_60m"
+    },
+    {
+      "configuration": "P90_60m",
+      "observer_convention": "fixed_absolute",
+      "diagnostic": "own_late_simultaneous_end",
+      "bracketing_ray": "upper",
+      "distance_to_nearest_local_boundary_m": 3294.3188861894887,
+      "local_pixel_spacing_m": 60,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P90_60m"
+    },
+    {
+      "configuration": "P90_60m",
+      "observer_convention": "each_surface_2m",
+      "diagnostic": "own_late_solar_onset",
+      "bracketing_ray": "lower",
+      "distance_to_nearest_local_boundary_m": 3230.0822719374846,
+      "local_pixel_spacing_m": 60,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P90_60m"
+    },
+    {
+      "configuration": "P90_60m",
+      "observer_convention": "each_surface_2m",
+      "diagnostic": "own_late_solar_onset",
+      "bracketing_ray": "upper",
+      "distance_to_nearest_local_boundary_m": 3230.059573252045,
+      "local_pixel_spacing_m": 60,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P90_60m"
+    },
+    {
+      "configuration": "P90_60m",
+      "observer_convention": "each_surface_2m",
+      "diagnostic": "own_late_simultaneous_end",
+      "bracketing_ray": "lower",
+      "distance_to_nearest_local_boundary_m": 3294.2551419122537,
+      "local_pixel_spacing_m": 60,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P90_60m"
+    },
+    {
+      "configuration": "P90_60m",
+      "observer_convention": "each_surface_2m",
+      "diagnostic": "own_late_simultaneous_end",
+      "bracketing_ray": "upper",
+      "distance_to_nearest_local_boundary_m": 3294.1914039570693,
+      "local_pixel_spacing_m": 60,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P90_60m"
+    },
+    {
+      "configuration": "P90_80m",
+      "observer_convention": "fixed_absolute",
+      "diagnostic": "own_late_solar_onset",
+      "bracketing_ray": "lower",
+      "distance_to_nearest_local_boundary_m": 1300.1445143573583,
+      "local_pixel_spacing_m": 80,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P90_80m"
+    },
+    {
+      "configuration": "P90_80m",
+      "observer_convention": "fixed_absolute",
+      "diagnostic": "own_late_solar_onset",
+      "bracketing_ray": "upper",
+      "distance_to_nearest_local_boundary_m": 1299.930280682136,
+      "local_pixel_spacing_m": 80,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P90_80m"
+    },
+    {
+      "configuration": "P90_80m",
+      "observer_convention": "fixed_absolute",
+      "diagnostic": "own_late_simultaneous_end",
+      "bracketing_ray": "lower",
+      "distance_to_nearest_local_boundary_m": 3297.733581723507,
+      "local_pixel_spacing_m": 80,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P90_80m"
+    },
+    {
+      "configuration": "P90_80m",
+      "observer_convention": "fixed_absolute",
+      "diagnostic": "own_late_simultaneous_end",
+      "bracketing_ray": "upper",
+      "distance_to_nearest_local_boundary_m": 3297.695960226876,
+      "local_pixel_spacing_m": 80,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P90_80m"
+    },
+    {
+      "configuration": "P90_80m",
+      "observer_convention": "each_surface_2m",
+      "diagnostic": "own_late_solar_onset",
+      "bracketing_ray": "lower",
+      "distance_to_nearest_local_boundary_m": 1300.1445143573583,
+      "local_pixel_spacing_m": 80,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P90_80m"
+    },
+    {
+      "configuration": "P90_80m",
+      "observer_convention": "each_surface_2m",
+      "diagnostic": "own_late_solar_onset",
+      "bracketing_ray": "upper",
+      "distance_to_nearest_local_boundary_m": 1299.930280682136,
+      "local_pixel_spacing_m": 80,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P90_80m"
+    },
+    {
+      "configuration": "P90_80m",
+      "observer_convention": "each_surface_2m",
+      "diagnostic": "own_late_simultaneous_end",
+      "bracketing_ray": "lower",
+      "distance_to_nearest_local_boundary_m": 3297.733581723507,
+      "local_pixel_spacing_m": 80,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P90_80m"
+    },
+    {
+      "configuration": "P90_80m",
+      "observer_convention": "each_surface_2m",
+      "diagnostic": "own_late_simultaneous_end",
+      "bracketing_ray": "upper",
+      "distance_to_nearest_local_boundary_m": 3297.695960226876,
+      "local_pixel_spacing_m": 80,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P90_80m"
+    },
+    {
+      "configuration": "P90_240m",
+      "observer_convention": "fixed_absolute",
+      "diagnostic": "own_late_solar_onset",
+      "bracketing_ray": "lower",
+      "distance_to_nearest_local_boundary_m": 1219.976763992323,
+      "local_pixel_spacing_m": 240,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P90_240m"
+    },
+    {
+      "configuration": "P90_240m",
+      "observer_convention": "fixed_absolute",
+      "diagnostic": "own_late_solar_onset",
+      "bracketing_ray": "upper",
+      "distance_to_nearest_local_boundary_m": 1220.0674813231744,
+      "local_pixel_spacing_m": 240,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P90_240m"
+    },
+    {
+      "configuration": "P90_240m",
+      "observer_convention": "fixed_absolute",
+      "diagnostic": "own_late_simultaneous_end",
+      "bracketing_ray": "lower",
+      "distance_to_nearest_local_boundary_m": 57600.90618062176,
+      "local_pixel_spacing_m": 240,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "PGDA90_far80"
+    },
+    {
+      "configuration": "P90_240m",
+      "observer_convention": "fixed_absolute",
+      "diagnostic": "own_late_simultaneous_end",
+      "bracketing_ray": "upper",
+      "distance_to_nearest_local_boundary_m": 57599.29710851309,
+      "local_pixel_spacing_m": 240,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "PGDA90_far80"
+    },
+    {
+      "configuration": "P90_240m",
+      "observer_convention": "each_surface_2m",
+      "diagnostic": "own_late_solar_onset",
+      "bracketing_ray": "lower",
+      "distance_to_nearest_local_boundary_m": 3233.4726458143996,
+      "local_pixel_spacing_m": 240,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P90_240m"
+    },
+    {
+      "configuration": "P90_240m",
+      "observer_convention": "each_surface_2m",
+      "diagnostic": "own_late_solar_onset",
+      "bracketing_ray": "upper",
+      "distance_to_nearest_local_boundary_m": 3233.3289443422036,
+      "local_pixel_spacing_m": 240,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P90_240m"
+    },
+    {
+      "configuration": "P90_240m",
+      "observer_convention": "each_surface_2m",
+      "diagnostic": "own_late_simultaneous_end",
+      "bracketing_ray": "lower",
+      "distance_to_nearest_local_boundary_m": 3297.9726404588,
+      "local_pixel_spacing_m": 240,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P90_240m"
+    },
+    {
+      "configuration": "P90_240m",
+      "observer_convention": "each_surface_2m",
+      "diagnostic": "own_late_simultaneous_end",
+      "bracketing_ray": "upper",
+      "distance_to_nearest_local_boundary_m": 3297.935105827484,
+      "local_pixel_spacing_m": 240,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P90_240m"
+    },
+    {
+      "configuration": "P104_5m",
+      "observer_convention": "fixed_absolute",
+      "diagnostic": "own_late_solar_onset",
+      "bracketing_ray": "lower",
+      "distance_to_nearest_local_boundary_m": 3307.456309956935,
+      "local_pixel_spacing_m": 5,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P104_5m"
+    },
+    {
+      "configuration": "P104_5m",
+      "observer_convention": "fixed_absolute",
+      "diagnostic": "own_late_solar_onset",
+      "bracketing_ray": "upper",
+      "distance_to_nearest_local_boundary_m": 3307.4647743049645,
+      "local_pixel_spacing_m": 5,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P104_5m"
+    },
+    {
+      "configuration": "P104_5m",
+      "observer_convention": "fixed_absolute",
+      "diagnostic": "own_late_simultaneous_end",
+      "bracketing_ray": "lower",
+      "distance_to_nearest_local_boundary_m": 3300.5540343217217,
+      "local_pixel_spacing_m": 5,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P104_5m"
+    },
+    {
+      "configuration": "P104_5m",
+      "observer_convention": "fixed_absolute",
+      "diagnostic": "own_late_simultaneous_end",
+      "bracketing_ray": "upper",
+      "distance_to_nearest_local_boundary_m": 3300.5317377888277,
+      "local_pixel_spacing_m": 5,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P104_5m"
+    },
+    {
+      "configuration": "P104_5m",
+      "observer_convention": "each_surface_2m",
+      "diagnostic": "own_late_solar_onset",
+      "bracketing_ray": "lower",
+      "distance_to_nearest_local_boundary_m": 3282.4764780263577,
+      "local_pixel_spacing_m": 5,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P104_5m"
+    },
+    {
+      "configuration": "P104_5m",
+      "observer_convention": "each_surface_2m",
+      "diagnostic": "own_late_solar_onset",
+      "bracketing_ray": "upper",
+      "distance_to_nearest_local_boundary_m": 3282.491600142479,
+      "local_pixel_spacing_m": 5,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P104_5m"
+    },
+    {
+      "configuration": "P104_5m",
+      "observer_convention": "each_surface_2m",
+      "diagnostic": "own_late_simultaneous_end",
+      "bracketing_ray": "lower",
+      "distance_to_nearest_local_boundary_m": 3297.9458708122766,
+      "local_pixel_spacing_m": 5,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P104_5m"
+    },
+    {
+      "configuration": "P104_5m",
+      "observer_convention": "each_surface_2m",
+      "diagnostic": "own_late_simultaneous_end",
+      "bracketing_ray": "upper",
+      "distance_to_nearest_local_boundary_m": 3297.9061448395296,
+      "local_pixel_spacing_m": 5,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "P104_5m"
+    },
+    {
+      "configuration": "SYNTHETIC_59p88m",
+      "observer_convention": "fixed_absolute",
+      "diagnostic": "own_late_solar_onset",
+      "bracketing_ray": "lower",
+      "distance_to_nearest_local_boundary_m": 3227.386745649892,
+      "local_pixel_spacing_m": 59.880239520958085,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "SYNTHETIC_59p88m"
+    },
+    {
+      "configuration": "SYNTHETIC_59p88m",
+      "observer_convention": "fixed_absolute",
+      "diagnostic": "own_late_solar_onset",
+      "bracketing_ray": "upper",
+      "distance_to_nearest_local_boundary_m": 3226.7623796660555,
+      "local_pixel_spacing_m": 59.880239520958085,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "SYNTHETIC_59p88m"
+    },
+    {
+      "configuration": "SYNTHETIC_59p88m",
+      "observer_convention": "fixed_absolute",
+      "diagnostic": "own_late_simultaneous_end",
+      "bracketing_ray": "lower",
+      "distance_to_nearest_local_boundary_m": 3297.536676709831,
+      "local_pixel_spacing_m": 59.880239520958085,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "SYNTHETIC_59p88m"
+    },
+    {
+      "configuration": "SYNTHETIC_59p88m",
+      "observer_convention": "fixed_absolute",
+      "diagnostic": "own_late_simultaneous_end",
+      "bracketing_ray": "upper",
+      "distance_to_nearest_local_boundary_m": 3297.4972082258755,
+      "local_pixel_spacing_m": 59.880239520958085,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "SYNTHETIC_59p88m"
+    },
+    {
+      "configuration": "SYNTHETIC_59p88m",
+      "observer_convention": "each_surface_2m",
+      "diagnostic": "own_late_solar_onset",
+      "bracketing_ray": "lower",
+      "distance_to_nearest_local_boundary_m": 3203.662450189775,
+      "local_pixel_spacing_m": 59.880239520958085,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "SYNTHETIC_59p88m"
+    },
+    {
+      "configuration": "SYNTHETIC_59p88m",
+      "observer_convention": "each_surface_2m",
+      "diagnostic": "own_late_solar_onset",
+      "bracketing_ray": "upper",
+      "distance_to_nearest_local_boundary_m": 1347.0871683284713,
+      "local_pixel_spacing_m": 59.880239520958085,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "SYNTHETIC_59p88m"
+    },
+    {
+      "configuration": "SYNTHETIC_59p88m",
+      "observer_convention": "each_surface_2m",
+      "diagnostic": "own_late_simultaneous_end",
+      "bracketing_ray": "lower",
+      "distance_to_nearest_local_boundary_m": 3297.4577435981846,
+      "local_pixel_spacing_m": 59.880239520958085,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "SYNTHETIC_59p88m"
+    },
+    {
+      "configuration": "SYNTHETIC_59p88m",
+      "observer_convention": "each_surface_2m",
+      "diagnostic": "own_late_simultaneous_end",
+      "bracketing_ray": "upper",
+      "distance_to_nearest_local_boundary_m": 3297.418282856306,
+      "local_pixel_spacing_m": 59.880239520958085,
+      "within_one_local_pixel_of_boundary": false,
+      "source_product": "SYNTHETIC_59p88m"
+    }
+  ],
+  "no_critical_boundary_seam_witness": true,
+  "passed": true
+}

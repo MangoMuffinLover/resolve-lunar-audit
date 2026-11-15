@@ -1,0 +1,14 @@
+node_modules/
+.next/
+out/
+src/data/
+public/evidence/
+evidence/
+docs/
+test-results/
+readiness-results/
+playwright-report/
+package-lock.json
+
+site/
+release-manifest.json

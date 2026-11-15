@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "response_rows": 32,
+  "strict_json_files_checked": 170,
+  "frozen_r01ab_files_unchanged": 279,
+  "required_deliverables": 12,
+  "all_scoped_threshold_flags_correct": true,
+  "registered_and_physical_csv_match_model_solutions_within_s": 1,
+  "official_clone_files": 5,
+  "required_figures_visual_qa": true
+}

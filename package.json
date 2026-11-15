@@ -1,0 +1,44 @@
+{
+  "name": "resolve-lunar-audit",
+  "version": "0.7.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "data": "node scripts/navigator-data.mjs",
+    "navigator:data": "node scripts/navigator-data.mjs --navigator-only",
+    "factors:data": "node scripts/extract-factors.mjs",
+    "explain:data": "node scripts/navigator-data.mjs --explanations-only",
+    "science:data": "node scripts/build-science.mjs",
+    "dev": "next dev --hostname 127.0.0.1 --port 3000",
+    "build": "node scripts/verify-release.mjs && next build",
+    "preview": "node scripts/serve.mjs --root site",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "node scripts/verify-release.mjs",
+    "test:e2e": "playwright test",
+    "test:browsers": "playwright test --config playwright.readiness.config.ts",
+    "package:review": "python scripts/package-review.py",
+    "verify:science": "node scripts/extract.mjs --verify-only",
+    "build:research": "npm run data && next build",
+    "preview:rebuilt": "node scripts/serve.mjs --root out",
+    "test:research": "node --test tests/*.test.mjs"
+  },
+  "dependencies": {
+    "next": "16.4.6",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.14.0",
+    "@playwright/test": "1.65.1",
+    "@types/node": "26.6.6",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "prettier": "3.10.1",
+    "typescript": "7.0.2"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
