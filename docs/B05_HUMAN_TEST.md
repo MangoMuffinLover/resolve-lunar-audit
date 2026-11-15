@@ -1,4 +1,6 @@
-# RESOLVE — uncoached judge comprehension check
+# Robustness Evaluation of South-Polar Observation and Lunar Visibility Estimates (RESOLVE)
+
+uncoached judge comprehension check
 
 Status: **not yet run**. Automated checks do not count as human comprehension evidence.
 

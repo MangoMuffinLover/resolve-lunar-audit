@@ -1,12 +1,16 @@
-# RESOLVE: Auditing Model Sensitivity in Lunar South-Polar Visibility Predictions
+# Robustness Evaluation of South-Polar Observation and Lunar Visibility Estimates (RESOLVE)
+
+Decision-Convergence Auditing for Lunar South-Polar Visibility Models
 
 Technical Research Note — NASA Space Apps Challenge 2026
 
-RESOLVE project | Version 1.2 | 15 November 2026
+RESOLVE project | Version 2.0 | 15 November 2026
+
+**This technical research note has not been peer reviewed.**
 
 ## Abstract
 
-Lunar south-polar Sun/Earth visibility depends on terrain horizons, while a precise modeled duration can depend materially on terrain representation and other assumptions. RESOLVE audits whether a modeled landing-window result remains stable across defensible modeling choices. At dGR101, NASA Product 78 SL2 5 m gives 7.397830 days of complete simultaneous geometric Sun/Earth-center visibility; NASA Product 90 native 80 m gives 12.923283 days under the same fixed absolute observer convention, a difference of approximately +5.53 days. Frozen horizon and aligned terrain profiles identify a near-field representation mechanism. A limited negative result at dGR203 preceded this finding and redirected the investigation. These results establish a reproducible representation response, not an accuracy ranking. No terrain representation is validated as physical truth, and no fine-grid convergence plateau has been demonstrated. This note summarizes retained R-01A/B/C evidence; it introduces no new scientific calculation.
+Robustness Evaluation of South-Polar Observation and Lunar Visibility Estimates (RESOLVE) is a decision-convergence auditing framework for lunar landing-window models. Lunar south-polar Sun/Earth visibility depends on terrain horizons, while a precise modeled duration can depend materially on terrain representation and other assumptions. RESOLVE audits whether a modeled landing-window result remains stable across defensible modeling choices. At dGR101, NASA Product 78 SL2 5 m gives 7.397830 days of complete simultaneous geometric Sun/Earth-center visibility; NASA Product 90 native 80 m gives 12.923283 days under the same fixed absolute observer convention, a difference of approximately +5.53 days. Frozen horizon and aligned terrain profiles identify a near-field representation mechanism. A limited negative result at dGR203 preceded this finding and redirected the investigation. These results establish a reproducible representation response, not an accuracy ranking. No terrain representation is validated as physical truth, and no fine-grid convergence plateau has been demonstrated. This note summarizes retained R-01A/B/C evidence; it introduces no new scientific calculation.
 
 ## 1. Introduction and research question
 
@@ -107,4 +111,4 @@ The public repository reproduces the interface from included frozen product reco
 
 [7] NASA/JPL NAIF. [Lunar frame definitions](https://naif.jpl.nasa.gov/pub/naif/generic_kernels/fk/satellites/moon_080317.tf); [archived planetary ephemerides including DE421](https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/a_old_versions/).
 
-[8] RESOLVE frozen R-01A/B/C evidence: findings, protocols, R-01C response/witness tables, numerical audit, source/frame/literature audits and reproduction instructions. [Public evidence index](https://resolve-lunar-audit.vercel.app/science/). Specific input paths and SHA-256 values are listed in the accompanying note provenance record.
+[8] Robustness Evaluation of South-Polar Observation and Lunar Visibility Estimates (RESOLVE). Frozen R-01A/B/C evidence: findings, protocols, R-01C response/witness tables, numerical audit, source/frame/literature audits and reproduction instructions. [Public evidence index](https://resolve-lunar-audit.vercel.app/science/). Specific input paths and SHA-256 values are listed in the accompanying note provenance record.

@@ -1,6 +1,8 @@
-# Deliberate motion and Blender terrain — local candidate
+# Robustness Evaluation of South-Polar Observation and Lunar Visibility Estimates (RESOLVE)
 
-The interaction is RESULT → AUDIT → MODEL-SENSITIVE → WHY → PHYSICAL HORIZON MECHANISM. Each scientific step waits for a click, tap or keyboard action, then holds indefinitely. There is no timed model ladder, automatic Sun isolation, scroll-triggered story reveal or automatic 3D orbit. The local touch/3D branch builds on reviewed local cinematic commit `658acaf5d18cf6fc9b3ff1207561754cfc891562`; the public baseline remains `87cc57f47dc858bbf5dc791c42c9870ab3d411c5`.
+Deliberate motion and Blender terrain
+
+The interaction is RESULT → AUDIT → MODEL-SENSITIVE → WHY → PHYSICAL HORIZON MECHANISM. Each scientific step waits for a click, tap or keyboard action, then holds indefinitely. There is no timed model ladder, automatic Sun isolation, scroll-triggered story reveal or automatic 3D orbit. The local touch/3D branch builds on reviewed local cinematic commit `658acaf5d18cf6fc9b3ff1207561754cfc891562`; the earlier public baseline was `87cc57f47dc858bbf5dc791c42c9870ab3d411c5`.
 
 ## Interaction and motion
 
@@ -28,4 +30,4 @@ Cross-browser scenarios cover one-action/one-state holds, geometry invariance, t
 
 ## Publication and limits
 
-This candidate remains local at the owner's request. No branch push, external CI, Vercel deployment or cross-chat handoff is authorized for this candidate. No independent human twenty-second comprehension result, dedicated screen-reader review or actual Safari/iOS device result is claimed. WebKit on Windows is a distinct test environment. Local performance observations are not field Core Web Vitals. The project does not establish terrain truth, mission safety, power availability, link performance, probability or NASA endorsement.
+The touch-controlled interface and terrain atlas are published at https://resolve-lunar-audit.vercel.app/. Earlier local-only restrictions were superseded by the owner's publication approval. No independent human twenty-second comprehension result, dedicated screen-reader review or actual Safari/iOS device result is claimed. WebKit on Windows is a distinct test environment. Local performance observations are not field Core Web Vitals. The project does not establish terrain truth, mission safety, power availability, link performance, probability or NASA endorsement.

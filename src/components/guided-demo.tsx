@@ -37,7 +37,7 @@ export function GuidedDemo({ data }: { data: DemoData }) {
       </a>
       <SiteHeader active="audit" context="Guided demo" />
       <main id="demo-main" className="demo-main">
-        <p className="eyebrow">Six steps · advance at your own pace</p>
+        <p className="eyebrow">PROJECT RESOLVE · Six steps · advance at your own pace</p>
         <nav aria-label="Demonstration steps" className="demo-steps">
           <ol>
             {demoSteps.map((s, i) => (

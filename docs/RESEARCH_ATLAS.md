@@ -1,6 +1,8 @@
-# Research atlas refinement — local candidate
+# Robustness Evaluation of South-Polar Observation and Lunar Visibility Estimates (RESOLVE)
 
-This pass refines the local touch-controlled candidate at `d2eee030c645997a0a6f8b4d915a90c76c7a9717`. The owner approved publication of this candidate on 15 November 2026.
+Research atlas refinement
+
+The published terrain-atlas implementation was developed from `d2eee030c645997a0a6f8b4d915a90c76c7a9717`. The owner approved publication of this candidate on 15 November 2026.
 
 ## Presentation
 

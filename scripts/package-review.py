@@ -49,7 +49,9 @@ def main():
         files["review/" + name] = (ROOT / "docs" / name).read_bytes()
     for package, license_file in [("next", "license.md"), ("react", "LICENSE"), ("react-dom", "LICENSE")]:
         files[f"licenses/{package}.txt"] = (ROOT / "node_modules" / package / license_file).read_bytes()
-    files["README.md"] = """# RESOLVE portable review build
+    files["README.md"] = """# Robustness Evaluation of South-Polar Observation and Lunar Visibility Estimates (RESOLVE)
+
+Portable review build
 
 Extract the entire ZIP. In the extracted folder, run with Node.js 22 or later:
 
@@ -64,9 +66,9 @@ The source packet and exact downloads are already included under site/evidence/.
 The review/ folder includes narration drafts and the pending human-test protocol.
 Do not coach participants with the demonstration before the uncoached test.
 
-This is a local review copy with the B-07 visual redesign implemented. Human
-acceptance, dedicated screen-reader review, recording and public deployment remain
-open work.
+This portable copy accompanies the public project at
+https://resolve-lunar-audit.vercel.app/. Independent human acceptance, dedicated
+screen-reader review and a presentation recording remain open work.
 The package does not contain the full original research environment or raw DEMs.
 
 release-manifest.json records every packaged file's SHA-256 and size. Matching
@@ -81,7 +83,7 @@ Preserve the included upstream license notices when copying this review build.
         "scientific_contract_sha256": sha((ROOT / "src/data/audit.v1.json").read_bytes()),
         "source_packet_sha256": sha(packet_bytes),
         "human_acceptance": "not_run",
-        "public_deployment": False,
+        "public_deployment": True,
         "files": [{"path": name, "bytes": len(raw), "sha256": sha(raw)} for name, raw in sorted(files.items())],
     }
     files["release-manifest.json"] = (json.dumps(manifest, indent=2) + "\n").encode("utf-8")

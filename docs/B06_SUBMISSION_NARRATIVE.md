@@ -1,4 +1,6 @@
-# RESOLVE — working submission narrative
+# Robustness Evaluation of South-Polar Observation and Lunar Visibility Estimates (RESOLVE)
+
+working submission narrative
 
 These are reusable drafts grounded in the delivered evidence. They are not a submitted entry, confirmation of current competition requirements, or a claim that an award criterion has been met.
 
@@ -46,4 +48,4 @@ The navigator’s reporting interval, the seasonal negative-control search and t
 
 ## Remaining acceptance work
 
-The guided flow and automated verification support review and rehearsal. They do not replace the uncoached human comprehension test. Dedicated screen-reader and additional-browser review, final visual redesign, recording, public deployment and adaptation to verified submission requirements remain open work. No final competition-polish completion is claimed.
+The guided flow and automated verification support review and rehearsal. They do not replace the uncoached human comprehension test. The visual redesign and public deployment are complete. Automated browser verification covers Chrome, Firefox and WebKit. Dedicated screen-reader and actual iOS/Safari device review, an independent human comprehension test, a presentation recording and adaptation to verified submission requirements remain outstanding.

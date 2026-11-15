@@ -1,4 +1,43 @@
 /* Research atlas: consistent hierarchy, restrained color and explicit figure framing. */
+.project-expanded-name {
+  color: #b9cddd;
+  font: 12px/1.6 var(--sans);
+  letter-spacing: 0.015em;
+  max-width: 72ch;
+  margin: -6px 0 18px;
+}
+.formal-identity {
+  font-size: 14px;
+  line-height: 1.65;
+  color: #425b73;
+  max-width: 80ch;
+  margin: 16px 0;
+}
+.observer-plain-language {
+  display: inline-block;
+  max-width: 36ch;
+}
+.footer-formal-name {
+  max-width: 48ch;
+  font-size: 12px;
+  line-height: 1.7;
+}
+@media (max-width: 1000px) {
+  .site-context {
+    display: none;
+  }
+}
+@media (max-width: 700px) {
+  .project-expanded-name {
+    font-size: 10px;
+    line-height: 1.55;
+    margin: -6px 0 14px;
+  }
+  .fracture-opening-action .observer-plain-language {
+    font-size: 10px;
+    line-height: 1.5;
+  }
+}
 .technical-note-download {
   display: flex;
   align-items: center;

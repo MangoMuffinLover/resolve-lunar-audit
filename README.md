@@ -1,6 +1,10 @@
-# RESOLVE
+# Robustness Evaluation of South-Polar Observation and Lunar Visibility Estimates (RESOLVE)
 
 **Before you trust the window, audit the model.**
+
+RESOLVE is a NASA Space Apps Challenge 2026 project that audits whether modeled lunar Sun/Earth visibility results remain stable across defensible changes in terrain representation, observer convention and reporting scope.
+
+Website brand: **PROJECT RESOLVE** · Descriptor: **Lunar Visibility Decision-Convergence Audit**.
 
 **Live website: [resolve-lunar-audit.vercel.app](https://resolve-lunar-audit.vercel.app/)**
 
@@ -23,7 +27,7 @@ The flagship dGR101 case starts at **7.40 days**. Another native NASA terrain re
 | `/science/`   | Negative evidence, methods, NASA provenance, numerical limits and downloads |
 | `/demo/`      | Six manual steps through the scientific argument                            |
 
-## Run this exact local candidate
+## Run this published release locally
 
 With Node.js 22 or later, no dependency installation is needed:
 
@@ -34,7 +38,7 @@ node scripts/serve.mjs --root site --port 3000
 
 Open `http://127.0.0.1:3000/`. Serve over HTTP; opening HTML files directly does not support the evidence checks.
 
-`site/` contains this branch's verified static export. The retained Vercel configuration verifies release hashes and serves that folder when publication is separately authorized. The site does not run scientific calculations or require Python, SPICE, raw terrain rasters, credentials, a database or a backend.
+`site/` contains the verified published static export. The retained Vercel configuration verifies release hashes and serves that folder through the existing GitHub-to-Vercel integration. The site does not run scientific calculations or require Python, SPICE, raw terrain rasters, credentials, a database or a backend.
 
 ## Rebuild the interface from frozen product records
 
@@ -50,9 +54,9 @@ The retained `data`, `build:research`, `verify:science` and `test:research` comm
 
 ## Verification and acceptance
 
-The reviewed interface passed 46 original Node data/source/preview checks, 26 Edge product scenarios, a five-scenario audit rerun after the responsive chart change and 12 targeted Chrome/Firefox/WebKit scenarios against the final portable build. All 587 original frozen research files verified unchanged in the full local workspace. The released B-01 contract remains SHA-256 `a8a06dd4a5447acd1ee68a56779376d0b01ad081fde95c1d4b762434a521c48d`.
+The identity-migration release passes 50 existing Node data/source/preview tests, 26 Edge product scenarios and 30 Chrome/Firefox/WebKit readiness scenarios. All 587 original frozen research files verify unchanged in the full local workspace. The released B-01 contract remains SHA-256 `a8a06dd4a5447acd1ee68a56779376d0b01ad081fde95c1d4b762434a521c48d`. These checks establish tested behavior and byte integrity, not physical terrain truth.
 
-The latest candidate uses tap-controlled explanation stages, 2.2-second terrain transitions and a 2.6-second 3D camera move. It has no timed model progression, automatic Sun isolation, scroll-triggered story reveals or idle camera orbit. The 3D mesh was built in Blender from verified native NASA Product 90 pixels, at true vertical scale. Source values remain discrete and readable throughout each transition. See `docs/CINEMATIC_DESIGN.md` for controls, provenance and verification.
+The current published interface uses tap-controlled explanation stages, 2.2-second terrain transitions and a 2.6-second 3D camera move. It has no timed model progression, automatic Sun isolation, scroll-triggered story reveals or idle camera orbit. The 3D mesh was built in Blender from verified native NASA Product 90 pixels, at true vertical scale. Source values remain discrete and readable throughout each transition. See `docs/CINEMATIC_DESIGN.md` for controls, provenance and verification.
 
 The owner reviewed the website positively. This is owner feedback, not an uncoached first-time comprehension result. No independent reviewer is currently available. Automated verification and agent review continue; the human twenty-second test is not claimed passed. Dedicated screen-reader and Safari/iOS device review remain outstanding. Playwright WebKit on Windows is not Safari/iOS device testing.
 
@@ -64,4 +68,4 @@ To repeat local visual measurements, set `RESOLVE_PREVIEW_URL` and run `node scr
 
 The result concerns geometric Sun/Earth centers above modeled horizons. It does not establish available electrical power, a working communications link, landing safety, a probability of success or mission certification. Reporting clipping is distinct from a physical transition. Synthetic averaging is separate from native NASA products. The dGR203 five-clone negative result is limited to the tested perturbations.
 
-NASA LOLA/PDS terrain and NAIF/SPICE product identities, URLs, checksums, frames, kernels and retained reports are accessible through `/science/`. Upstream Next.js, React and React DOM notices are in `licenses/`; the locally served Manrope font includes its SIL Open Font License in `public/fonts/OFL.txt` and `site/fonts/OFL.txt`. No NASA endorsement is implied. No general software license has been assigned to original project code in this release.
+NASA LOLA/PDS terrain and NAIF/SPICE product identities, URLs, checksums, frames, kernels and retained reports are accessible through `/science/`. Upstream Next.js, React and React DOM notices are in `licenses/`; the locally served Manrope font includes its SIL Open Font License in `public/fonts/OFL.txt` and `site/fonts/OFL.txt`. No NASA endorsement is implied. Original project code and documentation are available under the [MIT license](LICENSE). [License scope and third-party attribution](licenses/ORIGINAL_WORK_SCOPE.md) distinguish original work from NASA and other upstream materials.

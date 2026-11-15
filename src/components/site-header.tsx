@@ -1,3 +1,4 @@
+import { projectIdentity } from '@/lib/identity';
 export function SiteHeader({
   active,
   context,
@@ -7,7 +8,7 @@ export function SiteHeader({
 }) {
   return (
     <header className="site-header">
-      <a href="/" className="site-brand" aria-label="RESOLVE home">
+      <a href="/" className="site-brand" aria-label="Project RESOLVE home">
         <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true">
           <path
             d="M5 25V7h11c10 0 10 11 0 11H5m11 0 10 7"
@@ -18,7 +19,7 @@ export function SiteHeader({
         </svg>
         <span>RESOLVE</span>
       </a>
-      <span className="site-context">{context || 'Lunar visibility research'}</span>
+      <span className="site-context">{context || projectIdentity.descriptor}</span>
       <nav aria-label="Primary navigation">
         {(
           [
@@ -41,8 +42,9 @@ export function SiteFooter() {
     <footer className="site-footer">
       <div>
         <a href="/" className="site-footer-brand">
-          RESOLVE<span aria-hidden="true">↗</span>
+          PROJECT RESOLVE<span aria-hidden="true">↗</span>
         </a>
+        <p className="footer-formal-name">{projectIdentity.name}</p>
         <p>Modeled visibility. Explicit assumptions.</p>
       </div>
       <nav aria-label="Supporting links">
@@ -50,7 +52,7 @@ export function SiteFooter() {
         <a href="/science/#reproduce">Sources & reproduction</a>
       </nav>
       <p className="site-footer-note">
-        NASA Space Apps 2026 project · geometric visibility research
+        NASA Space Apps Challenge 2026 · Lunar Landing Site Navigator challenge · not NASA endorsed.
       </p>
     </footer>
   );

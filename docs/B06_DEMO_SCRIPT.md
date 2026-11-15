@@ -1,6 +1,8 @@
-# RESOLVE — guided demonstration scripts
+# Robustness Evaluation of South-Polar Observation and Lunar Visibility Estimates (RESOLVE)
 
-Use the local `/demo/` route. It has six manual steps and no automatic playback. The schedules below are rehearsal targets; no human timing or comprehension result has been measured. Rehearse aloud with the actual clicks before recording. This is a demonstration narrative, not an assertion about submission-format rules.
+guided demonstration scripts
+
+Use the published `/demo/` route at https://resolve-lunar-audit.vercel.app/demo/. It has six manual steps and no automatic playback. The schedules below are rehearsal targets; no human timing or comprehension result has been measured. Rehearse aloud with the actual clicks before recording. This is a demonstration narrative, not an assertion about submission-format rules.
 
 ## Ninety-second version
 

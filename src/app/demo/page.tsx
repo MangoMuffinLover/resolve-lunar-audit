@@ -1,3 +1,4 @@
+import { projectMetadata } from '@/lib/identity';
 import audit from '@/data/audit.v1.json';
 import explanation from '@/data/explain.v1.json';
 import science from '@/data/science.v1.json';
@@ -9,11 +10,7 @@ import type { NavigatorManifest } from '@/lib/navigator-contract';
 import { createDemoData } from '@/lib/demo-contract';
 import { GuidedDemo } from '@/components/guided-demo';
 
-export const metadata = {
-  title: 'RESOLVE — Guided Demonstration',
-  description:
-    'Follow a modeled lunar visibility result through a terrain audit, physical horizon explanation, controls, negative evidence and source review.',
-};
+export const metadata = projectMetadata('Project RESOLVE — Guided Demonstration', '/demo/');
 export default function Page() {
   const data = createDemoData(
     audit as unknown as AuditData,

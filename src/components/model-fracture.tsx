@@ -1,4 +1,5 @@
 'use client';
+import { projectIdentity } from '@/lib/identity';
 import { useEffect, useRef, useState } from 'react';
 import type { AuditData, Domain, Observer } from '@/lib/contract';
 import { caseKey } from '@/lib/contract';
@@ -244,7 +245,8 @@ export function ModelFracture({
         </button>
       </div>
       <div className="fracture-heading">
-        <p className="eyebrow">A lunar visibility audit</p>
+        <p className="eyebrow">{projectIdentity.brand}</p>
+        <p className="project-expanded-name">{projectIdentity.name}</p>
         <h1 id="result-heading">
           Before you trust the window,
           <br /> <em>audit the model.</em>
@@ -306,6 +308,10 @@ export function ModelFracture({
           <div className="fracture-opening-action">
             <p>
               Fixed absolute observer
+              <br />
+              <span className="observer-plain-language">
+                The same physical observer elevation across terrain representations.
+              </span>
               <br />
               Complete modeled interval
             </p>

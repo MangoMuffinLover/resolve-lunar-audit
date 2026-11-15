@@ -40,5 +40,7 @@
   },
   "engines": {
     "node": "24.x"
-  }
+  },
+  "description": "Decision-convergence auditing for lunar south-polar visibility models \u00b7 NASA Space Apps Challenge 2026",
+  "license": "MIT"
 }

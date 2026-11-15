@@ -111,7 +111,7 @@ blocks=re.split(r'\n\s*\n',text.strip())
 title=blocks[0][2:]
 body=[];references=[];section='';caption=None;table_number=0
 for block in blocks[1:]:
-    if block.startswith('Technical Research Note') or block.startswith('RESOLVE project |'):continue
+    if block.startswith('Technical Research Note') or block.startswith('Decision-Convergence Auditing') or block.startswith('RESOLVE project |') or block=='**This technical research note has not been peer reviewed.**':continue
     if block=='<!-- PAGEBREAK -->':continue
     if block=='<!-- FROZEN_PROFILE_FIGURE -->':continue
     if block.startswith('## '):
@@ -169,7 +169,7 @@ preamble=r"""
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage[hidelinks,breaklinks]{hyperref}
-\hypersetup{pdftitle={RESOLVE: Auditing Model Sensitivity in Lunar South-Polar Visibility Predictions},pdfauthor={RESOLVE project},pdfsubject={Technical Research Note}}
+\hypersetup{pdftitle={Robustness Evaluation of South-Polar Observation and Lunar Visibility Estimates (RESOLVE)},pdfauthor={RESOLVE project},pdfsubject={Technical Research Note}}
 \pagestyle{plain}
 \setlength{\emergencystretch}{1em}
 \begin{document}
@@ -180,7 +180,7 @@ preamble=r"""
 figure_block=next(b for b in body if b.startswith(r'\begin{figure*}'))
 body.remove(figure_block)
 body.insert(next(i for i,b in enumerate(body) if b==r'\section{Research progression}'),figure_block)
-source=preamble+r'\title{'+tex(title)+'}\n'+r'\author{\IEEEauthorblockN{RESOLVE project}\IEEEauthorblockA{Technical Research Note --- NASA Space Apps Challenge 2026\\Version 1.2 \enspace | \enspace 15 November 2026}}'+'\n'+r'\maketitle'+'\n\n'+'\n\n'.join(body)+'\n\n'+r'\begin{thebibliography}{8}'+'\n'+ '\n'.join(references)+'\n'+r'\end{thebibliography}\end{document}'+'\n'
+source=preamble+r'\title{'+tex(title)+'}\n'+r'\author{\IEEEauthorblockN{RESOLVE project}\IEEEauthorblockA{Decision-Convergence Auditing for Lunar South-Polar Visibility Models\\Technical Research Note --- NASA Space Apps Challenge 2026\\Version 2.0 \enspace | \enspace 15 November 2026\\\textit{This technical research note has not been peer reviewed.}}}'+'\n'+r'\maketitle'+'\n\n'+'\n\n'.join(body)+'\n\n'+r'\begin{thebibliography}{8}'+'\n'+ '\n'.join(references)+'\n'+r'\end{thebibliography}\end{document}'+'\n'
 tex_path=ROOT/'docs/RESOLVE_Technical_Research_Note.tex'
 tex_path.write_text(source,encoding='utf-8',newline='\n')
 build=ROOT/'artifacts/manuscript-build';build.mkdir(parents=True,exist_ok=True)
@@ -195,13 +195,13 @@ shutil.copyfile(build/PDF.name,PDF)
 reader=PdfReader(PDF)
 assert 3<=len(reader.pages)<=4,f'Expected 3-4 manuscript pages, got {len(reader.pages)}'
 combined='\n'.join(page.extract_text() for page in reader.pages)
-for required in expected+['1.647339','327.157','DE441']:
+for required in expected+['This technical research note has not been peer reviewed.','1.647339','327.157','DE441']:
     assert required in combined,required
 inputs=['src/data/audit.v1.json','src/data/science.v1.json','public/evidence/profiles/P78_5m.sections.v1.json','public/evidence/profiles/P90_80m.sections.v1.json','public/evidence/science/sources/a-finding.md','public/evidence/science/sources/b-protocol.md','public/evidence/science/sources/b-report.md','public/evidence/science/sources/c-protocol.md','public/evidence/science/sources/c-finding.md','public/evidence/science/sources/c-report.md','public/evidence/science/sources/c-numerical.json','public/evidence/science/sources/source-audit.md','public/evidence/science/sources/frame-audit.md','public/evidence/science/sources/literature-audit.md','public/evidence/science/sources/c-reproduce.md','public/evidence/frozen/terrain_cross_section.png','public/evidence/science/sources/response.csv']
 bundle=ROOT/'docs/RESOLVE_Technical_Research_Note_source.zip'
 with zipfile.ZipFile(bundle,'w',zipfile.ZIP_DEFLATED) as z:
     for path in [SOURCE,tex_path,figure_path]:z.write(path,path.name)
     z.write(Path(__file__),'build-research-note.py')
-record=dict(schema='resolve.technical-note.v1',version='1.2',date='2026-11-15',new_scientific_calculations=False,evidence_release='324d5b6a8d8b6cdd99a3d5ed314e5874268cb4de',pages=len(reader.pages),layout='Two-column conference manuscript, following the user-provided format reference; no publication or endorsement implied',pdf=ref('docs/'+PDF.name),editable_source=ref('docs/'+SOURCE.name),latex_source=ref('docs/'+tex_path.name),figure_file=ref('docs/'+figure_path.name),source_bundle=ref('docs/'+bundle.name),builder=ref('scripts/build-research-note.py'),figure='Vector redraw of exact frozen aligned profile samples; display coordinate mapping only',inputs=[ref(p) for p in inputs])
+record=dict(schema='resolve.technical-note.v1',version='2.0',project_title='Robustness Evaluation of South-Polar Observation and Lunar Visibility Estimates (RESOLVE)',paper_subtitle='Decision-Convergence Auditing for Lunar South-Polar Visibility Models',peer_reviewed=False,date='2026-11-15',new_scientific_calculations=False,evidence_release='324d5b6a8d8b6cdd99a3d5ed314e5874268cb4de',pages=len(reader.pages),layout='Two-column conference manuscript, following the user-provided format reference; no publication or endorsement implied',pdf=ref('docs/'+PDF.name),editable_source=ref('docs/'+SOURCE.name),latex_source=ref('docs/'+tex_path.name),figure_file=ref('docs/'+figure_path.name),source_bundle=ref('docs/'+bundle.name),builder=ref('scripts/build-research-note.py'),figure='Vector redraw of exact frozen aligned profile samples; display coordinate mapping only',inputs=[ref(p) for p in inputs])
 PROVENANCE.write_text(json.dumps(record,indent=2)+'\n',encoding='utf-8',newline='\n')
 print(json.dumps(dict(pages=len(reader.pages),pdf=record['pdf'],characters=len(combined))))

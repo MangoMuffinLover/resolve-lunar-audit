@@ -1,4 +1,6 @@
-# RESOLVE — B-07 redesign delivery
+# Robustness Evaluation of South-Polar Observation and Lunar Visibility Estimates (RESOLVE)
+
+B-07 redesign delivery
 
 The visual redesign is implemented across all six existing routes. The first visit opens the scientific audit directly: **result → audit → MODEL-SENSITIVE → why → physical horizon mechanism**. Feature expansion remains frozen. This delivery implements the B-06R hierarchy; it does not establish human comprehension, physical prediction accuracy or a competition outcome.
 
@@ -36,7 +38,7 @@ No new scientific experiment, backend, 3D engine or npm runtime dependency was a
 
 ## Portable review build
 
-`RESOLVE-review-site.zip` is refreshed with the redesign. It contains **155 members**, including the manifest; the manifest hashes the other **154** members. ZIP CRC, each member's byte count and SHA-256, the B-01 scientific contract and all frozen source hashes verify successfully. The extracted copy runs with Node, independently of the research workspace.
+At the historical B-07 checkpoint, `RESOLVE-review-site.zip` was refreshed with the redesign. The following package counts describe that checkpoint rather than the current release. It contains **155 members**, including the manifest; the manifest hashes the other **154** members. ZIP CRC, each member's byte count and SHA-256, the B-01 scientific contract and all frozen source hashes verify successfully. The extracted copy runs with Node, independently of the research workspace.
 
 - Archive bytes: **5,831,156**
 - Archive SHA-256: `d9d7f5e11c21b93b5abcc3f0538eeeac2a9fd666754efecdba04c0b6a6338f56`
@@ -47,6 +49,6 @@ The live same-machine preview remains **http://127.0.0.1:3000/**. Implementation
 
 ## Remaining acceptance work
 
-The uncoached twenty-second judge test has **not been run**; no first-time reviewer is available. The interface is ready for that test, but a pass cannot be claimed. Dedicated screen-reader review, actual Safari/iOS device testing, recording and public deployment also remain open. Playwright WebKit on Windows is not a substitute for Safari/iOS testing.
+The uncoached twenty-second judge test has **not been run**; no first-time reviewer is available. The interface is ready for that test, but a pass cannot be claimed. Public deployment is complete. Dedicated screen-reader review, actual Safari/iOS device testing and a presentation recording remain open. Playwright WebKit on Windows is not a substitute for Safari/iOS testing.
 
 The next product decision should follow observed misunderstanding or a specific scientific gap. Additional features are not justified solely by the absence of a human reviewer.

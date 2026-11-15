@@ -1,3 +1,4 @@
+import { projectIdentity, projectMetadata } from '@/lib/identity';
 import { ResearchJourney } from '@/components/research-journey';
 import { EvidenceIndex } from '@/components/evidence-index';
 import { SiteHeader, SiteFooter } from '@/components/site-header';
@@ -6,11 +7,7 @@ import type { ScienceData } from '@/lib/science-contract';
 import { ControlExample } from '@/components/control-example';
 import type { ReactNode } from 'react';
 
-export const metadata = {
-  title: 'RESOLVE — Science & Evidence',
-  description:
-    'Inspect the negative control, recorded protocols, NASA terrain provenance, numerical validation and limits behind RESOLVE’s representation audit.',
-};
+export const metadata = projectMetadata('Project RESOLVE — Science and Evidence', '/science/');
 const data = raw as unknown as ScienceData;
 function SourceLink({ id, children }: { id: string; children?: ReactNode }) {
   return (
@@ -30,6 +27,7 @@ export default function Page() {
       <main id="science-main" className="science-main">
         <div className="science-intro">
           <p className="eyebrow">Inspect the evidence</p>
+          <p className="formal-identity">{projectIdentity.formal}</p>
           <h1>What does the evidence support?</h1>
           <p>
             RESOLVE audits whether a modeled lunar visibility result survives defensible modeling
@@ -39,11 +37,11 @@ export default function Page() {
         </div>
         <section className="technical-note-download" aria-labelledby="technical-note-title">
           <div>
-            <p className="eyebrow">Technical research note · Version 1.2</p>
+            <p className="eyebrow">Technical research note · Version 2.0</p>
             <h2 id="technical-note-title">The research, in manuscript form.</h2>
             <p>
               Methods, exact results, the horizon mechanism and limitations from the frozen
-              R-01A/B/C evidence.
+              R-01A/B/C evidence. This technical research note has not been peer reviewed.
             </p>
             <a href="/docs/RESOLVE_Technical_Research_Note_source.zip" download>
               Editable LaTeX source
