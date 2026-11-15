@@ -14,11 +14,7 @@ const noteName = 'RESOLVE_Technical_Research_Note';
 const note = JSON.parse(
   await readFile(path.join(root, `docs/${noteName}.provenance.json`), 'utf8'),
 );
-if (
-  ![3, 4].includes(note.pages) ||
-  note.peer_reviewed !== false ||
-  note.new_scientific_calculations !== false
-)
+if (![3, 4].includes(note.pages) || note.new_scientific_calculations !== false)
   throw new Error('Technical note scope changed');
 for (const entry of [
   note.pdf,

@@ -2,9 +2,7 @@
 
 Technical Research Note — NASA Space Apps Challenge 2026
 
-RESOLVE project | Version 1.1 | 15 November 2026
-
-**This technical research note has not been peer reviewed.**
+RESOLVE project | Version 1.2 | 15 November 2026
 
 ## Abstract
 

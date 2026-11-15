@@ -1,26 +1,25 @@
 {
   "schema": "resolve.technical-note.v1",
-  "version": "1.1",
+  "version": "1.2",
   "date": "2026-11-15",
-  "peer_reviewed": false,
   "new_scientific_calculations": false,
   "evidence_release": "324d5b6a8d8b6cdd99a3d5ed314e5874268cb4de",
   "pages": 3,
   "layout": "Two-column conference manuscript, following the user-provided format reference; no publication or endorsement implied",
   "pdf": {
     "path": "docs/RESOLVE_Technical_Research_Note.pdf",
-    "bytes": 156168,
-    "sha256": "a20b29077ea99b270811ba515b7b65dfea932bb122eb85b1a43b2e1bf0a7932e"
+    "bytes": 155918,
+    "sha256": "46b2121f96af1230038da9df105e3eae21107e7ffefa62120f9c6d55fbce032e"
   },
   "editable_source": {
     "path": "docs/RESOLVE_Technical_Research_Note.md",
-    "bytes": 13833,
-    "sha256": "da32d22f7d6ef17e05e54885826b931e2b70e49449f652144bf83793ea3d7450"
+    "bytes": 13771,
+    "sha256": "0e1bfda2ddb40ff13389a8204d48dbf899c343802392e0f6537ffdbfc8476412"
   },
   "latex_source": {
     "path": "docs/RESOLVE_Technical_Research_Note.tex",
-    "bytes": 15353,
-    "sha256": "ddc0c84c85537bb5433dd03e8fce980b6289890c1ebfa0df46ed30987b5a87c3"
+    "bytes": 15266,
+    "sha256": "0c378f08a1fbe08f91c9c99a348e811eb0479bfabfb3070603b0b003f088f8e5"
   },
   "figure_file": {
     "path": "docs/RESOLVE_Technical_Research_Note_figure.pdf",
@@ -29,13 +28,13 @@
   },
   "source_bundle": {
     "path": "docs/RESOLVE_Technical_Research_Note_source.zip",
-    "bytes": 87509,
-    "sha256": "6d0077bfdf7993dca3e6f7d61ecfc24080e225e408be752e1df1bfc003f21434"
+    "bytes": 87388,
+    "sha256": "5c564dde33f41c6fc94e7657f024baee9912ac6800723523583b4b84079ed488"
   },
   "builder": {
     "path": "scripts/build-research-note.py",
-    "bytes": 13811,
-    "sha256": "b037f0212ee5a5059f36f11ea2c28ead30aa8a61c93da7671c9f2b135b5b87ef"
+    "bytes": 13572,
+    "sha256": "e120403f8a84239e246c05fb1da31ba6f6e78a5828fe2e7e8c206ea817d82875"
   },
   "figure": "Vector redraw of exact frozen aligned profile samples; display coordinate mapping only",
   "inputs": [
