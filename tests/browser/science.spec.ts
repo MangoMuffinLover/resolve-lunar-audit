@@ -86,7 +86,8 @@ test('review downloads resolve locally to declared bytes; corrupt control can re
   }
   const external: string[] = [];
   page.on('request', (r) => {
-    if (!r.url().startsWith('http://127.0.0.1:3000/')) external.push(r.url());
+    if (!r.url().startsWith((test.info().project.use.baseURL || 'http://127.0.0.1:3000') + '/'))
+      external.push(r.url());
   });
   let broken = true;
   await page.route('**/evidence/factors/dGR203.v1.json', (route) =>

@@ -1,3 +1,4 @@
+import { ResearchJourney } from '@/components/research-journey';
 import { EvidenceIndex } from '@/components/evidence-index';
 import { SiteHeader, SiteFooter } from '@/components/site-header';
 import raw from '@/data/science.v1.json';
@@ -36,6 +37,7 @@ export default function Page() {
             limits on what either can establish.
           </p>
         </div>
+        <ResearchJourney />
         <div className="evidence-overview">
           <article>
             <span className="eyebrow">The measured response</span>

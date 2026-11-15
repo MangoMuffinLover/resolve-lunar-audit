@@ -1,0 +1,50 @@
+name: RESOLVE visual verification
+on:
+  push:
+    branches: [visual/model-fracture]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24
+      - run: npm ci --ignore-scripts
+      - run: npm test && node --test tests/visuals.test.mjs
+      - run: npx playwright install --with-deps chrome msedge firefox webkit
+      - name: Serve the reviewed export
+        run: node scripts/serve.mjs --root site --port 3090 > /tmp/resolve-preview.log 2>&1 &
+      - name: Edge product regression
+        run: npm run test:e2e
+        env:
+          RESOLVE_PREVIEW_URL: http://127.0.0.1:3090
+      - name: Chrome Firefox WebKit matrix
+        if: always()
+        run: npm run test:browsers
+        env:
+          RESOLVE_PREVIEW_URL: http://127.0.0.1:3090
+      - name: Screenshots accessibility and performance
+        if: always()
+        run: node scripts/capture-visual-review.mjs
+        env:
+          RESOLVE_PREVIEW_URL: http://127.0.0.1:3090
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: resolve-visual-review
+          retention-days: 14
+          path: |
+            artifacts/
+            docs/*ACCESSIBILITY.json
+            docs/*BROWSER_MATRIX.json
+            playwright-report/
+            test-results/
+            readiness-results/

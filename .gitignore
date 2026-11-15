@@ -9,3 +9,6 @@ test-results/
 readiness-results/
 playwright-report/
 docs/*BROWSER_MATRIX.json
+docs/*ACCESSIBILITY.json
+docs/screenshots/
+artifacts/

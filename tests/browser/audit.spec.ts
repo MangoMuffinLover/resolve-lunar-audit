@@ -15,7 +15,8 @@ test('purpose → exact audit → common clock → retained detailed science and
   page.on('pageerror', (e) => errors.push(e.message));
   page.on('requestfailed', (r) => failures.push(r.url()));
   page.on('request', (r) => {
-    if (!r.url().startsWith('http://127.0.0.1:3000/')) external.push(r.url());
+    if (!r.url().startsWith((test.info().project.use.baseURL || 'http://127.0.0.1:3000') + '/'))
+      external.push(r.url());
   });
   await page.goto('/');
   await page.evaluate(() => document.fonts.ready);
@@ -84,7 +85,7 @@ test('purpose → exact audit → common clock → retained detailed science and
   expect(await legacy.locator('.sun-marker').getAttribute('cy')).toBe(sunY);
   const source = await page.request.get(data.sources.response.href);
   expect(await source.text()).toEqual(
-    await readFile(path.resolve('..', data.sources.response.path), 'utf8'),
+    await readFile(path.join('public', data.sources.response.href), 'utf8'),
   );
   const scan = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
   expect(scan.violations).toEqual([]);

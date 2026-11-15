@@ -3,12 +3,18 @@ import dynamic from 'next/dynamic';
 import { useCallback, useRef, useState } from 'react';
 import type { AuditData, Observer, Domain } from '@/lib/contract';
 import { caseKey } from '@/lib/contract';
-import { fixed, signed, utc } from '@/lib/format';
+import { fixed, utc } from '@/lib/format';
 import { Timeline } from './timeline';
 import { RepresentationLadder } from './representation-ladder';
 import { EvidenceDrawer } from './evidence-drawer';
 import { SiteHeader, SiteFooter } from './site-header';
 import type { AuditPhysics } from './audit-mechanism';
+import { AssumptionComparisons, NegativeFinding } from './assumption-comparisons';
+import { ModelFracture } from './model-fracture';
+import { ResearchJourney } from './research-journey';
+import { StoryMotion } from './story-motion';
+import { PhysicalReveal } from './physical-reveal';
+import type { VisualAssets } from '@/lib/visual-contract';
 
 const Mechanism = dynamic(() => import('./audit-mechanism'), {
   loading: () => (
@@ -28,7 +34,15 @@ function Arrow() {
   return <span aria-hidden="true">↗</span>;
 }
 
-export function DecisionAudit({ data, physics }: { data: AuditData; physics: AuditPhysics }) {
+export function DecisionAudit({
+  data,
+  physics,
+  visual,
+}: {
+  data: AuditData;
+  physics: AuditPhysics;
+  visual: VisualAssets;
+}) {
   const [audited, setAudited] = useState(false),
     [why, setWhy] = useState(false),
     [evidence, setEvidence] = useState(false),
@@ -36,13 +50,11 @@ export function DecisionAudit({ data, physics }: { data: AuditData; physics: Aud
   const [selected, setSelected] = useState(data.defaults.comparison);
   const [observer, setObserver] = useState<Observer>(data.defaults.observer),
     [domain, setDomain] = useState<Domain>(data.defaults.domain);
-  const auditHeading = useRef<HTMLHeadingElement>(null),
-    whyHeading = useRef<HTMLHeadingElement>(null),
+  const whyHeading = useRef<HTMLHeadingElement>(null),
     whyPending = useRef(false);
   const initial =
     data.cases[caseKey(data.defaults.id, data.defaults.observer, data.defaults.domain)];
-  const result = data.cases[caseKey(selected, observer, domain)],
-    baseline = data.cases[caseKey('P78_5m', observer, domain)];
+  const result = data.cases[caseKey(selected, observer, domain)];
   const model = data.representations.find((m) => m.id === selected)!;
   const witness = data.witnesses.find(
     (w) => w.id === selected && w.observer === observer && w.diagnostic === 'own_late_solar_onset',
@@ -53,10 +65,11 @@ export function DecisionAudit({ data, physics }: { data: AuditData; physics: Aud
       data.cases[caseKey('P104_5m', 'each_surface_2m', 'uncensored_intersecting_registered')];
   const clipped = data.cases[caseKey('P78_5m', 'fixed_absolute', 'registered_domain')];
   const factors = `/factors/?${new URLSearchParams({ site: 'dGR101', factor: 'terrain', metric: 'simultaneous', representation: selected, observer, domain })}`;
+
   const focusSoon = useCallback(
-    (target: 'audit' | 'why') =>
+    () =>
       requestAnimationFrame(() => {
-        const heading = (target === 'audit' ? auditHeading : whyHeading).current;
+        const heading = whyHeading.current;
         heading?.focus({ preventScroll: true });
         heading?.closest('section')?.scrollIntoView({
           behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -70,81 +83,68 @@ export function DecisionAudit({ data, physics }: { data: AuditData; physics: Aud
   const ready = useCallback(() => {
     if (whyPending.current) {
       whyPending.current = false;
-      focusSoon('why');
+      focusSoon();
     }
   }, [focusSoon]);
+  const resetDefinitions = useCallback(() => {
+    setObserver('fixed_absolute');
+    setDomain('uncensored_intersecting_registered');
+  }, []);
   function startAudit() {
     setAudited(true);
-    focusSoon('audit');
   }
   function openWhy() {
     whyPending.current = !why;
     setWhy(true);
-    focusSoon('why');
+    focusSoon();
   }
   return (
-    <>
+    <div className="cinematic-page">
       <a href="#main" className="skip-link">
         Skip to decision audit
       </a>
       <SiteHeader active="audit" />
       <main id="main" className="audit-home">
-        <section className="audit-hero" aria-labelledby="result-heading">
-          <div className="audit-hero-copy">
-            <p className="eyebrow">
-              <span className="signal-dot" aria-hidden="true" /> Lunar visibility audit
+        <ModelFracture
+          data={data}
+          visual={visual}
+          audited={audited}
+          selected={selected}
+          observer={observer}
+          domain={domain}
+          onSelect={setSelected}
+          onAudit={startAudit}
+          onWhy={openWhy}
+          onEvidence={() => setEvidence(true)}
+          resetDefinitions={resetDefinitions}
+        />
+        <StoryMotion revision={`${audited}:${why}`} />
+        {audited && (
+          <section className="constant-story" data-story aria-labelledby="constant-title">
+            <p className="eyebrow">In this shared-time comparison</p>
+            <h2 id="constant-title">
+              {observer === 'fixed_absolute' ? (
+                <>
+                  The Sun never moved.
+                  <br />
+                  <em>The terrain model did.</em>
+                </>
+              ) : (
+                <>
+                  Same ephemeris.
+                  <br />
+                  <em>The observer convention changed.</em>
+                </>
+              )}
+            </h2>
+            <p>
+              {observer === 'fixed_absolute'
+                ? 'Same dGR101 site. Same stored Sun and Earth positions. Same absolute observer. Different evaluated terrain representations.'
+                : 'At 2 m above each represented surface, the absolute observer position changes. The geometry follows that observer.'}
             </p>
-            <h1 id="result-heading">
-              Before you trust the window,
-              <br /> <em>audit the model.</em>
-            </h1>
-            <p className="audit-hero-intro">
-              A precise number may still depend on the terrain representation. Find out what
-              changes—and trace the reason.
-            </p>
-            <div className="audit-site">
-              <span className="site-code">{data.site}</span>
-              <span>
-                {data.region}
-                <small>
-                  {fixed(data.geometry.latitude.value, 3)}° /{' '}
-                  {fixed(data.geometry.longitude.value, 3)}° E · {data.year}
-                </small>
-              </span>
-            </div>
-          </div>
-          <div className="reference-card">
-            <div className="reference-card-top">
-              <span className="eyebrow">The reference result</span>
-              <span className="record-label">01</span>
-            </div>
-            <p className="reference-observable">Modeled Sun & Earth visibility at {data.site}</p>
-            <output
-              className="reference-number"
-              data-testid="initial-duration"
-              aria-label={`${initial.simultaneous.days.original} days`}
-            >
-              <span>{fixed(initial.simultaneous.days.value)}</span>
-              <span>DAYS</span>
-            </output>
-            <div className="reference-scope">
-              <span>NASA Product 78 · 5 m</span>
-              <span>Fixed absolute observer</span>
-              <span>Complete episode</span>
-            </div>
-            <button className="primary-button" onClick={startAudit}>
-              {audited ? 'Return to the audit' : 'Audit this result'}
-              <Arrow />
-            </button>
-            <p className="reference-qualifier">
-              Geometric Sun/Earth centers. This result does not establish available power or a
-              working communications link.
-            </p>
-            <button className="reference-evidence" onClick={() => setEvidence(true)}>
-              Result evidence <Arrow />
-            </button>
-          </div>
-        </section>
+            <span className="constant-clock">17 NOVEMBER 2026 / 14:30 UTC</span>
+          </section>
+        )}
         <div className="audit-path" role="group" aria-label="The audit process">
           <span>
             <b>01</b> Start with a result
@@ -165,87 +165,17 @@ export function DecisionAudit({ data, physics }: { data: AuditData; physics: Aud
             aria-labelledby="audit-heading"
             data-testid="audit-section"
           >
-            <div className="section-kicker">
-              <span className="eyebrow">02 / Audit the result</span>
-              <button className="text-button" onClick={() => setEvidence(true)}>
-                Result evidence <Arrow />
-              </button>
-            </div>
-            <div className="audit-title-row">
-              <h2 id="audit-heading" ref={auditHeading} tabIndex={-1}>
-                {selected === 'P78_5m'
-                  ? 'The reference is selected.'
-                  : model.type === 'synthetic-control'
-                    ? 'A synthetic control. A different modeled window.'
-                    : 'Another NASA terrain representation. Another modeled window.'}
-              </h2>
-              <span className="status-label">
-                {selected === 'P78_5m' ? 'REFERENCE SELECTED' : data.classification}
-              </span>
-            </div>
-            <div className="audit-reveal" data-testid="audit-reveal">
-              <div className="audit-result-pair">
-                <div>
-                  <span className="eyebrow">Reference / Product 78 · native 5 m</span>
-                  <p>
-                    {fixed(baseline.simultaneous.days.value)}
-                    <small>days</small>
-                  </p>
-                </div>
-                <span className="pair-arrow" aria-hidden="true">
-                  →
-                </span>
-                <div>
-                  <span className="eyebrow" data-testid="selected-label">
-                    {model.label}
-                  </span>
-                  <output
-                    data-testid="selected-duration"
-                    aria-label={`${result.simultaneous.days.original} days`}
-                  >
-                    {fixed(result.simultaneous.days.value)}
-                    <small>DAYS</small>
-                  </output>
-                </div>
-              </div>
-              <div className="audit-delta">
-                <strong data-testid="selected-delta">{signed(result.delta.value)} d</strong>
-                <span>
-                  after minus reference
-                  <br />
-                  under the same definitions
-                </span>
-              </div>
-              <p className="sr-only">
-                {fixed(baseline.simultaneous.days.value)} → {fixed(result.simultaneous.days.value)}{' '}
-                days.
+            <div className="technical-audit-heading">
+              <span className="eyebrow">Open the instrument housing</span>
+              <h2 id="audit-heading">Audit definitions & exact intervals</h2>
+              <a href={factors}>
+                Compare modeling choices <span aria-hidden="true">↗</span>
+              </a>
+              <p>
+                The modeled response does not identify which terrain prediction is physically
+                correct.
               </p>
-              <p className="reveal-context">
-                {selected === 'P78_5m'
-                  ? 'The reference representation is selected. Choose another product in the representation explorer.'
-                  : observer === 'fixed_absolute'
-                    ? `Same ${data.site} site, celestial geometry and absolute observer elevation. Different evaluated terrain representation.`
-                    : `${data.site}: same ephemeris. Observer is 2 m above each represented surface; absolute elevation changes.`}
-              </p>
-              <p className="reveal-domain">
-                {domain === 'registered_domain'
-                  ? 'Clipped to Nov 6–28; these durations are right-censored.'
-                  : 'Complete modeled episodes intersecting Nov 6–28; includes time beyond that screening interval.'}
-              </p>
-              <div className="audit-reveal-actions">
-                <button className="primary-button reveal-why" onClick={openWhy}>
-                  See why it changes <Arrow />
-                </button>
-                <a href={factors}>
-                  Compare modeling choices <Arrow />
-                </a>
-              </div>
             </div>
-            <p className="audit-meaning">
-              {selected === 'P78_5m'
-                ? 'This is the reference comparison. Both sides use the same representation; select another product to inspect its response.'
-                : 'The modeled duration changes with the terrain representation. This does not establish which prediction is physically correct.'}
-            </p>
             <details className="analysis-settings">
               <summary>
                 <strong>Analysis definitions</strong>{' '}
@@ -355,6 +285,9 @@ export function DecisionAudit({ data, physics }: { data: AuditData; physics: Aud
                 </>
               )}
             </h2>
+            {selected === 'P90_80m' && observer === 'fixed_absolute' && (
+              <PhysicalReveal data={data} visual={visual} />
+            )}
             <Mechanism
               physics={physics}
               selected={selected}
@@ -383,7 +316,18 @@ export function DecisionAudit({ data, physics }: { data: AuditData; physics: Aud
           </section>
         )}
         {audited && why && (
-          <section className="audit-assumptions" aria-labelledby="assumptions-title">
+          <section className="audit-assumptions" aria-labelledby="assumptions-title" data-story>
+            <div className="trust-question">
+              <p className="eyebrow">So which answer should a planner trust?</p>
+              <h2>
+                RESOLVE does not choose
+                <br />
+                <em>a terrain truth.</em>
+              </h2>
+              <p>
+                It reveals whether the modeled decision remains stable under the evaluated choices.
+              </p>
+            </div>
             <div className="section-kicker">
               <span className="eyebrow">Keep the interpretation honest</span>
             </div>
@@ -428,26 +372,8 @@ export function DecisionAudit({ data, physics }: { data: AuditData; physics: Aud
                   Inspect the reporting boundary <Arrow />
                 </a>
               </article>
-              <article>
-                <span className="eyebrow">Negative evidence / dGR203</span>
-                <h3>
-                  An audit can preserve
-                  <br />
-                  the tested decision.
-                </h3>
-                <p className="assumption-value">
-                  5 <span>of</span> 5 <small>clones</small>
-                </p>
-                <p>
-                  All five tested local clones retained the historical 6.5-day simultaneous
-                  classification in the separate seasonal pilot. This does not establish universal
-                  stability or a calibrated probability.
-                </p>
-                <a href="/science/#control">
-                  Inspect the negative finding <Arrow />
-                </a>
-              </article>
             </div>
+            <AssumptionComparisons />
             <div className="audit-end">
               <p>
                 Inspect the opportunity.
@@ -466,6 +392,24 @@ export function DecisionAudit({ data, physics }: { data: AuditData; physics: Aud
           </section>
         )}
       </main>
+      {audited && why && (
+        <>
+          <NegativeFinding />
+          <ResearchJourney />
+          <section className="evidence-gate" data-story>
+            <p className="eyebrow">Every claim has a trail</p>
+            <h2>Open the instrument housing.</h2>
+            <div>
+              <span>NASA Products 78 / 90 / 104</span>
+              <span>SPICE / DE421</span>
+              <span>Protocols · validation · limits</span>
+            </div>
+            <a className="primary-button" href="/science/">
+              Open the evidence ↗
+            </a>
+          </section>
+        </>
+      )}
       <SiteFooter />
       <EvidenceDrawer
         data={data}
@@ -484,6 +428,6 @@ export function DecisionAudit({ data, physics }: { data: AuditData; physics: Aud
         open={evidence}
         onClose={() => setEvidence(false)}
       />
-    </>
+    </div>
   );
 }

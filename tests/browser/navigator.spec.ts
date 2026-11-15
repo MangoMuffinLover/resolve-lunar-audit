@@ -16,7 +16,8 @@ test('site/date selection → real Sun/Earth geometry → saved comparisons → 
   page.on('pageerror', (error) => errors.push(error.message));
   page.on('requestfailed', (request) => failures.push(request.url()));
   page.on('request', (request) => {
-    if (!request.url().startsWith('http://127.0.0.1:3000')) external.push(request.url());
+    if (!request.url().startsWith(test.info().project.use.baseURL || 'http://127.0.0.1:3000'))
+      external.push(request.url());
   });
   await page.goto('/');
   await page.getByRole('link', { name: 'Explore sites & dates' }).click();

@@ -12,3 +12,7 @@ package-lock.json
 
 site/
 release-manifest.json
+
+src/visuals/
+public/visuals/
+artifacts/

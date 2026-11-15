@@ -7,7 +7,7 @@ export default defineConfig({
   expect: { timeout: 10000 },
   reporter: [['list'], ['html', { open: 'never' }]],
   use: {
-    baseURL: 'http://127.0.0.1:3000',
+    baseURL: process.env.RESOLVE_PREVIEW_URL || 'http://127.0.0.1:3000',
     channel: 'msedge',
     headless: true,
     trace: 'retain-on-failure',

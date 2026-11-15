@@ -1,0 +1,167 @@
+{
+  "schema": "resolve.visual.provenance.v1",
+  "description": "Display-only angular skylines copied from verified frozen records. No terrain mesh, imagery, shading-derived claim or new scientific calculation. SVG coordinates are presentation projections. Crossfades are visual transitions; analytical states are discrete products.",
+  "utc": "2026-11-17T14:30:00.000Z",
+  "sources": [
+    {
+      "path": "/evidence/explain/P78_5m_fixed_absolute.v1.json",
+      "sha256": "794e5de14f4b2faa7e2bdbec09d1826fbfff15fd86196fa8b82d6b4e87f6e51b",
+      "bytes": 437930,
+      "skyline_crop_degrees": [
+        40,
+        170
+      ],
+      "snapshot_index": 557
+    },
+    {
+      "path": "/evidence/explain/P90_20m_fixed_absolute.v1.json",
+      "sha256": "d72ad98555d1ef81b472deece7b6faa8f0d5bdfcf6d776dcd3a729da65c026c4",
+      "bytes": 437716,
+      "skyline_crop_degrees": [
+        40,
+        170
+      ],
+      "snapshot_index": 557
+    },
+    {
+      "path": "/evidence/explain/P90_40m_fixed_absolute.v1.json",
+      "sha256": "eb9f6bd8bfa4a7cecf377541bf28e010db77049f768563a734e9b83261ede354",
+      "bytes": 439702,
+      "skyline_crop_degrees": [
+        40,
+        170
+      ],
+      "snapshot_index": 557
+    },
+    {
+      "path": "/evidence/explain/P90_60m_fixed_absolute.v1.json",
+      "sha256": "0c35cff2e9e504f8d3f28ac57eaf048b2a7661df030b8892b6ad0ea6031106eb",
+      "bytes": 439895,
+      "skyline_crop_degrees": [
+        40,
+        170
+      ],
+      "snapshot_index": 557
+    },
+    {
+      "path": "/evidence/explain/P90_80m_fixed_absolute.v1.json",
+      "sha256": "1eebdef63765fb21328c6941f2eecd23fcdc51b7ae26f88e708dc96b51eaf4d6",
+      "bytes": 440255,
+      "skyline_crop_degrees": [
+        40,
+        170
+      ],
+      "snapshot_index": 557
+    },
+    {
+      "path": "/evidence/explain/P90_240m_fixed_absolute.v1.json",
+      "sha256": "eb9abc0736548df9918050056a314b60bb235c5eac1dea9ca976760c62c87859",
+      "bytes": 439234,
+      "skyline_crop_degrees": [
+        40,
+        170
+      ],
+      "snapshot_index": 557
+    },
+    {
+      "path": "/evidence/explain/P104_5m_fixed_absolute.v1.json",
+      "sha256": "0b7d71964788abaaa87ed6e1692297fefaa9677b343bb7155d79627b2ebdf0ff",
+      "bytes": 434688,
+      "skyline_crop_degrees": [
+        40,
+        170
+      ],
+      "snapshot_index": 557
+    },
+    {
+      "path": "/evidence/explain/SYNTHETIC_59p88m_fixed_absolute.v1.json",
+      "sha256": "1df51a47ea30640da40ce5b17284a86422354ad78255d1529a0f83a27ccb494d",
+      "bytes": 439380,
+      "skyline_crop_degrees": [
+        40,
+        170
+      ],
+      "snapshot_index": 557
+    },
+    {
+      "path": "/evidence/explain/P78_5m_each_surface_2m.v1.json",
+      "sha256": "e2113dac042ce682f4d383fdfbbaf1df2707f364557343d6277d3cf44501a998",
+      "bytes": 437949,
+      "skyline_crop_degrees": [
+        40,
+        170
+      ],
+      "snapshot_index": 557
+    },
+    {
+      "path": "/evidence/explain/P90_20m_each_surface_2m.v1.json",
+      "sha256": "1232f04485f551ed65f2c1159c71e01fa1f5d6374a21a816022d014bd0cae8d3",
+      "bytes": 439578,
+      "skyline_crop_degrees": [
+        40,
+        170
+      ],
+      "snapshot_index": 557
+    },
+    {
+      "path": "/evidence/explain/P90_40m_each_surface_2m.v1.json",
+      "sha256": "781a740ee401f797af7399a5f0479b4ab228efac5d3e0f1036e62ad50dd50018",
+      "bytes": 439318,
+      "skyline_crop_degrees": [
+        40,
+        170
+      ],
+      "snapshot_index": 557
+    },
+    {
+      "path": "/evidence/explain/P90_60m_each_surface_2m.v1.json",
+      "sha256": "5fa9b2f7a72b20ca3a5618853baec408afc877f31699ea1f74993a696c2fd5ec",
+      "bytes": 439396,
+      "skyline_crop_degrees": [
+        40,
+        170
+      ],
+      "snapshot_index": 557
+    },
+    {
+      "path": "/evidence/explain/P90_80m_each_surface_2m.v1.json",
+      "sha256": "d494fc684ac8d2e863fa57a02493b40d379733ec4b789aea2ff0dfce27ce7a72",
+      "bytes": 440240,
+      "skyline_crop_degrees": [
+        40,
+        170
+      ],
+      "snapshot_index": 557
+    },
+    {
+      "path": "/evidence/explain/P90_240m_each_surface_2m.v1.json",
+      "sha256": "d949a1181158a940e7ed7e117d3d568d1f16cca8c0ce20b592ccc96c811dc973",
+      "bytes": 438491,
+      "skyline_crop_degrees": [
+        40,
+        170
+      ],
+      "snapshot_index": 557
+    },
+    {
+      "path": "/evidence/explain/P104_5m_each_surface_2m.v1.json",
+      "sha256": "1828a73bcb35efb63d98a8bb2d78c88a96218a570e5022f882e0bcdffaf9521e",
+      "bytes": 436757,
+      "skyline_crop_degrees": [
+        40,
+        170
+      ],
+      "snapshot_index": 557
+    },
+    {
+      "path": "/evidence/explain/SYNTHETIC_59p88m_each_surface_2m.v1.json",
+      "sha256": "fd57f82e9164de8ac7e215dd05206548a970731d8915be19485911a7494618ed",
+      "bytes": 439267,
+      "skyline_crop_degrees": [
+        40,
+        170
+      ],
+      "snapshot_index": 557
+    }
+  ]
+}

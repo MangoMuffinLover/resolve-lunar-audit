@@ -97,7 +97,8 @@ test('manual steps and evidence support keyboard, responsive viewports and teste
   const scans = [];
   const external: string[] = [];
   page.on('request', (r) => {
-    if (!r.url().startsWith('http://127.0.0.1:3000/')) external.push(r.url());
+    if (!r.url().startsWith((test.info().project.use.baseURL || 'http://127.0.0.1:3000') + '/'))
+      external.push(r.url());
   });
   for (const [label, width, height] of [
     ['desktop', 1440, 1000],
