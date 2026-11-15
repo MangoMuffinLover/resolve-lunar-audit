@@ -2,6 +2,8 @@
 
 **Before you trust the window, audit the model.**
 
+**Live website: [resolve-lunar-audit.vercel.app](https://resolve-lunar-audit.vercel.app/)**
+
 RESOLVE audits whether a modeled lunar Sun/Earth visibility result survives defensible changes in terrain representation, observer convention and reporting scope. It is a NASA Space Apps 2026 project, not a NASA-endorsed mission planning system.
 
 The flagship dGR101 case starts at **7.40 days**. Another native NASA terrain representation gives **12.92 days** under the same absolute observer convention. RESOLVE preserves the matched definitions, traces the physical horizon mechanism and exposes the exact frozen source values. It does not determine which terrain prediction is physical truth. Effects are computed from unrounded source values.

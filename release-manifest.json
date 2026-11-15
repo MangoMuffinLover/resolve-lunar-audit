@@ -12,8 +12,8 @@
     },
     {
       "path": ".gitignore",
-      "bytes": 131,
-      "sha256": "4c61b871aede6e6a8ec20b11684613fd56f2e88582d2c1551e1265cbda0e29ab"
+      "bytes": 158,
+      "sha256": "c6d459f118a8cca001fe0fc0731008ad67197c49a36bb14ae3e45ca776c5297f"
     },
     {
       "path": ".prettierignore",
@@ -542,8 +542,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 5198,
-      "sha256": "565e8bdb53ec870e04b08594272d138ba9775e9fb8107ba3e757d5771e8b2933"
+      "bytes": 5291,
+      "sha256": "1ead13b68c68a571a6375f7bf8d9ddb46aa7c5c55c7381d18f55d52cac8cb6f2"
     },
     {
       "path": "scripts/build-explanations.py",

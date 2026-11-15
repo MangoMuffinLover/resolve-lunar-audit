@@ -8,3 +8,4 @@ next-env.d.ts
 test-results/
 readiness-results/
 playwright-report/
+docs/*BROWSER_MATRIX.json
