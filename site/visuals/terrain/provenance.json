@@ -1,0 +1,59 @@
+{
+  "schema": "resolve.terrain-study.v1",
+  "nasa_product": 90,
+  "source_filename": "LDEM_80S_80MPP_ADJ.TIF",
+  "source_url": "https://pgda.gsfc.nasa.gov/data/LOLA_20mpp/LDEM_80S_80MPP_ADJ.TIF",
+  "source_page": "https://pgda.gsfc.nasa.gov/products/90",
+  "source_native_window_sha256": "30af111aaaf97552df2445d40601d373665fd344a4d262689ac7d8fedd21e441",
+  "source_native_window": "data/raw/r01c/LDEM_80S_80MPP_ADJ.TIF.native_window.tif",
+  "mesh_native_window_pixels": {
+    "row": 96,
+    "col": 96,
+    "rows": 161,
+    "cols": 161
+  },
+  "native_spacing_m": 80,
+  "sample_stride": 1,
+  "source_crs_wkt": "PROJCS[\"Moon (2015) - Sphere / Ocentric / South Polar\",GEOGCS[\"Moon (2015) - Sphere / Ocentric\",DATUM[\"Moon (2015) - Sphere\",SPHEROID[\"Moon (2015) - Sphere\",1737400,0]],PRIMEM[\"Reference Meridian\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]]],PROJECTION[\"Polar_Stereographic\"],PARAMETER[\"latitude_of_origin\",-90],PARAMETER[\"central_meridian\",0],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1],AXIS[\"Easting\",NORTH],AXIS[\"Northing\",NORTH]]",
+  "source_scale": 1.0,
+  "source_offset": 0.0,
+  "units": "kilometres",
+  "vertical_scale": 1,
+  "height_origin_m": 1532.49560546875,
+  "horizontal_origin_m": [
+    -44680.0,
+    19160.0
+  ],
+  "site_lon_lat": [
+    -68.01460926527753,
+    -88.5134116385092
+  ],
+  "site": [
+    2.8774416254355675,
+    -2.2830675536683374,
+    0
+  ],
+  "display_only": true,
+  "note": "Native polar-stereographic sample centres triangulated for display. No interpolation, texture synthesis, subdivision or science solver. Lighting and camera are illustrative, not the modeled Sun. Height is relative to the native pixel containing the site; marker identifies site plan position, not the scientific observer elevation.",
+  "blender_version": "5.2.1 LTS",
+  "mesh_vertices": 26561,
+  "mesh_triangles": 52480,
+  "surface_vertices": 25921,
+  "surface_triangles": 51200,
+  "edge_skirts": "Display-only vertical perimeter closure, excluded from scientific interpretation",
+  "binary": {
+    "href": "/visuals/terrain/dgr101-native80.bin",
+    "bytes": 952344,
+    "sha256": "ddcc6349d8fa080227b78dcd7f4097ae18375f6d55cc5c6bbe0ec0f9bea16a9c",
+    "vertex_bytes": 637464,
+    "vertex_stride_floats": 6,
+    "indices_count": 157440,
+    "index_type": "uint16"
+  },
+  "poster": "/visuals/terrain/dgr101-native80.webp",
+  "poster_file": {
+    "href": "/visuals/terrain/dgr101-native80.webp",
+    "bytes": 14916,
+    "sha256": "17e102b6960ab4dfa862372782b98d05bf3b467a92b922513c4b5a05f2e38fee"
+  }
+}

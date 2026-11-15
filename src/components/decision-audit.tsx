@@ -12,7 +12,6 @@ import type { AuditPhysics } from './audit-mechanism';
 import { AssumptionComparisons, NegativeFinding } from './assumption-comparisons';
 import { ModelFracture } from './model-fracture';
 import { ResearchJourney } from './research-journey';
-import { StoryMotion } from './story-motion';
 import { PhysicalReveal } from './physical-reveal';
 import type { VisualAssets } from '@/lib/visual-contract';
 
@@ -116,7 +115,6 @@ export function DecisionAudit({
           resetDefinitions={resetDefinitions}
           manualRevision={manualRevision}
         />
-        <StoryMotion revision={`${audited}:${why}`} />
         {audited && (
           <section className="constant-story" data-story aria-labelledby="constant-title">
             <p className="eyebrow">In this shared-time comparison</p>

@@ -39,6 +39,11 @@ function Scene({
   reference: VisualModel;
   audited: boolean;
 }) {
+  const previousModel = useRef(model);
+  const previous = previousModel.current;
+  useEffect(() => {
+    previousModel.current = model;
+  }, [model]);
   const x = (az: number) => 50 + ((az - 40) / 130) * 900;
   const y = (elevation: number) => 360 * (0.56 - elevation * 0.05);
   const path = (points: [number, number][]) =>
@@ -66,6 +71,14 @@ function Scene({
           </linearGradient>
         </defs>
         <line x1="50" x2="950" y1={y(0)} y2={y(0)} className="fracture-datum" />
+        {audited && previous.key !== model.key && (
+          <path
+            key={`${model.key}-previous`}
+            d={`${path(previous.skyline)}L950,300L50,300Z`}
+            fill="url(#lunar-plane)"
+            className="fracture-surface-previous"
+          />
+        )}
         <path
           key={model.key}
           d={`${current}L950,300L50,300Z`}
@@ -144,36 +157,15 @@ export function ModelFracture({
   const [bundles, setBundles] = useState<Record<string, VisualBundle>>({});
   const [failed, setFailed] = useState<string | null>(null),
     [retry, setRetry] = useState(0);
-  const [playing, setPlaying] = useState(false),
-    [reduced, setReduced] = useState(true);
-  const [constant, setConstant] = useState(false),
-    [isolated, setIsolated] = useState(false);
-  useEffect(() => {
-    if (!constant) return;
-    const timer = setTimeout(() => setConstant(false), 1700);
-    return () => clearTimeout(timer);
-  }, [constant]);
-  const heading = useRef<HTMLHeadingElement>(null),
-    playingObserver = useRef(observer);
+  const [isolated, setIsolated] = useState(false);
+  const heading = useRef<HTMLHeadingElement>(null);
   const previousManualRevision = useRef(manualRevision);
   useEffect(() => {
     if (previousManualRevision.current !== manualRevision) {
       previousManualRevision.current = manualRevision;
-      setPlaying(false);
-      setConstant(false);
       setIsolated(false);
     }
   }, [manualRevision]);
-  useEffect(() => {
-    const media = matchMedia('(prefers-reduced-motion: reduce)');
-    const update = () => {
-      setReduced(media.matches);
-      if (media.matches) setPlaying(false);
-    };
-    update();
-    media.addEventListener('change', update);
-    return () => media.removeEventListener('change', update);
-  }, []);
   const bundle = bundles[observer];
   useEffect(() => {
     if (bundle) return;
@@ -191,31 +183,6 @@ export function ModelFracture({
     };
   }, [bundle, observer, retry, visual]);
   useEffect(() => {
-    if (!playing || !bundle) return;
-    if (observer !== playingObserver.current || domain !== 'uncensored_intersecting_registered') {
-      setPlaying(false);
-      return;
-    }
-    const ids = ladder.slice(1, 5);
-    let step = 0;
-    const tick = setInterval(() => {
-      onSelect(ids[step++]);
-      if (step === ids.length) {
-        clearInterval(tick);
-        setPlaying(false);
-        setConstant(true);
-      }
-    }, 650);
-    const pause = () => {
-      if (document.hidden) setPlaying(false);
-    };
-    document.addEventListener('visibilitychange', pause);
-    return () => {
-      clearInterval(tick);
-      document.removeEventListener('visibilitychange', pause);
-    };
-  }, [playing, bundle, observer, domain, onSelect]);
-  useEffect(() => {
     if (audited) heading.current?.focus({ preventScroll: true });
   }, [audited]);
   const displayId = audited ? selected : 'P78_5m';
@@ -232,24 +199,18 @@ export function ModelFracture({
   )!;
   const nativeIndex = ladder.indexOf(displayId);
   function start() {
-    setConstant(false);
     setIsolated(false);
     resetDefinitions();
-    playingObserver.current = 'fixed_absolute';
     onAudit();
-    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    onSelect(reduce ? 'P90_80m' : 'P78_5m');
-    setPlaying(!reduce);
+    onSelect('P90_80m');
   }
   function choose(index: number) {
-    setConstant(false);
     setIsolated(false);
-    setPlaying(false);
     onSelect(ladder[index]);
   }
   return (
     <section
-      className={`model-fracture ${audited ? 'is-audited' : ''} ${playing ? 'is-playing' : ''} ${observer === 'fixed_absolute' && (constant || isolated) ? 'is-constant' : ''}`}
+      className={`model-fracture ${audited ? 'is-audited' : ''} ${observer === 'fixed_absolute' && isolated ? 'is-constant' : ''}`}
       aria-labelledby="result-heading"
       data-testid="model-fracture"
     >
@@ -258,8 +219,6 @@ export function ModelFracture({
         <button
           className="fracture-evidence-link"
           onClick={(event) => {
-            setPlaying(false);
-            setConstant(false);
             event.currentTarget.focus();
             onEvidence();
           }}
@@ -275,16 +234,6 @@ export function ModelFracture({
         </h1>
       </div>
       <div className="fracture-field">
-        {audited && observer === 'fixed_absolute' && (constant || isolated) && (
-          <div className="constant-overlay" role="status">
-            <span>AT THIS SHARED UTC</span>
-            <strong>
-              The Sun never moved.
-              <br />
-              <em>The terrain model did.</em>
-            </strong>
-          </div>
-        )}
         <div className="fracture-site">
           <strong>{data.site}</strong>
           <span>88.513° S / 68.015° W</span>
@@ -354,14 +303,10 @@ export function ModelFracture({
                 {representation.label}
               </span>
               <span className="fracture-status">
-                {playing
-                  ? 'EVALUATING DISCRETE STATES'
-                  : displayId === 'P78_5m'
-                    ? 'REFERENCE SELECTED'
-                    : data.classification}
+                {displayId === 'P78_5m' ? 'REFERENCE SELECTED' : data.classification}
               </span>
             </div>
-            <div className="fracture-values" aria-live={playing ? 'off' : 'polite'}>
+            <div className="fracture-values" aria-live="polite">
               <output
                 key={result.id + observer + domain}
                 data-testid="selected-duration"
@@ -381,10 +326,7 @@ export function ModelFracture({
             </h2>
             <button
               className="primary-button fracture-why"
-              disabled={playing}
               onClick={() => {
-                setPlaying(false);
-                setConstant(false);
                 onWhy();
               }}
             >
@@ -395,6 +337,22 @@ export function ModelFracture({
       </div>
       {audited && (
         <div className="model-scrub" data-testid="model-scrub">
+          {isolated && observer === 'fixed_absolute' && (
+            <div className="sun-insight" role="status">
+              <span className="eyebrow">02 / Hold the geometry fixed</span>
+              <strong>
+                The Sun never moved. <em>The terrain model did.</em>
+              </strong>
+              <p>
+                The markers stay at the same stored UTC positions. This view holds until you choose
+                another step.
+              </p>
+            </div>
+          )}
+          <p className="interaction-instruction">
+            One step at a time. Tap a model to compare it, isolate the Sun, or choose Why. Nothing
+            advances automatically.
+          </p>
           <div className="scrub-title">
             <label htmlFor="model-scrub">TERRAIN REPRESENTATION</label>
             <span>Discrete evaluated representations</span>
@@ -403,16 +361,14 @@ export function ModelFracture({
                 className="scrub-play isolate-button"
                 aria-pressed={isolated}
                 onClick={() => {
-                  setConstant(false);
-                  setPlaying(false);
                   setIsolated((value) => !value);
                 }}
               >
                 Isolate the Sun
               </button>
             )}
-            <button className="scrub-play" onClick={() => (playing ? setPlaying(false) : start())}>
-              {playing ? 'Pause sequence' : reduced ? 'Show 80 m comparison' : 'Replay sequence'}
+            <button className="scrub-play" onClick={start}>
+              Reset to 80 m comparison
             </button>
           </div>
           <input

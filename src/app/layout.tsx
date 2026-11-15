@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import './design.css';
 import './cinema.css';
+import './deliberate.css';
 export const metadata: Metadata = {
   title: 'RESOLVE — Lunar Landing Decision Audit',
   description:

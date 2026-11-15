@@ -5,7 +5,7 @@ import { execFileSync } from 'node:child_process';
 import path from 'node:path';
 import { createPreviewServer } from './preview-server.mjs';
 const origin = process.env.RESOLVE_PREVIEW_URL || 'http://127.0.0.1:3090';
-const folder = 'artifacts/screenshots';
+const folder = 'artifacts/touch-screenshots';
 await mkdir(folder, { recursive: true });
 const browser = await chromium.launch({ channel: 'msedge', headless: true });
 const scans = [],
@@ -71,7 +71,27 @@ try {
     await page.getByRole('button', { name: 'See why it changes', exact: true }).click();
     await expect(page.getByTestId('near-field-profile')).toBeVisible();
     await expect(page.getByTestId('audit-mechanism')).toBeVisible();
+    await screenshot(page, `${device}-physical-step1`, page.getByTestId('physical-reveal'));
+    await page.getByRole('button', { name: '2. Compare the 80 m profile', exact: true }).click();
+    await screenshot(page, `${device}-physical-step2`, page.getByTestId('physical-reveal'));
+    await page.getByRole('button', { name: '3. Locate event witnesses', exact: true }).click();
     await screenshot(page, `${device}-physical-mechanism`, page.getByTestId('physical-reveal'));
+    await screenshot(page, `${device}-3d-poster`, page.getByTestId('terrain-study'));
+    await page.getByRole('button', { name: 'Explore the terrain in 3D' }).click();
+    const terrain = page.getByTestId('terrain-study');
+    await expect(
+      terrain
+        .getByRole('group', { name: '3D camera views' })
+        .or(terrain.getByRole('button', { name: 'Retry 3D' })),
+    ).toBeVisible();
+    if (await terrain.getByRole('group', { name: '3D camera views' }).count()) {
+      await screenshot(page, `${device}-3d-oblique`, terrain);
+      await scan(page, `${device}/interactive-3D`);
+      await terrain.getByRole('button', { name: 'Look across the rim', exact: true }).click();
+      await screenshot(page, `${device}-3d-rim`, terrain);
+      await terrain.getByRole('button', { name: 'Top view', exact: true }).click();
+      await screenshot(page, `${device}-3d-top`, terrain);
+    }
     await screenshot(page, `${device}-negative-control`, page.getByTestId('negative-finding'));
     await screenshot(page, `${device}-research-journey`, page.getByTestId('research-journey'));
     await scan(page, `${device}/expanded-proof`);
@@ -181,10 +201,7 @@ try {
   });
   await motionPage.getByRole('button', { name: 'Audit this result', exact: true }).click();
   await expect(motionPage.getByTestId('selected-duration')).toHaveText('12.92DAYS');
-  await expect(
-    motionPage.getByRole('button', { name: 'Replay sequence', exact: true }),
-  ).toBeVisible();
-  await motionPage.waitForTimeout(1900);
+  await motionPage.waitForTimeout(4500);
   const after = await motionPage.getByTestId('fracture-sun').boundingBox(),
     referenceAfter = await motionPage.getByTestId('initial-duration').boundingBox();
   const frames = await motionPage.evaluate(() => window.__resolveFrames);
@@ -214,7 +231,7 @@ try {
   await writeFile('artifacts/mobile-layout.json', JSON.stringify(layout, null, 2));
   console.log(
     JSON.stringify({
-      screenshots: 'artifacts/screenshots',
+      screenshots: folder,
       accessibility_states: scans.length,
       violations: scans.reduce((n, s) => n + s.violations.length, 0),
       layout,

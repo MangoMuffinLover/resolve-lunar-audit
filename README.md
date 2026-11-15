@@ -4,7 +4,7 @@
 
 **Live website: [resolve-lunar-audit.vercel.app](https://resolve-lunar-audit.vercel.app/)**
 
-This branch is the **local cinematic candidate**. The public website remains on reviewed commit `87cc57f47dc858bbf5dc791c42c9870ab3d411c5`. The owner chose to keep this candidate local: no cinematic branch push, external verification workflow or Vercel deployment has been performed. `baseline/reviewed-2026-11-15` preserves the reviewed release.
+This branch is the **local touch-controlled cinematic and Blender terrain candidate**. The public website remains on reviewed commit `87cc57f47dc858bbf5dc791c42c9870ab3d411c5`. The owner chose to keep this candidate local: no cinematic branch push, external verification workflow or Vercel deployment has been performed. `baseline/reviewed-2026-11-15` preserves the reviewed release.
 
 RESOLVE audits whether a modeled lunar Sun/Earth visibility result survives defensible changes in terrain representation, observer convention and reporting scope. It is a NASA Space Apps 2026 project, not a NASA-endorsed mission planning system.
 
@@ -50,13 +50,13 @@ The retained `data`, `build:research`, `verify:science` and `test:research` comm
 
 The reviewed interface passed 46 original Node data/source/preview checks, 26 Edge product scenarios, a five-scenario audit rerun after the responsive chart change and 12 targeted Chrome/Firefox/WebKit scenarios against the final portable build. All 587 original frozen research files verified unchanged in the full local workspace. The released B-01 contract remains SHA-256 `a8a06dd4a5447acd1ee68a56779376d0b01ad081fde95c1d4b762434a521c48d`.
 
-The cinematic candidate passed 27 targeted Chromium/Firefox/WebKit scenarios, three display-source integrity tests, TypeScript checks and ten automated accessibility scans with zero detected violations. The 26 Edge product scenarios passed across a full run and a focused rerun after correcting manual model selection during playback. All 93 existing frozen product/evidence files match the reviewed Git baseline. The 25 final desktop/mobile screenshots were visually inspected. See `docs/CINEMATIC_DESIGN.md` for provenance, motion and verification limits.
+The latest candidate uses tap-controlled explanation stages, 2.2-second terrain transitions and a 2.6-second 3D camera move. It has no timed model progression, automatic Sun isolation, scroll-triggered story reveals or idle camera orbit. The 3D mesh was built in Blender from verified native NASA Product 90 pixels, at true vertical scale. Source values remain discrete and readable throughout each transition. See `docs/CINEMATIC_DESIGN.md` for controls, provenance and verification.
 
 The owner reviewed the website positively. This is owner feedback, not an uncoached first-time comprehension result. No independent reviewer is currently available. Automated verification and agent review continue; the human twenty-second test is not claimed passed. Dedicated screen-reader and Safari/iOS device review remain outstanding. Playwright WebKit on Windows is not Safari/iOS device testing.
 
 `npm test` verifies this release's file hashes and routes. Browser scenarios are under `tests/readiness/`; set `RESOLVE_PREVIEW_URL` to the served release before `npm run test:browsers`. The local preview suite binds to port 3000 by default.
 
-To repeat local visual measurements, set `RESOLVE_PREVIEW_URL` and run `node scripts/capture-visual-review.mjs`. It writes screenshots, accessibility scans, mobile bounds and baseline-versus-candidate lab measurements under ignored `artifacts/`. It uses the installed Microsoft Edge browser and restores the baseline export from local Git; it sends no results to GitHub. Run browser suites sequentially on machines with limited memory.
+To repeat local visual measurements, set `RESOLVE_PREVIEW_URL` and run `node scripts/capture-visual-review.mjs`. It writes screenshots, accessibility scans, mobile bounds and baseline-versus-candidate lab measurements under ignored `artifacts/`. `node scripts/check-layout-bounds.mjs` checks lettering against its panel boundaries at five widths; `node scripts/capture-terrain-motion.mjs` verifies real touch input and records a local reviewer-paced motion tour. It uses the installed Microsoft Edge browser and restores the baseline export from local Git; it sends no results to GitHub. Run browser suites sequentially on machines with limited memory.
 
 ## Scientific limits and attribution
 

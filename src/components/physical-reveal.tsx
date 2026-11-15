@@ -4,8 +4,10 @@ import type { AuditData, TerrainSections } from '@/lib/contract';
 import type { VisualAssets } from '@/lib/visual-contract';
 import { verifiedJSON } from '@/lib/verified-json';
 import { distance, signed, utc } from '@/lib/format';
+import { TerrainStudy } from './terrain-study';
 
 export function PhysicalReveal({ data, visual }: { data: AuditData; visual: VisualAssets }) {
+  const [step, setStep] = useState(0);
   const plot = useRef<SVGSVGElement>(null);
   const [width, setWidth] = useState(940);
   const [sections, setSections] = useState<TerrainSections[] | null>(null),
@@ -59,18 +61,45 @@ export function PhysicalReveal({ data, visual }: { data: AuditData; visual: Visu
           representation places the near-field rise lower.
         </p>
       </div>
+      <div className="physics-step-controls" role="group" aria-label="Physical explanation steps">
+        <p className="interaction-instruction">
+          Choose each step when you are ready. Every view holds for reading.
+        </p>
+        <div>
+          <button aria-pressed={step === 0} onClick={() => setStep(0)}>
+            1. Inspect the 5 m profile
+          </button>
+          <button aria-pressed={step === 1} onClick={() => setStep(1)}>
+            2. Compare the 80 m profile
+          </button>
+          <button aria-pressed={step === 2} onClick={() => setStep(2)}>
+            3. Locate event witnesses
+          </button>
+        </div>
+        <p role="status">
+          {step === 0
+            ? 'The reference profile is shown. Compare the 80 m representation when you are ready.'
+            : step === 1
+              ? 'At the aligned 49 m location, the 80 m representation places the terrain 1.647339 m lower.'
+              : 'Two controlling terrain witnesses, each at its own event time and azimuth.'}
+        </p>
+      </div>
       {sections ? (
         <figure className="near-field-figure">
           <div className="profile-legend">
             <span>Dashed / P78 · 5 m</span>
-            <span>Solid / P90 · 80 m</span>
+            <span>{step > 0 ? 'Solid / P90 · 80 m' : 'P90 · 80 m waits for step 2'}</span>
             <span>Same nominal-onset azimuth</span>
           </div>
           <svg
             ref={plot}
             viewBox={`0 0 ${width} 360`}
             role="img"
-            aria-label="Frozen near-field terrain cross-sections at the nominal 5 metre onset azimuth, with radial heights above the reference sphere"
+            aria-label={
+              step === 0
+                ? 'Frozen 5 metre reference profile at its nominal onset azimuth, with radial heights above the reference sphere'
+                : 'Frozen near-field terrain cross-sections at the nominal 5 metre onset azimuth, with radial heights above the reference sphere'
+            }
             data-testid="near-field-profile"
           >
             {[1520, 1525, 1530, 1535, 1540].map((h) => (
@@ -88,7 +117,7 @@ export function PhysicalReveal({ data, visual }: { data: AuditData; visual: Visu
             ))}
             {sections.map((record, i) => (
               <path
-                key={record.id}
+                key={`${record.id}-${step}`}
                 d={record.sections
                   .find((s) => s.direction === 'nominal_5m_critical')!
                   .samples.map(
@@ -96,6 +125,8 @@ export function PhysicalReveal({ data, visual }: { data: AuditData; visual: Visu
                   )
                   .join('')}
                 className={i ? 'profile-selected' : 'profile-reference'}
+                pathLength={i ? 1 : undefined}
+                style={i && step === 0 ? { visibility: 'hidden' } : undefined}
               />
             ))}
             <line
@@ -128,77 +159,82 @@ export function PhysicalReveal({ data, visual }: { data: AuditData; visual: Visu
             : 'Verifying the frozen near-field profiles…'}
         </p>
       )}
-      <div className="physics-horizon-values">
-        <p>
-          <span>AT THE NOMINAL 5 M ONSET SECTOR</span>
-          <strong>
-            {signed(
-              data.cases['P78_5m:fixed_absolute:uncensored_intersecting_registered'].nominalHorizon
-                .value,
-              6,
-            )}
-            ° <span>→</span>{' '}
-            {signed(
-              data.cases['P90_80m:fixed_absolute:uncensored_intersecting_registered'].nominalHorizon
-                .value,
-              6,
-            )}
-            °
-          </strong>
-        </p>
-        <span>
-          P78 5 m / P90 80 m<br />
-          Fixed absolute observer
-        </span>
-      </div>
-      <div className="witness-relocation">
-        <div className="witness-heading">
-          <p className="eyebrow">Separate own-event witnesses</p>
-          <h3>
-            The controlling sampled
-            <br />
-            terrain is farther away.
-          </h3>
+      {step > 0 && (
+        <div className="physics-horizon-values" key="horizon-values">
           <p>
-            These witnesses belong to different event times and azimuths. They are not two points
-            along one simultaneous ray.
+            <span>AT THE NOMINAL 5 M ONSET SECTOR</span>
+            <strong>
+              {signed(
+                data.cases['P78_5m:fixed_absolute:uncensored_intersecting_registered']
+                  .nominalHorizon.value,
+                6,
+              )}
+              ° <span>→</span>{' '}
+              {signed(
+                data.cases['P90_80m:fixed_absolute:uncensored_intersecting_registered']
+                  .nominalHorizon.value,
+                6,
+              )}
+              °
+            </strong>
           </p>
+          <span>
+            P78 5 m / P90 80 m<br />
+            Fixed absolute observer
+          </span>
         </div>
-        <div className="ray-pair">
-          {witnesses.map((w, i) => (
-            <article key={w.id}>
-              <span className="eyebrow">{i ? 'P90 native 80 m' : 'P78 SL2 5 m'}</span>
-              <strong>{distance(w.surface_range_m.value)}</strong>
-              <svg
-                viewBox="0 0 380 75"
-                role="img"
-                aria-label={`Schematic observer-to-witness connection, ${distance(w.surface_range_m.value)}; layout not to scale`}
-              >
-                <circle cx="18" cy="53" r="5" />
-                <path d={i ? 'M18,53L350,18' : 'M18,53L160,18'} className="witness-ray" />
-                <path
-                  d={i ? 'M350,10V26M342,18H358' : 'M160,10V26M152,18H168'}
-                  className="witness-target"
-                />
-                <text x="14" y="72">
-                  Observer
-                </text>
-              </svg>
-              <p>
-                {w.target_azimuth_deg.value.toFixed(4)}° azimuth
-                <br />
-                {utc(w.time_utc.value, true)} UTC
-              </p>
-              <small>Lower bracketing ray · schematic layout, not to scale</small>
-            </article>
-          ))}
+      )}
+      {step === 2 && (
+        <div className="witness-relocation" key="witnesses">
+          <div className="witness-heading">
+            <p className="eyebrow">Separate own-event witnesses</p>
+            <h3>
+              The controlling sampled
+              <br />
+              terrain is farther away.
+            </h3>
+            <p>
+              These witnesses belong to different event times and azimuths. They are not two points
+              along one simultaneous ray.
+            </p>
+          </div>
+          <div className="ray-pair">
+            {witnesses.map((w, i) => (
+              <article key={w.id}>
+                <span className="eyebrow">{i ? 'P90 native 80 m' : 'P78 SL2 5 m'}</span>
+                <strong>{distance(w.surface_range_m.value)}</strong>
+                <svg
+                  viewBox="0 0 380 75"
+                  role="img"
+                  aria-label={`Schematic observer-to-witness connection, ${distance(w.surface_range_m.value)}; layout not to scale`}
+                >
+                  <circle cx="18" cy="53" r="5" />
+                  <path d={i ? 'M18,53L350,18' : 'M18,53L160,18'} className="witness-ray" />
+                  <path
+                    d={i ? 'M350,10V26M342,18H358' : 'M160,10V26M152,18H168'}
+                    className="witness-target"
+                  />
+                  <text x="14" y="72">
+                    Observer
+                  </text>
+                </svg>
+                <p>
+                  {w.target_azimuth_deg.value.toFixed(4)}° azimuth
+                  <br />
+                  {utc(w.time_utc.value, true)} UTC
+                </p>
+                <small>Lower bracketing ray · schematic layout, not to scale</small>
+              </article>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
       <p className="physics-limit">
         The 80 m own-event witness is about 2 km away. The shared-azimuth near-field comparison and
         the two own-event witnesses are complementary diagnostics; neither establishes terrain
         truth.
       </p>
+      <TerrainStudy />
     </div>
   );
 }
