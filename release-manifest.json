@@ -102,13 +102,13 @@
     },
     {
       "path": "package-lock.json",
-      "bytes": 50488,
-      "sha256": "d24b33a19948b514a6505920089f2ae336b2198e44fdbbfabdeb43b1a406bb74"
+      "bytes": 48958,
+      "sha256": "8eb43c0aa9f35014135488a00f09be203d3d8393657d2abec109a2c8ae99a73d"
     },
     {
       "path": "package.json",
       "bytes": 1533,
-      "sha256": "951e8973b5b69037cf6bf9686087fadfa41c9317f08cd2970047c65a43c67e8b"
+      "sha256": "cc1e0f64881c1ccdd7897a03b98fb40a72083426237396051d975d39ae8709b6"
     },
     {
       "path": "playwright.config.ts",
@@ -592,8 +592,8 @@
     },
     {
       "path": "scripts/verify-release.mjs",
-      "bytes": 2563,
-      "sha256": "384bde28aa1bb45395b563c4d78fa745118a737dbebe948d72c4ff9207af16c6"
+      "bytes": 3190,
+      "sha256": "797a9924c1ead545f4386e7ad56e2d7de9fb88771f6d7ac2abbdc4ca8f396a59"
     },
     {
       "path": "site/404/index.html",

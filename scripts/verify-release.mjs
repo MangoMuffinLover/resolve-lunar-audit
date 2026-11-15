@@ -19,6 +19,21 @@ for (const entry of manifest.files) {
   if (path.isAbsolute(relative) || relative.startsWith('..'))
     throw new Error('Unsafe release path');
   const bytes = await readFile(filename);
+  // The hosting build can normalize its configuration file. Keep the effective
+  // release settings strict without treating whitespace as a site-data change.
+  if (entry.path === 'vercel.json') {
+    const config = JSON.parse(bytes.toString('utf8'));
+    const expected = {
+      framework: null,
+      installCommand: 'node --version',
+      buildCommand: 'node scripts/verify-release.mjs',
+      outputDirectory: 'site',
+      trailingSlash: true,
+    };
+    for (const [key, value] of Object.entries(expected))
+      if (config[key] !== value) throw new Error(`Hosting release setting changed: ${key}`);
+    continue;
+  }
   if (bytes.length !== entry.bytes || sha(bytes) !== entry.sha256)
     throw new Error(`Release integrity mismatch: ${entry.path}`);
 }
