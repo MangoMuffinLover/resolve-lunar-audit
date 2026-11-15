@@ -41,8 +41,8 @@ The current README, research note and its sources, submission narrative,
 Project Tab draft, demonstration scripts, human-test guide, design notes and
 portable-review packaging introduction use the formal first-use identity.
 The Project Tab file is a prepared draft, not an external portal submission.
-Version 2.0 of the note retains the review-status disclosure expressly required
-by the naming-migration brief.
+Version 2.1 follows the owner's latest wording correction. The formal identity
+and scientific content are preserved.
 
 RESOLVE remains the shorthand after introduction. Existing URLs, package and
 repository identifiers, practical download filenames, scientific schema names,

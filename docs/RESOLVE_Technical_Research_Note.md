@@ -4,9 +4,7 @@ Decision-Convergence Auditing for Lunar South-Polar Visibility Models
 
 Technical Research Note — NASA Space Apps Challenge 2026
 
-RESOLVE project | Version 2.0 | 15 November 2026
-
-**This technical research note has not been peer reviewed.**
+RESOLVE project | Version 2.1 | 15 November 2026
 
 ## Abstract
 

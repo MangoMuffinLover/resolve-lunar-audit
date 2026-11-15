@@ -1,9 +1,8 @@
 {
   "schema": "resolve.technical-note.v1",
-  "version": "2.0",
+  "version": "2.1",
   "project_title": "Robustness Evaluation of South-Polar Observation and Lunar Visibility Estimates (RESOLVE)",
   "paper_subtitle": "Decision-Convergence Auditing for Lunar South-Polar Visibility Models",
-  "peer_reviewed": false,
   "date": "2026-11-15",
   "new_scientific_calculations": false,
   "evidence_release": "324d5b6a8d8b6cdd99a3d5ed314e5874268cb4de",
@@ -11,18 +10,18 @@
   "layout": "Two-column conference manuscript, following the user-provided format reference; no publication or endorsement implied",
   "pdf": {
     "path": "docs/RESOLVE_Technical_Research_Note.pdf",
-    "bytes": 156577,
-    "sha256": "1002a3af9c8bf46474fdb9d1203a6cac1b0694ac4d2f0bfa884e85e18965bd95"
+    "bytes": 156524,
+    "sha256": "b47cbc09f5444dbaeadb56343009ab71e2c152e5b72b5f48f41cd727d21138b5"
   },
   "editable_source": {
     "path": "docs/RESOLVE_Technical_Research_Note.md",
-    "bytes": 14165,
-    "sha256": "7f1af53918589a87c45fed41e3d4746beb95c0cea1c43a98c92158c7a40dc825"
+    "bytes": 14103,
+    "sha256": "68c56707b1903ac95ac4957bb6d6aa51dea1dd841e647d336446a8229dd7e89f"
   },
   "latex_source": {
     "path": "docs/RESOLVE_Technical_Research_Note.tex",
-    "bytes": 15675,
-    "sha256": "82a454a7011c9982bebb3d05f97399f652939ec2baca13b41a6c6c9370a0791e"
+    "bytes": 15608,
+    "sha256": "701d00b8a839d483ca335aff9228e36d891c9a5514913810b1c4ef1ee47b8660"
   },
   "figure_file": {
     "path": "docs/RESOLVE_Technical_Research_Note_figure.pdf",
@@ -31,13 +30,13 @@
   },
   "source_bundle": {
     "path": "docs/RESOLVE_Technical_Research_Note_source.zip",
-    "bytes": 87686,
-    "sha256": "96d998ddaaeb032c7045de0ba4dd204ec030d8c8b44f6c14cdcb8d120aa38120"
+    "bytes": 87574,
+    "sha256": "024b21faac0e1696ec64ee4f1ded09ffd2e799b3838ee1841c451b701de8059b"
   },
   "builder": {
     "path": "scripts/build-research-note.py",
-    "bytes": 14118,
-    "sha256": "66b427f8fff9d11e9b37c7f7e4ea8f24926a892c5652891d38cab92ca6d86f27"
+    "bytes": 13899,
+    "sha256": "8a9715add5ec5c72749be9bf59adfa6ccac923d289233308d38220e2957220ee"
   },
   "figure": "Vector redraw of exact frozen aligned profile samples; display coordinate mapping only",
   "inputs": [
