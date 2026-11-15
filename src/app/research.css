@@ -1,4 +1,45 @@
 /* Research atlas: consistent hierarchy, restrained color and explicit figure framing. */
+.technical-note-download {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 32px;
+  padding: 28px;
+  background: #fff;
+  border: 1px solid #d4dce5;
+  border-radius: 4px;
+}
+.technical-note-download h2 {
+  margin: 10px 0;
+  font-size: 24px;
+  letter-spacing: -0.03em;
+}
+.technical-note-download p:not(.eyebrow) {
+  max-width: 65ch;
+  font-size: 13px;
+  line-height: 1.75;
+  color: #526377;
+}
+.technical-note-download > div > a {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 12px;
+  color: #185a96;
+}
+.technical-note-download > .secondary-button {
+  flex-shrink: 0;
+}
+@media (max-width: 700px) {
+  .technical-note-download {
+    display: block;
+    padding: 22px;
+  }
+  .technical-note-download > .secondary-button {
+    margin-top: 22px;
+    width: 100%;
+  }
+}
 .audit-path a {
   display: inline-flex;
   align-items: center;

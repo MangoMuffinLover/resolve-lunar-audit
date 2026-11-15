@@ -1,0 +1,112 @@
+{
+  "schema": "resolve.technical-note.v1",
+  "version": "1.0",
+  "date": "2026-11-15",
+  "peer_reviewed": false,
+  "new_scientific_calculations": false,
+  "evidence_release": "324d5b6a8d8b6cdd99a3d5ed314e5874268cb4de",
+  "pages": 4,
+  "pdf": {
+    "path": "docs/RESOLVE_Technical_Research_Note.pdf",
+    "bytes": 180928,
+    "sha256": "4f29bde48c75c8ba347697590a5f9a56746aa66508f53cc970d27d746a16b042"
+  },
+  "editable_source": {
+    "path": "docs/RESOLVE_Technical_Research_Note.md",
+    "bytes": 13833,
+    "sha256": "06139c692fada04fb491f0fe3660b6939361634703fd85feabcc65fbbb6ad766"
+  },
+  "builder": {
+    "path": "scripts/build-research-note.py",
+    "bytes": 10241,
+    "sha256": "e69e7484c781600f6041ba59beddc6b2490288d698f8f47a77968cbfba2717db"
+  },
+  "figure": "Vector redraw of exact frozen aligned profile samples; display coordinate mapping only",
+  "inputs": [
+    {
+      "path": "src/data/audit.v1.json",
+      "bytes": 235738,
+      "sha256": "a8a06dd4a5447acd1ee68a56779376d0b01ad081fde95c1d4b762434a521c48d"
+    },
+    {
+      "path": "src/data/science.v1.json",
+      "bytes": 12662,
+      "sha256": "4d5dad3d50e7262f98dcc45c5d087f9ee7bcfa6b480d2fc7b6a119f64da4840b"
+    },
+    {
+      "path": "public/evidence/profiles/P78_5m.sections.v1.json",
+      "bytes": 171222,
+      "sha256": "c5fcb66f28bf7fb7bc5439200a7d18c30c5cbd198e460e3ef1d776facc873562"
+    },
+    {
+      "path": "public/evidence/profiles/P90_80m.sections.v1.json",
+      "bytes": 171484,
+      "sha256": "0b59e172aaedd06b0a7c92bb93bbfa9d223e9f5e01774c0b9b2506ebadc3f971"
+    },
+    {
+      "path": "public/evidence/science/sources/a-finding.md",
+      "bytes": 2329,
+      "sha256": "bf8d466e90ee238339e292801ea871724d37b13f4dda3b9e582a4cb9cfb0b692"
+    },
+    {
+      "path": "public/evidence/science/sources/b-protocol.md",
+      "bytes": 6794,
+      "sha256": "b7ac8a501b3cbd20d08311b1a54e3469b280d73451770ea9d05a43a20f4ce2b2"
+    },
+    {
+      "path": "public/evidence/science/sources/b-report.md",
+      "bytes": 16149,
+      "sha256": "ad38af8a8b4c27aec15b7289668558ec0d835f7b5f9006679d09f4fb789aa26a"
+    },
+    {
+      "path": "public/evidence/science/sources/c-protocol.md",
+      "bytes": 6591,
+      "sha256": "cd426bfdfe1f50581c7c04539bf29534f848edcdf533225f5b2cb8d4d27b945b"
+    },
+    {
+      "path": "public/evidence/science/sources/c-finding.md",
+      "bytes": 15188,
+      "sha256": "56fa6aed058bc01862c559c6a94748074c26f9325bb0d74b6fa03bc92befd9f0"
+    },
+    {
+      "path": "public/evidence/science/sources/c-report.md",
+      "bytes": 3428,
+      "sha256": "1a04b70a6876a46c25a31cbfc3f9c057853d57a12585b36a1c3fb5733b7e95ea"
+    },
+    {
+      "path": "public/evidence/science/sources/c-numerical.json",
+      "bytes": 56142,
+      "sha256": "0cbcf8cc810a26b817f9d75e9657245dd9cedc5e96d04cc764f60e16f65f941e"
+    },
+    {
+      "path": "public/evidence/science/sources/source-audit.md",
+      "bytes": 2799,
+      "sha256": "611361e75b6f08b2438e376d6d76e72dfa1ee6191848ab41606cb90a3b477b6b"
+    },
+    {
+      "path": "public/evidence/science/sources/frame-audit.md",
+      "bytes": 2196,
+      "sha256": "b25db4afa4a1a127b778f62b822cb250f554eccb24d2255cc778e86c0c55e483"
+    },
+    {
+      "path": "public/evidence/science/sources/literature-audit.md",
+      "bytes": 5829,
+      "sha256": "21a82f132fffcabf1fa53208838e767c7954d3dd3733a2ec3716ce1890944c4b"
+    },
+    {
+      "path": "public/evidence/science/sources/c-reproduce.md",
+      "bytes": 4455,
+      "sha256": "f3d680a5ea71818a00bdecf46527801bdd15f5646281e077ed8ad6b36d6fa9f5"
+    },
+    {
+      "path": "public/evidence/frozen/terrain_cross_section.png",
+      "bytes": 383458,
+      "sha256": "87bb68b2f90a7941c948a5f0175014ccc5c351da6f300a98e1a29d676edc454f"
+    },
+    {
+      "path": "public/evidence/science/sources/response.csv",
+      "bytes": 26621,
+      "sha256": "bc7d942579e719746a23411d02c4a7b6a01b9b27ef670b65592ac89180d45441"
+    }
+  ]
+}

@@ -10,6 +10,25 @@ const scientificHash = 'a8a06dd4a5447acd1ee68a56779376d0b01ad081fde95c1d4b762434
 const sha = (bytes) => createHash('sha256').update(bytes).digest('hex');
 if (sha(await readFile(path.join(root, 'src/data/audit.v1.json'))) !== scientificHash)
   throw new Error('Original B-01 scientific contract changed');
+const noteName = 'RESOLVE_Technical_Research_Note';
+const note = JSON.parse(
+  await readFile(path.join(root, `docs/${noteName}.provenance.json`), 'utf8'),
+);
+if (note.pages !== 4 || note.peer_reviewed !== false || note.new_scientific_calculations !== false)
+  throw new Error('Technical note scope changed');
+for (const entry of [note.pdf, note.editable_source, note.builder, ...note.inputs]) {
+  const bytes = await readFile(path.join(root, entry.path));
+  if (sha(bytes) !== entry.sha256 || bytes.length !== entry.bytes)
+    throw new Error(`Technical note provenance mismatch: ${entry.path}`);
+}
+for (const suffix of ['pdf', 'md', 'provenance.json']) {
+  const filename = `${noteName}.${suffix}`;
+  if (
+    sha(await readFile(path.join(root, 'docs', filename))) !==
+    sha(await readFile(path.join(root, 'public/docs', filename)))
+  )
+    throw new Error(`Technical note public copy is stale: ${filename}`);
+}
 const seen = new Set();
 for (const entry of manifest.files) {
   if (seen.has(entry.path)) throw new Error('Duplicate release entry');
