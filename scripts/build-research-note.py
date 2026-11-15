@@ -1,6 +1,6 @@
 """Typeset retained evidence only. Does not call a terrain, ephemeris or event solver.
 
-Requires reportlab and pypdf. Run from the repository root. The editable Markdown
+Requires ReportLab, pypdf and a LaTeX installation with IEEEtran, times, booktabs, graphicx and hyperref. Run from the repository root. The editable Markdown
 controls the prose and tables; the figure draws only the retained profile samples.
 """
 from pathlib import Path
@@ -8,6 +8,10 @@ import hashlib
 import html
 import json
 import re
+import subprocess
+import shutil
+import zipfile
+import os
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.lib import colors
@@ -77,64 +81,127 @@ class FrozenFigure(Flowable):
         c.line(xx(49),yy(heights[0]),xx(49),yy(heights[1]))
         for h in heights:
             c.setFillColor(colors.white);c.circle(xx(49),yy(h),2.3,fill=1,stroke=1)
-        c.setFillColor(colors.HexColor('#8d3d1f'));c.drawString(xx(49)+8,yy(heights[1])-12,'1.647339 m lower in P90')
+        c.setFillColor(colors.HexColor('#8d3d1f'));c.drawString(xx(49)+8,yy(1531),'1.647339 m lower in P90')
 
-styles={
-    'title':ParagraphStyle('Title',fontName='NoteSerifBold',fontSize=21,leading=23.5,spaceAfter=8,textColor=colors.black),
-    'subtitle':ParagraphStyle('Subtitle',fontName='NoteSans',fontSize=11,leading=14,spaceAfter=5),
-    'meta':ParagraphStyle('Meta',fontName='NoteSans',fontSize=8.8,leading=11,spaceAfter=7,textColor=colors.HexColor('#45515c')),
-    'body':ParagraphStyle('Body',fontName='NoteSerif',fontSize=10.5,leading=13.15,spaceAfter=7),
-    'heading':ParagraphStyle('Heading',fontName='NoteSansBold',fontSize=11.5,leading=14,spaceBefore=10,spaceAfter=6,keepWithNext=True),
-    'caption':ParagraphStyle('Caption',fontName='NoteSerif',fontSize=9,leading=11.2,spaceAfter=7),
-    'reference':ParagraphStyle('Reference',fontName='NoteSerif',fontSize=8.5,leading=10.3,spaceAfter=4),
-    'cell':ParagraphStyle('Cell',fontName='NoteSans',fontSize=9.5,leading=12),
-    'headercell':ParagraphStyle('HeaderCell',fontName='NoteSansBold',fontSize=9,leading=11,textColor=colors.white),
-}
-def rich(value):
-    value=html.escape(value)
-    value=re.sub(r'\[([^\]]+)\]\((https?://[^\s)]+)\)',r'<link href="\2" color="#184f7e">\1</link>',value)
-    return re.sub(r'\*\*(.+?)\*\*',r'<b>\1</b>',value)
 
-def footer(c,doc):
-    c.saveState();c.setStrokeColor(colors.HexColor('#bcc8d2'));c.setLineWidth(.5);c.line(48,755,564,755)
-    c.setFont('NoteSans',8);c.setFillColor(colors.HexColor('#53616e'))
-    c.drawString(48,765,'RESOLVE  /  TECHNICAL RESEARCH NOTE')
-    c.drawRightString(564,765,'15 NOVEMBER 2026  ·  VERSION 1.0')
-    c.line(48,35,564,35);c.drawString(48,23,'Not peer reviewed  |  Frozen R-01A/B/C evidence')
-    c.drawRightString(564,23,f'{doc.page}');c.restoreState()
+# The PDF figure contains only the unchanged frozen samples, with print-space mapping.
+from reportlab.pdfgen.canvas import Canvas
+figure_name='RESOLVE_Technical_Research_Note_figure.pdf'
+figure_path=ROOT/'docs'/figure_name
+c=Canvas(str(figure_path),pagesize=(516,215),pageCompression=1,invariant=1)
+FrozenFigure().drawOn(c,0,0)
+c.save()
 
-story=[];blocks=re.split(r'\n\s*\n',text.strip());intro_line=0
-for block in blocks:
-    if block=='<!-- PAGEBREAK -->':story.append(PageBreak());continue
-    if block=='<!-- FROZEN_PROFILE_FIGURE -->':story.append(FrozenFigure());continue
-    if block.startswith('# '):story.append(Paragraph(rich(block[2:]),styles['title']));continue
-    if block.startswith('## '):story.append(Paragraph(rich(block[3:]),styles['heading']));continue
+def tex(value):
+    """Escape data before adding the small supported Markdown formatting subset."""
+    links=[]
+    def link(m):
+        links.append((m.group(1),m.group(2)))
+        return f'ZZLINK{len(links)-1}ZZ'
+    value=re.sub(r'\[([^\]]+)\]\((https?://[^\s)]+)\)',link,value)
+    mapping={'\\':r'\textbackslash{}','&':r'\&','%':r'\%','$':r'\$','#':r'\#','_':r'\_','{':r'\{','}':r'\}','~':r'\textasciitilde{}','^':r'\textasciicircum{}','−':r'$-$','°':r'\textdegree{}','×':r'$\times$','→':r'$\rightarrow$','–':'--','—':'---','“':'``','”':"''",'’':"'"}
+    value=''.join(mapping.get(ch,ch) for ch in value)
+    value=re.sub(r'\*\*(.+?)\*\*',lambda m:r'\textbf{'+m.group(1)+'}',value)
+    for i,(label,url) in enumerate(links):
+        escaped_url=url.replace('%',r'\%').replace('#',r'\#')
+        value=value.replace(f'ZZLINK{i}ZZ',r'\href{'+escaped_url+'}{'+tex(label)+'}')
+    return value
+
+blocks=re.split(r'\n\s*\n',text.strip())
+title=blocks[0][2:]
+body=[];references=[];section='';caption=None;table_number=0
+for block in blocks[1:]:
+    if block.startswith('Technical Research Note') or block.startswith('RESOLVE project |') or block=='**This technical research note has not been peer reviewed.**':continue
+    if block=='<!-- PAGEBREAK -->':continue
+    if block=='<!-- FROZEN_PROFILE_FIGURE -->':continue
+    if block.startswith('## '):
+        section=block[3:]
+        if section=='Abstract':body.append(r'\begin{abstract}')
+        elif section=='References':pass
+        else:
+            if section.startswith('8. '):body.append(r'\newpage')
+            body.append(r'\section{'+tex(re.sub(r'^\d+\. ','',section))+'}')
+        continue
+    if section=='References':
+        match=re.match(r'^\[(\d+)\]\s*(.*)',block,re.S)
+        assert match
+        references.append(r'\bibitem{ref'+match[1]+'} '+tex(match[2]))
+        continue
+    if section=='Abstract':
+        body.extend([tex(block),r'\end{abstract}',r'\begin{IEEEkeywords}Lunar terrain, geometric visibility, model sensitivity, decision auditing, scientific provenance.\end{IEEEkeywords}'])
+        continue
+    if block.startswith('**Table '):
+        caption=re.sub(r'^\*\*Table \d+\.\*\*\s*','',block)
+        continue
+    if block.startswith('**Figure '):
+        caption_figure=re.sub(r'^\*\*Figure \d+\.\*\*\s*','',block)
+        body.append(r'\begin{figure*}[!t]\centering'+'\n'+r'\includegraphics[width=0.95\textwidth]{'+figure_name+'}\n'+r'\caption{'+tex(caption_figure)+r'}\label{fig:profile}\end{figure*}')
+        continue
     if block.startswith('| '):
         rows=[[v.strip() for v in line.strip().strip('|').split('|')] for line in block.splitlines()]
         rows=[row for row in rows if not all(re.match(r'^:?-+:?$',v) for v in row)]
-        widths=[318,198] if len(rows[0])==2 else [132,85,92,207]
-        cells=[[Paragraph(rich(v),styles['headercell' if i==0 else 'cell']) for v in row] for i,row in enumerate(rows)]
-        t=Table(cells,colWidths=widths,repeatRows=1,hAlign='LEFT')
-        commands=[('BACKGROUND',(0,0),(-1,0),colors.HexColor('#24394d')),('GRID',(0,0),(-1,-1),.4,colors.HexColor('#d2dbe3')),('VALIGN',(0,0),(-1,-1),'MIDDLE'),('LEFTPADDING',(0,0),(-1,-1),9),('RIGHTPADDING',(0,0),(-1,-1),9),('TOPPADDING',(0,0),(-1,-1),6),('BOTTOMPADDING',(0,0),(-1,-1),6)]
-        for i in range(2,len(rows),2):commands.append(('BACKGROUND',(0,i),(-1,i),colors.HexColor('#f1f5f8')))
-        if len(rows[0])==2:
-            for row in cells[1:]:row[1].style=ParagraphStyle('Number',parent=styles['cell'],alignment=2)
-        t.setStyle(TableStyle(commands));story.extend([t,Spacer(1,10)]);continue
-    if block.startswith('Technical Research Note'):kind='subtitle'
-    elif block.startswith('RESOLVE project |'):kind='meta'
-    elif block.startswith('**Table ') or block.startswith('**Figure '):kind='caption'
-    elif re.match(r'^\[\d+\]',block):kind='reference'
-    else:kind='body'
-    story.append(Paragraph(rich(block.replace('\n',' ')),styles[kind]))
+        table_number+=1
+        wide=len(rows[0])>2
+        env='table*' if wide else 'table'
+        spec='@{}lrrl@{}' if wide else '@{}lr@{}'
+        head=['Representation','Range','Azimuth','Own event (UTC, 2026)'] if wide else ['Terrain representation',r'Complete window (d)']
+        parts=[r'\begin{'+env+r'}[!t]\centering',r'\caption{'+tex(caption)+'}',r'\label{tab:result'+str(table_number)+'}',r'\small\setlength{\tabcolsep}{6pt}\renewcommand{\arraystretch}{1.12}',r'\begin{tabular}{'+spec+r'}\toprule', ' & '.join(r'\textit{'+tex(cell)+'}' for cell in head)+r'\\\midrule']
+        parts += [' & '.join(tex(cell) for cell in row)+r'\\' for row in rows[1:]]
+        parts.extend([r'\bottomrule\end{tabular}',r'\end{'+env+'}'])
+        body.append('\n'.join(parts));caption=None
+        continue
+    # Scientific prose is retained verbatim; lead-ins become manuscript subsections.
+    subsection=re.match(r'^\*\*(Sources and geometry|Matched observer and terrain|Intervals and refinement)\.\*\*\s*(.*)',block,re.S)
+    if subsection:
+        paragraph=tex(subsection[2])
+        if subsection[1]=='Matched observer and terrain':
+            paragraph=paragraph.replace('point (latitude ',r'point\newline (latitude ').replace(', east longitude ',r',\newline east longitude ')
+        body.append(r'\subsection{'+tex(subsection[1])+'}\n'+paragraph)
+    else:
+        paragraph=tex(block.replace('\n',' '))
+        body.append(paragraph)
 
-doc=SimpleDocTemplate(str(PDF),pagesize=(612,792),rightMargin=48,leftMargin=48,topMargin=48,bottomMargin=46,title='RESOLVE: Auditing Model Sensitivity in Lunar South-Polar Visibility Predictions',author='RESOLVE project',subject='Technical Research Note - not peer reviewed',pageCompression=1)
-doc.build(story,onFirstPage=footer,onLaterPages=footer)
+preamble=r"""
+\documentclass[conference,letterpaper]{IEEEtran}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{times}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage[hidelinks,breaklinks]{hyperref}
+\hypersetup{pdftitle={RESOLVE: Auditing Model Sensitivity in Lunar South-Polar Visibility Predictions},pdfauthor={RESOLVE project},pdfsubject={Technical Research Note - not peer reviewed}}
+\pagestyle{plain}
+\setlength{\emergencystretch}{1em}
+\begin{document}
+"""
+# Queue the wide mechanism figure before Results so it appears beside the
+# scientific discussion, rather than after the references. Balance the last
+# manuscript page follows the normal two-column text flow.
+figure_block=next(b for b in body if b.startswith(r'\begin{figure*}'))
+body.remove(figure_block)
+body.insert(next(i for i,b in enumerate(body) if b==r'\section{Research progression}'),figure_block)
+source=preamble+r'\title{'+tex(title)+'}\n'+r'\author{\IEEEauthorblockN{RESOLVE project}\IEEEauthorblockA{Technical Research Note --- NASA Space Apps Challenge 2026\\Version 1.1 \enspace | \enspace 15 November 2026\\\textit{This technical research note has not been peer reviewed.}}}'+'\n'+r'\maketitle'+'\n\n'+'\n\n'.join(body)+'\n\n'+r'\begin{thebibliography}{8}'+'\n'+ '\n'.join(references)+'\n'+r'\end{thebibliography}\end{document}'+'\n'
+tex_path=ROOT/'docs/RESOLVE_Technical_Research_Note.tex'
+tex_path.write_text(source,encoding='utf-8',newline='\n')
+build=ROOT/'artifacts/manuscript-build';build.mkdir(parents=True,exist_ok=True)
+engine=os.environ.get('RESOLVE_PDFLATEX') or shutil.which('pdflatex')
+if not engine:raise RuntimeError('Install LaTeX with IEEEtran and the documented packages to build the manuscript.')
+for run in range(2):
+    flags=['--disable-installer'] if 'miktex' in engine.lower() else []
+    result=subprocess.run([engine,*flags,'-interaction=nonstopmode','-halt-on-error','-file-line-error',f'-output-directory={build}',tex_path.name],cwd=ROOT/'docs',capture_output=True,text=True,encoding='utf-8',errors='replace')
+    (build/f'compile-{run+1}.txt').write_text(result.stdout+'\n'+result.stderr,encoding='utf-8')
+    if result.returncode:raise RuntimeError('LaTeX failed; inspect artifacts/manuscript-build/compile-'+str(run+1)+'.txt')
+shutil.copyfile(build/PDF.name,PDF)
 reader=PdfReader(PDF)
-assert len(reader.pages)==4, f'Expected 4 pages, produced {len(reader.pages)}'
+assert 3<=len(reader.pages)<=4,f'Expected 3-4 manuscript pages, got {len(reader.pages)}'
 combined='\n'.join(page.extract_text() for page in reader.pages)
 for required in expected+['This technical research note has not been peer reviewed.','1.647339','327.157','DE441']:
     assert required in combined,required
 inputs=['src/data/audit.v1.json','src/data/science.v1.json','public/evidence/profiles/P78_5m.sections.v1.json','public/evidence/profiles/P90_80m.sections.v1.json','public/evidence/science/sources/a-finding.md','public/evidence/science/sources/b-protocol.md','public/evidence/science/sources/b-report.md','public/evidence/science/sources/c-protocol.md','public/evidence/science/sources/c-finding.md','public/evidence/science/sources/c-report.md','public/evidence/science/sources/c-numerical.json','public/evidence/science/sources/source-audit.md','public/evidence/science/sources/frame-audit.md','public/evidence/science/sources/literature-audit.md','public/evidence/science/sources/c-reproduce.md','public/evidence/frozen/terrain_cross_section.png','public/evidence/science/sources/response.csv']
-record=dict(schema='resolve.technical-note.v1',version='1.0',date='2026-11-15',peer_reviewed=False,new_scientific_calculations=False,evidence_release='324d5b6a8d8b6cdd99a3d5ed314e5874268cb4de',pages=4,pdf=ref('docs/'+PDF.name),editable_source=ref('docs/'+SOURCE.name),builder=ref('scripts/build-research-note.py'),figure='Vector redraw of exact frozen aligned profile samples; display coordinate mapping only',inputs=[ref(p) for p in inputs])
+bundle=ROOT/'docs/RESOLVE_Technical_Research_Note_source.zip'
+with zipfile.ZipFile(bundle,'w',zipfile.ZIP_DEFLATED) as z:
+    for path in [SOURCE,tex_path,figure_path]:z.write(path,path.name)
+    z.write(Path(__file__),'build-research-note.py')
+record=dict(schema='resolve.technical-note.v1',version='1.1',date='2026-11-15',peer_reviewed=False,new_scientific_calculations=False,evidence_release='324d5b6a8d8b6cdd99a3d5ed314e5874268cb4de',pages=len(reader.pages),layout='Two-column conference manuscript, following the user-provided format reference; no publication or endorsement implied',pdf=ref('docs/'+PDF.name),editable_source=ref('docs/'+SOURCE.name),latex_source=ref('docs/'+tex_path.name),figure_file=ref('docs/'+figure_path.name),source_bundle=ref('docs/'+bundle.name),builder=ref('scripts/build-research-note.py'),figure='Vector redraw of exact frozen aligned profile samples; display coordinate mapping only',inputs=[ref(p) for p in inputs])
 PROVENANCE.write_text(json.dumps(record,indent=2)+'\n',encoding='utf-8',newline='\n')
-print(json.dumps(dict(pages=4,pdf=record['pdf'],characters=len(combined))))
+print(json.dumps(dict(pages=len(reader.pages),pdf=record['pdf'],characters=len(combined))))

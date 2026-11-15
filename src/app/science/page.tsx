@@ -39,14 +39,14 @@ export default function Page() {
         </div>
         <section className="technical-note-download" aria-labelledby="technical-note-title">
           <div>
-            <p className="eyebrow">Technical research note · Version 1.0</p>
-            <h2 id="technical-note-title">The research, in four pages.</h2>
+            <p className="eyebrow">Technical research note · Version 1.1</p>
+            <h2 id="technical-note-title">The research, in manuscript form.</h2>
             <p>
               Methods, exact results, the horizon mechanism and limitations from the frozen
               R-01A/B/C evidence. This technical research note has not been peer reviewed.
             </p>
-            <a href="/docs/RESOLVE_Technical_Research_Note.md" download>
-              Editable source
+            <a href="/docs/RESOLVE_Technical_Research_Note_source.zip" download>
+              Editable LaTeX source
             </a>
           </div>
           <a className="secondary-button" href="/docs/RESOLVE_Technical_Research_Note.pdf" download>

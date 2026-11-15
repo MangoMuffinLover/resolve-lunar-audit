@@ -14,15 +14,31 @@ const noteName = 'RESOLVE_Technical_Research_Note';
 const note = JSON.parse(
   await readFile(path.join(root, `docs/${noteName}.provenance.json`), 'utf8'),
 );
-if (note.pages !== 4 || note.peer_reviewed !== false || note.new_scientific_calculations !== false)
+if (
+  ![3, 4].includes(note.pages) ||
+  note.peer_reviewed !== false ||
+  note.new_scientific_calculations !== false
+)
   throw new Error('Technical note scope changed');
-for (const entry of [note.pdf, note.editable_source, note.builder, ...note.inputs]) {
+for (const entry of [
+  note.pdf,
+  note.editable_source,
+  note.latex_source,
+  note.figure_file,
+  note.source_bundle,
+  note.builder,
+  ...note.inputs,
+]) {
   const bytes = await readFile(path.join(root, entry.path));
   if (sha(bytes) !== entry.sha256 || bytes.length !== entry.bytes)
     throw new Error(`Technical note provenance mismatch: ${entry.path}`);
 }
-for (const suffix of ['pdf', 'md', 'provenance.json']) {
-  const filename = `${noteName}.${suffix}`;
+for (const filename of [
+  `${noteName}.pdf`,
+  `${noteName}.md`,
+  `${noteName}.provenance.json`,
+  `${noteName}_source.zip`,
+]) {
   if (
     sha(await readFile(path.join(root, 'docs', filename))) !==
     sha(await readFile(path.join(root, 'public/docs', filename)))
