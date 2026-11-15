@@ -39,84 +39,81 @@ function Scene({
   reference: VisualModel;
   audited: boolean;
 }) {
-  const element = useRef<SVGSVGElement>(null);
-  const [size, setSize] = useState({ width: 1000, height: 360 });
-  useEffect(() => {
-    if (!element.current) return;
-    const node = element.current;
-    const measure = () =>
-      setSize({ width: Math.round(node.clientWidth), height: Math.round(node.clientHeight) });
-    measure();
-    const resize = new ResizeObserver(measure);
-    resize.observe(node);
-    return () => resize.disconnect();
-  }, []);
-  const { width, height } = size,
-    margin = width < 600 ? 22 : 40;
-  const x = (az: number) => margin + ((az - 40) / 130) * (width - margin * 2);
-  const y = (elevation: number) => height * 0.56 - elevation * height * 0.05;
+  const x = (az: number) => 50 + ((az - 40) / 130) * 900;
+  const y = (elevation: number) => 360 * (0.56 - elevation * 0.05);
   const path = (points: [number, number][]) =>
     points.map(([az, el], i) => `${i ? 'L' : 'M'}${x(az).toFixed(2)},${y(el).toFixed(2)}`).join('');
   const current = path(model.skyline),
-    prior = path(reference.skyline);
-  const sample = model.sample;
+    prior = path(reference.skyline),
+    sample = model.sample;
   return (
-    <svg
-      ref={element}
-      viewBox={`0 0 ${width} ${height}`}
-      className="fracture-sky"
+    <div
+      className="fracture-canvas"
       role="img"
       aria-label={`Frozen angular skyline: ${model.label}. Sun and Earth centers at 17 November 2026 14:30 UTC. Display projection, not a terrain mesh.`}
       data-testid="fracture-sky"
     >
-      <defs>
-        <linearGradient id="lunar-plane" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#69716f" />
-          <stop offset="1" stopColor="#181f21" />
-        </linearGradient>
-      </defs>
-      <line x1={margin} x2={width - margin} y1={y(0)} y2={y(0)} className="fracture-datum" />
-      <path
-        key={model.key}
-        d={`${current}L${width - margin},${height - 48}L${margin},${height - 48}Z`}
-        fill="url(#lunar-plane)"
-        className="fracture-surface"
-      />
-      {audited && model.key !== reference.key && <path d={prior} className="fracture-reference" />}
-      <path key={`${model.key}-edge`} d={current} className="fracture-edge" />
-      <g
+      <svg
+        viewBox="0 0 1000 360"
+        preserveAspectRatio="none"
+        className="fracture-sky"
+        aria-hidden="true"
+      >
+        <defs>
+          <linearGradient id="lunar-plane" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor="#69716f" />
+            <stop offset="1" stopColor="#181f21" />
+          </linearGradient>
+        </defs>
+        <line x1="50" x2="950" y1={y(0)} y2={y(0)} className="fracture-datum" />
+        <path
+          key={model.key}
+          d={`${current}L950,300L50,300Z`}
+          fill="url(#lunar-plane)"
+          className="fracture-surface"
+        />
+        {audited && model.key !== reference.key && (
+          <path d={prior} className="fracture-reference" />
+        )}
+        <path key={`${model.key}-edge`} d={current} className="fracture-edge" />
+      </svg>
+      <div
+        className="fracture-body-marker is-sun"
         data-testid="fracture-sun"
-        transform={`translate(${x(Number(sample[0]))},${y(Number(sample[1]))})`}
+        data-center-position={`${sample[0]},${sample[1]}`}
+        style={{ left: `${x(Number(sample[0])) / 10}%`, top: `${y(Number(sample[1])) / 3.6}%` }}
       >
-        <circle r="9" className="fracture-sun" />
-        <circle r="16" className="fracture-marker-ring" />
-        <text x="0" y="-29" textAnchor="middle">
-          SUN CENTER
-        </text>
-      </g>
-      <g
+        <span>SUN CENTER</span>
+        <svg viewBox="0 0 40 40" aria-hidden="true">
+          <circle cx="20" cy="20" r="9" className="fracture-sun" />
+          <circle cx="20" cy="20" r="16" className="fracture-marker-ring" />
+        </svg>
+      </div>
+      <div
+        className="fracture-body-marker is-earth"
         data-testid="fracture-earth"
-        transform={`translate(${x(Number(sample[5]))},${y(Number(sample[6]))})`}
+        data-center-position={`${sample[5]},${sample[6]}`}
+        style={{ left: `${x(Number(sample[5])) / 10}%`, top: `${y(Number(sample[6])) / 3.6}%` }}
       >
-        <path d="M0,-7L7,0L0,7L-7,0Z" className="fracture-earth" />
-        <text x="0" y="-22" textAnchor="middle">
-          EARTH CENTER
-        </text>
-      </g>
-      {[40, 80, 120, 170].map((az) => (
-        <g key={az} className="fracture-axis">
-          <line x1={x(az)} x2={x(az)} y1={height - 48} y2={height - 40} />
-          <text x={x(az)} y={height - 23} textAnchor="middle">
+        <span>EARTH CENTER</span>
+        <svg viewBox="0 0 40 40" aria-hidden="true">
+          <path d="M20,13L27,20L20,27L13,20Z" className="fracture-earth" />
+        </svg>
+      </div>
+      <div className="fracture-azimuth-axis" aria-hidden="true">
+        {[40, 80, 120, 170].map((az) => (
+          <span key={az} style={{ left: `${x(az) / 10}%` }}>
             {az}°
-          </text>
-        </g>
-      ))}
-      <text x={width / 2} y={height - 3} textAnchor="middle" className="fracture-axis-title">
+          </span>
+        ))}
+      </div>
+      <span className="fracture-azimuth-title" aria-hidden="true">
         AZIMUTH CLOCKWISE FROM GEOGRAPHIC NORTH
-      </text>
-    </svg>
+      </span>
+    </div>
   );
 }
+
 export function ModelFracture({
   data,
   visual,
@@ -129,6 +126,7 @@ export function ModelFracture({
   onWhy,
   onEvidence,
   resetDefinitions,
+  manualRevision,
 }: {
   data: AuditData;
   visual: VisualAssets;
@@ -141,6 +139,7 @@ export function ModelFracture({
   onWhy: () => void;
   onEvidence: () => void;
   resetDefinitions: () => void;
+  manualRevision: number;
 }) {
   const [bundles, setBundles] = useState<Record<string, VisualBundle>>({});
   const [failed, setFailed] = useState<string | null>(null),
@@ -156,6 +155,15 @@ export function ModelFracture({
   }, [constant]);
   const heading = useRef<HTMLHeadingElement>(null),
     playingObserver = useRef(observer);
+  const previousManualRevision = useRef(manualRevision);
+  useEffect(() => {
+    if (previousManualRevision.current !== manualRevision) {
+      previousManualRevision.current = manualRevision;
+      setPlaying(false);
+      setConstant(false);
+      setIsolated(false);
+    }
+  }, [manualRevision]);
   useEffect(() => {
     const media = matchMedia('(prefers-reduced-motion: reduce)');
     const update = () => {
@@ -229,8 +237,9 @@ export function ModelFracture({
     resetDefinitions();
     playingObserver.current = 'fixed_absolute';
     onAudit();
-    onSelect(reduced ? 'P90_80m' : 'P78_5m');
-    setPlaying(!reduced);
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    onSelect(reduce ? 'P90_80m' : 'P78_5m');
+    setPlaying(!reduce);
   }
   function choose(index: number) {
     setConstant(false);

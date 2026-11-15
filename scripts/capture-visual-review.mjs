@@ -7,13 +7,17 @@ import { createPreviewServer } from './preview-server.mjs';
 const origin = process.env.RESOLVE_PREVIEW_URL || 'http://127.0.0.1:3090';
 const folder = 'artifacts/screenshots';
 await mkdir(folder, { recursive: true });
-const browser = await chromium.launch({ channel: 'chrome', headless: true });
+const browser = await chromium.launch({ channel: 'msedge', headless: true });
 const scans = [],
   layout = [],
   performanceRuns = [];
 let baselineServer;
 async function screenshot(page, name, locator) {
-  if (locator) await locator.screenshot({ path: `${folder}/${name}.png` });
+  if (locator)
+    await locator.screenshot({
+      path: `${folder}/${name}.png`,
+      style: '.site-header,.skip-link{visibility:hidden!important}',
+    });
   else await page.screenshot({ path: `${folder}/${name}.png` });
 }
 async function scan(page, state) {
@@ -111,9 +115,10 @@ try {
   );
   execFileSync('tar', ['-x', '-C', baseline], { input: archive });
   baselineServer = createPreviewServer(path.join(baseline, 'site'));
-  await new Promise((resolve) => baselineServer.listen(3091, '127.0.0.1', resolve));
+  await new Promise((resolve) => baselineServer.listen(0, '127.0.0.1', resolve));
+  const baselineOrigin = `http://127.0.0.1:${baselineServer.address().port}`;
   for (const [version, url] of [
-    ['baseline', 'http://127.0.0.1:3091'],
+    ['baseline', baselineOrigin],
     ['cinematic', origin],
   ])
     for (const [device, width, height] of [
@@ -140,14 +145,12 @@ try {
         lcp_ms: window.__resolveLCP,
         cls: window.__resolveCLS,
         document_bytes: performance.getEntriesByType('navigation')[0].decodedBodySize,
-        resources: performance
-          .getEntriesByType('resource')
-          .map((r) => ({
-            path: new URL(r.name).pathname,
-            bytes: r.decodedBodySize,
-            transfer: r.transferSize,
-            kind: r.initiatorType,
-          })),
+        resources: performance.getEntriesByType('resource').map((r) => ({
+          path: new URL(r.name).pathname,
+          bytes: r.decodedBodySize,
+          transfer: r.transferSize,
+          kind: r.initiatorType,
+        })),
       }));
       const start = Date.now();
       await p.getByRole('button', { name: 'Audit this result', exact: true }).click();
@@ -191,8 +194,7 @@ try {
     'artifacts/performance.json',
     JSON.stringify(
       {
-        conditions:
-          'Single cold browser context per run. GitHub-hosted Ubuntu, Chrome headless, local loopback, no CPU/network throttling. Indicative lab observations, not field Core Web Vitals.',
+        conditions: `Single cold browser context per run. ${process.platform}, Microsoft Edge ${browser.version()} headless, local loopback, no CPU/network throttling. Memory-constrained local machine. Indicative lab observations, not field Core Web Vitals.`,
         runs: performanceRuns,
         motion: {
           samples: frames.length,

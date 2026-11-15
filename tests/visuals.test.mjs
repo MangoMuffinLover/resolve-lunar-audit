@@ -39,3 +39,14 @@ test('the source contract remains byte identical to the reviewed scientific base
     'a8a06dd4a5447acd1ee68a56779376d0b01ad081fde95c1d4b762434a521c48d',
   );
 });
+test('assumption cards preserve their original source pair and separate study context', async () => {
+  const source = await json('public/evidence/factors/dGR203.v1.json');
+  const cards = await json('src/visuals/assumptions.json');
+  for (const card of cards) {
+    const original = source.comparisons.find((row) => row.id === card.comparison.id);
+    assert.deepEqual(card.comparison, original);
+    assert.deepEqual(card.scope, source.scopes[original.scope]);
+    assert.deepEqual(card.before, source.measurements[original.values.simultaneous.before]);
+    assert.deepEqual(card.after, source.measurements[original.values.simultaneous.after]);
+  }
+});

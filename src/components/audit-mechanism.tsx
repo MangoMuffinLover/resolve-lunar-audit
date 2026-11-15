@@ -18,7 +18,7 @@ export default function AuditMechanism({
   selected: string;
   observer: string;
   domain: string;
-  onReady: () => void;
+  onReady?: () => void;
 }) {
   const beforeKey = `P78_5m_${observer}`,
     afterKey = `${selected}_${observer}`;
@@ -30,7 +30,7 @@ export default function AuditMechanism({
     after = records[afterKey];
   useEffect(() => {
     if (before && after) {
-      onReady();
+      onReady?.();
       return;
     }
     let active = true;

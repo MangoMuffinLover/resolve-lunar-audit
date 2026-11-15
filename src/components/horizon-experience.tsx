@@ -76,7 +76,7 @@ export default function HorizonExperience({
   result: AuditCase;
   model: Representation;
   observer: Observer;
-  onReady: () => void;
+  onReady?: () => void;
 }) {
   const [bundle, setBundle] = useState<Bundle | null>(null),
     [error, setError] = useState(false);
@@ -153,7 +153,7 @@ export default function HorizonExperience({
   )!;
   const ready = bundle?.key === requestKey;
   useEffect(() => {
-    if (ready || error) onReady();
+    if (ready || error) onReady?.();
   }, [ready, error, onReady]);
   const plotRight = plotWidth - 24;
   const x = (v: number) => 52 + ((v - 40) / 130) * (plotRight - 52);

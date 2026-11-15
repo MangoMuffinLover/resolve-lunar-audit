@@ -924,9 +924,94 @@ select:focus-visible {
 .navigator-sky .plot-legend {
   color: #cfddc9;
 }
-.navigator-sky .navigator-horizon {
+.navigator-sky .reference-skyline {
   fill: none;
   stroke: #c6d1b8;
+}
+.navigator-sky .sun-text {
+  fill: #f3ce84;
+}
+.fracture-canvas {
+  position: relative;
+  height: 280px;
+  width: 100%;
+}
+.fracture-canvas .fracture-sky,
+.model-fracture.is-audited .fracture-canvas .fracture-sky {
+  height: 100%;
+  width: 100%;
+  display: block;
+}
+.fracture-body-marker {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  transform: translate(-50%, -50%);
+}
+.fracture-body-marker > svg {
+  width: 40px;
+  height: 40px;
+  display: block;
+}
+.fracture-body-marker > span {
+  position: absolute;
+  bottom: calc(50% + 23px);
+  left: 50%;
+  transform: translateX(-50%);
+  font: 11px var(--mono);
+  color: #e0e7d8;
+  white-space: nowrap;
+}
+.fracture-body-marker.is-earth > span {
+  bottom: calc(50% + 16px);
+}
+.fracture-azimuth-axis {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.fracture-azimuth-axis > span {
+  position: absolute;
+  bottom: 21px;
+  transform: translateX(-50%);
+  font: 11px var(--mono);
+  color: #b8c2b8;
+}
+.fracture-azimuth-axis > span:before {
+  content: '';
+  height: 7px;
+  width: 1px;
+  background: #7e8f82;
+  position: absolute;
+  left: 50%;
+  bottom: 22px;
+}
+.fracture-azimuth-title {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  font: 10px var(--mono);
+  color: #b8c2b8;
+  letter-spacing: 0.04em;
+}
+@media (max-width: 600px) {
+  .fracture-canvas {
+    height: 180px;
+  }
+  .fracture-azimuth-title {
+    display: none;
+  }
+  .fracture-body-marker > span {
+    font-size: 10px;
+  }
+  .fracture-azimuth-axis > span {
+    font-size: 10px;
+  }
+}
+.navigator-sky .navigator-earth {
+  fill: #b1c9ce;
+  stroke: #0c1417;
 }
 .navigator-body-card,
 .navigator-interval-card {
@@ -1842,7 +1927,7 @@ select:focus-visible {
 .constant-overlay {
   position: absolute;
   left: 0;
-  top: 90px;
+  top: 108px;
   z-index: 3;
   pointer-events: none;
   max-width: 70%;

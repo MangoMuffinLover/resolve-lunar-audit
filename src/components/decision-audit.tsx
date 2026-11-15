@@ -48,10 +48,14 @@ export function DecisionAudit({
     [evidence, setEvidence] = useState(false),
     [detailed, setDetailed] = useState(false);
   const [selected, setSelected] = useState(data.defaults.comparison);
+  const [manualRevision, setManualRevision] = useState(0);
+  const chooseRepresentation = useCallback((id: string) => {
+    setManualRevision((n) => n + 1);
+    setSelected(id);
+  }, []);
   const [observer, setObserver] = useState<Observer>(data.defaults.observer),
     [domain, setDomain] = useState<Domain>(data.defaults.domain);
-  const whyHeading = useRef<HTMLHeadingElement>(null),
-    whyPending = useRef(false);
+  const whyHeading = useRef<HTMLHeadingElement>(null);
   const initial =
     data.cases[caseKey(data.defaults.id, data.defaults.observer, data.defaults.domain)];
   const result = data.cases[caseKey(selected, observer, domain)];
@@ -80,12 +84,6 @@ export function DecisionAudit({
       }),
     [],
   );
-  const ready = useCallback(() => {
-    if (whyPending.current) {
-      whyPending.current = false;
-      focusSoon();
-    }
-  }, [focusSoon]);
   const resetDefinitions = useCallback(() => {
     setObserver('fixed_absolute');
     setDomain('uncensored_intersecting_registered');
@@ -94,7 +92,6 @@ export function DecisionAudit({
     setAudited(true);
   }
   function openWhy() {
-    whyPending.current = !why;
     setWhy(true);
     focusSoon();
   }
@@ -117,6 +114,7 @@ export function DecisionAudit({
           onWhy={openWhy}
           onEvidence={() => setEvidence(true)}
           resetDefinitions={resetDefinitions}
+          manualRevision={manualRevision}
         />
         <StoryMotion revision={`${audited}:${why}`} />
         {audited && (
@@ -191,7 +189,10 @@ export function DecisionAudit({
                   Observer definition
                   <select
                     value={observer}
-                    onChange={(e) => setObserver(e.target.value as Observer)}
+                    onChange={(e) => {
+                      setManualRevision((n) => n + 1);
+                      setObserver(e.target.value as Observer);
+                    }}
                     data-testid="observer-select"
                   >
                     <option value="fixed_absolute">Fixed absolute observer · default</option>
@@ -207,7 +208,10 @@ export function DecisionAudit({
                   Reporting domain
                   <select
                     value={domain}
-                    onChange={(e) => setDomain(e.target.value as Domain)}
+                    onChange={(e) => {
+                      setManualRevision((n) => n + 1);
+                      setDomain(e.target.value as Domain);
+                    }}
                     data-testid="domain-select"
                   >
                     <option value="uncensored_intersecting_registered">
@@ -237,7 +241,7 @@ export function DecisionAudit({
                 observer={observer}
                 domain={domain}
                 selected={selected}
-                onSelect={setSelected}
+                onSelect={chooseRepresentation}
               />
             </details>
             {selected === 'P104_5m' && (
@@ -288,26 +292,14 @@ export function DecisionAudit({
             {selected === 'P90_80m' && observer === 'fixed_absolute' && (
               <PhysicalReveal data={data} visual={visual} />
             )}
-            <Mechanism
-              physics={physics}
-              selected={selected}
-              observer={observer}
-              domain={domain}
-              onReady={ready}
-            />
+            <Mechanism physics={physics} selected={selected} observer={observer} domain={domain} />
             <details
               className="legacy-evidence"
               onToggle={(e) => setDetailed(e.currentTarget.open)}
             >
               <summary>Detailed horizon, terrain & support records</summary>
               {detailed && (
-                <HorizonExperience
-                  data={data}
-                  result={result}
-                  model={model}
-                  observer={observer}
-                  onReady={ready}
-                />
+                <HorizonExperience data={data} result={result} model={model} observer={observer} />
               )}
             </details>
             <button className="text-button evidence-link" onClick={() => setEvidence(true)}>

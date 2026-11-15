@@ -4,6 +4,8 @@
 
 **Live website: [resolve-lunar-audit.vercel.app](https://resolve-lunar-audit.vercel.app/)**
 
+This branch is the **local cinematic candidate**. The public website remains on reviewed commit `87cc57f47dc858bbf5dc791c42c9870ab3d411c5`. The owner chose to keep this candidate local: no cinematic branch push, external verification workflow or Vercel deployment has been performed. `baseline/reviewed-2026-11-15` preserves the reviewed release.
+
 RESOLVE audits whether a modeled lunar Sun/Earth visibility result survives defensible changes in terrain representation, observer convention and reporting scope. It is a NASA Space Apps 2026 project, not a NASA-endorsed mission planning system.
 
 The flagship dGR101 case starts at **7.40 days**. Another native NASA terrain representation gives **12.92 days** under the same absolute observer convention. RESOLVE preserves the matched definitions, traces the physical horizon mechanism and exposes the exact frozen source values. It does not determine which terrain prediction is physical truth. Effects are computed from unrounded source values.
@@ -19,7 +21,7 @@ The flagship dGR101 case starts at **7.40 days**. Another native NASA terrain re
 | `/science/`   | Negative evidence, methods, NASA provenance, numerical limits and downloads |
 | `/demo/`      | Six manual steps through the scientific argument                            |
 
-## Run the exact published release
+## Run this exact local candidate
 
 With Node.js 22 or later, no dependency installation is needed:
 
@@ -30,7 +32,7 @@ node scripts/serve.mjs --root site --port 3000
 
 Open `http://127.0.0.1:3000/`. Serve over HTTP; opening HTML files directly does not support the evidence checks.
 
-`site/` is the reviewed static export. Vercel verifies its release hashes and serves that exact folder. It does not run scientific calculations or require Python, SPICE, raw terrain rasters, credentials, a database or a backend. Framework auto-detection and dependency installation are overridden in `vercel.json` for this release.
+`site/` contains this branch's verified static export. The retained Vercel configuration verifies release hashes and serves that folder when publication is separately authorized. The site does not run scientific calculations or require Python, SPICE, raw terrain rasters, credentials, a database or a backend.
 
 ## Rebuild the interface from frozen product records
 
@@ -48,9 +50,13 @@ The retained `data`, `build:research`, `verify:science` and `test:research` comm
 
 The reviewed interface passed 46 original Node data/source/preview checks, 26 Edge product scenarios, a five-scenario audit rerun after the responsive chart change and 12 targeted Chrome/Firefox/WebKit scenarios against the final portable build. All 587 original frozen research files verified unchanged in the full local workspace. The released B-01 contract remains SHA-256 `a8a06dd4a5447acd1ee68a56779376d0b01ad081fde95c1d4b762434a521c48d`.
 
+The cinematic candidate passed 27 targeted Chromium/Firefox/WebKit scenarios, three display-source integrity tests, TypeScript checks and ten automated accessibility scans with zero detected violations. The 26 Edge product scenarios passed across a full run and a focused rerun after correcting manual model selection during playback. All 93 existing frozen product/evidence files match the reviewed Git baseline. The 25 final desktop/mobile screenshots were visually inspected. See `docs/CINEMATIC_DESIGN.md` for provenance, motion and verification limits.
+
 The owner reviewed the website positively. This is owner feedback, not an uncoached first-time comprehension result. No independent reviewer is currently available. Automated verification and agent review continue; the human twenty-second test is not claimed passed. Dedicated screen-reader and Safari/iOS device review remain outstanding. Playwright WebKit on Windows is not Safari/iOS device testing.
 
 `npm test` verifies this release's file hashes and routes. Browser scenarios are under `tests/readiness/`; set `RESOLVE_PREVIEW_URL` to the served release before `npm run test:browsers`. The local preview suite binds to port 3000 by default.
+
+To repeat local visual measurements, set `RESOLVE_PREVIEW_URL` and run `node scripts/capture-visual-review.mjs`. It writes screenshots, accessibility scans, mobile bounds and baseline-versus-candidate lab measurements under ignored `artifacts/`. It uses the installed Microsoft Edge browser and restores the baseline export from local Git; it sends no results to GitHub. Run browser suites sequentially on machines with limited memory.
 
 ## Scientific limits and attribution
 

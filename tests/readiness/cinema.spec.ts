@@ -13,15 +13,18 @@ test('discrete model scrub changes sourced results while Sun and Earth stay anch
   await page.goto('/');
   await page.getByRole('button', { name: 'Audit this result', exact: true }).click();
   await expect(page.getByTestId('fracture-sky')).toBeVisible();
-  const sun = await page.getByTestId('fracture-sun').getAttribute('transform'),
-    earth = await page.getByTestId('fracture-earth').getAttribute('transform');
+  const sun = await page.getByTestId('fracture-sun').getAttribute('data-center-position'),
+    earth = await page.getByTestId('fracture-earth').getAttribute('data-center-position');
   for (const [spacing, value] of steps) {
     await page
       .getByRole('button', { name: `Inspect native ${spacing} metre representation`, exact: true })
       .click();
     await expect(page.getByTestId('selected-duration')).toHaveText(`${value}DAYS`);
-    await expect(page.getByTestId('fracture-sun')).toHaveAttribute('transform', sun!);
-    await expect(page.getByTestId('fracture-earth')).toHaveAttribute('transform', earth!);
+    await expect(page.getByTestId('fracture-sun')).toHaveAttribute('data-center-position', sun!);
+    await expect(page.getByTestId('fracture-earth')).toHaveAttribute(
+      'data-center-position',
+      earth!,
+    );
   }
   await page
     .getByRole('button', { name: 'Inspect native 5 metre representation', exact: true })
@@ -50,6 +53,12 @@ test('the automatic sequence uses discrete values, finishes at 80 m and can paus
   await expect(page.getByTestId('selected-duration')).toHaveText('12.92DAYS');
   await expect(page.getByRole('button', { name: 'Replay sequence', exact: true })).toBeVisible();
   await expect(page.locator('.fracture-status')).toHaveText('MODEL-SENSITIVE');
+  await page.getByRole('button', { name: 'Replay sequence', exact: true }).click();
+  await page.getByText('Explore terrain representations', { exact: true }).click();
+  await page.getByTestId('model-P90_240m').click();
+  await expect(page.getByTestId('selected-duration')).toHaveText('13.29DAYS');
+  await page.waitForTimeout(800);
+  await expect(page.getByTestId('selected-duration')).toHaveText('13.29DAYS');
 });
 test('reduced motion skips playback, preserves source access and reveals the physical distinction', async ({
   page,
