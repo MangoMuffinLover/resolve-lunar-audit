@@ -3,6 +3,7 @@ import './globals.css';
 import './design.css';
 import './cinema.css';
 import './deliberate.css';
+import './research.css';
 export const metadata: Metadata = {
   title: 'RESOLVE — Lunar Landing Decision Audit',
   description:

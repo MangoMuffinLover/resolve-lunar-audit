@@ -87,8 +87,10 @@ export function PhysicalReveal({ data, visual }: { data: AuditData; visual: Visu
       {sections ? (
         <figure className="near-field-figure">
           <div className="profile-legend">
-            <span>Dashed / P78 · 5 m</span>
-            <span>{step > 0 ? 'Solid / P90 · 80 m' : 'P90 · 80 m waits for step 2'}</span>
+            <span className="legend-reference">P78 · 5 m reference</span>
+            <span className="legend-selected">
+              {step > 0 ? 'P90 · 80 m comparison' : 'P90 · 80 m waits for step 2'}
+            </span>
             <span>Same nominal-onset azimuth</span>
           </div>
           <svg
@@ -102,6 +104,9 @@ export function PhysicalReveal({ data, visual }: { data: AuditData; visual: Visu
             }
             data-testid="near-field-profile"
           >
+            <text x="50" y="15" className="profile-axis-title">
+              Radial height (m)
+            </text>
             {[1520, 1525, 1530, 1535, 1540].map((h) => (
               <g key={h}>
                 <line x1="50" x2={width - 30} y1={y(h)} y2={y(h)} className="profile-grid" />
@@ -110,7 +115,7 @@ export function PhysicalReveal({ data, visual }: { data: AuditData; visual: Visu
                 </text>
               </g>
             ))}
-            {[0, 50, 100, 150, 200].map((r) => (
+            {(width < 400 ? [0, 100, 200] : [0, 50, 100, 150, 200]).map((r) => (
               <text key={r} x={x(r)} y="325" textAnchor="middle">
                 {r} m
               </text>
@@ -136,13 +141,35 @@ export function PhysicalReveal({ data, visual }: { data: AuditData; visual: Visu
               y2="300"
               className="profile-probe"
             />
-            <text x={x(data.reportedComparisons.alignedRange.value) + 12} y="30">
-              49 m aligned location
+            <text x={x(data.reportedComparisons.alignedRange.value) + 9} y="40">
+              {width < 400 ? '49 m' : '49 m · aligned location'}
             </text>
+            {step > 0 &&
+              (() => {
+                const heights = sections.map((record) => {
+                  const samples = record.sections.find(
+                    (s) => s.direction === 'nominal_5m_critical',
+                  )!.samples;
+                  return samples.find(
+                    ([r]) => Math.abs(r - data.reportedComparisons.alignedRange.value) < 0.001,
+                  )?.[1];
+                });
+                if (heights.some((h) => h === undefined)) return null;
+                const at = x(data.reportedComparisons.alignedRange.value);
+                return (
+                  <g className="profile-difference">
+                    <line x1={at} x2={at} y1={y(heights[0]!)} y2={y(heights[1]!)} />
+                    {heights.map((h, i) => (
+                      <circle key={i} cx={at} cy={y(h!)} r="3.5" />
+                    ))}
+                    <text x={at + 12} y={y(heights[1]!) + 18}>
+                      −1.647 m
+                    </text>
+                  </g>
+                );
+              })()}
             <text x={width / 2} y="352" textAnchor="middle">
-              {width < 600
-                ? 'Surface range (m)'
-                : 'Surface range / radial height above reference sphere (m)'}
+              Surface range (m)
             </text>
           </svg>
           <figcaption>

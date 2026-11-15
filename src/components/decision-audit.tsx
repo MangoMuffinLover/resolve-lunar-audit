@@ -162,7 +162,7 @@ export function DecisionAudit({
             data-testid="audit-section"
           >
             <div className="technical-audit-heading">
-              <span className="eyebrow">Open the instrument housing</span>
+              <span className="eyebrow">Reproducible analysis</span>
               <h2 id="audit-heading">Audit definitions & exact intervals</h2>
               <a href={factors}>
                 Compare modeling choices <span aria-hidden="true">↗</span>
@@ -388,7 +388,7 @@ export function DecisionAudit({
           <ResearchJourney />
           <section className="evidence-gate" data-story>
             <p className="eyebrow">Every claim has a trail</p>
-            <h2>Open the instrument housing.</h2>
+            <h2>Reproducible analysis.</h2>
             <div>
               <span>NASA Products 78 / 90 / 104</span>
               <span>SPICE / DE421</span>

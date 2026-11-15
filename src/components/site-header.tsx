@@ -18,7 +18,7 @@ export function SiteHeader({
         </svg>
         <span>RESOLVE</span>
       </a>
-      {context && <span className="site-context">{context}</span>}
+      <span className="site-context">{context || 'Lunar visibility research'}</span>
       <nav aria-label="Primary navigation">
         {(
           [

@@ -51,9 +51,17 @@
     "index_type": "uint16"
   },
   "poster": "/visuals/terrain/dgr101-native80.webp",
+  "cartography": {
+    "contour_interval_m": 250,
+    "contour_datum": "Radial height above 1737400 m reference sphere",
+    "contours": "Display contours of the triangulated native mesh; not additional measurements",
+    "ruler": "4 km in the native map plane; displayed in perspective",
+    "lighting": "Grazing illustrative light; not the modeled Sun",
+    "render_samples": 64
+  },
   "poster_file": {
     "href": "/visuals/terrain/dgr101-native80.webp",
-    "bytes": 14916,
-    "sha256": "17e102b6960ab4dfa862372782b98d05bf3b467a92b922513c4b5a05f2e38fee"
+    "bytes": 34530,
+    "sha256": "645878871cf80ac950ebfa4fb86fd585a79654efddf224aad0db8f5a0a54b90e"
   }
 }

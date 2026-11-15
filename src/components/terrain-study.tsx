@@ -6,6 +6,7 @@ import manifest from '@/visuals/terrain.json';
 
 export function TerrainStudy() {
   const canvas = useRef<HTMLCanvasElement>(null);
+  const siteLabel = useRef<HTMLSpanElement>(null);
   const viewer = useRef<Awaited<
     ReturnType<typeof import('@/lib/terrain-renderer').mountTerrain>
   > | null>(null);
@@ -35,7 +36,12 @@ export function TerrainStudy() {
     ])
       .then(async ([module, mesh]) => {
         if (!active || !canvas.current) return;
-        const instance = await module.mountTerrain(canvas.current, mesh, abort.signal);
+        const instance = await module.mountTerrain(canvas.current, mesh, abort.signal, (x, y) => {
+          if (siteLabel.current) {
+            siteLabel.current.style.left = `${x}%`;
+            siteLabel.current.style.top = `${y}%`;
+          }
+        });
         if (!active) {
           instance.destroy();
           return;
@@ -67,35 +73,77 @@ export function TerrainStudy() {
     >
       <div className="terrain-study-heading">
         <div>
-          <p className="eyebrow">A closer look at the place</p>
-          <h3 id="terrain-study-title">The terrain, in three dimensions.</h3>
+          <p className="eyebrow">Terrain atlas / dGR101</p>
+          <h3 id="terrain-study-title">Read the landscape.</h3>
         </div>
         <p>
-          Native NASA elevation samples, shaped in Blender. Explore the landscape at your own pace.
+          A 12.8 km terrain patch from NASA LOLA. Follow the site marker, then read the ridges and
+          depressions around it.
         </p>
       </div>
-      <div className="terrain-viewport" data-state={moving ? 'moving' : 'settled'}>
-        {/* A Blender render is the accessible fallback when WebGL is unavailable. */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/visuals/terrain/dgr101-native80.webp"
-          width="1400"
-          height="900"
-          loading="lazy"
-          alt="Blender rendering of the native NASA terrain patch near dGR101, with no vertical exaggeration"
-          aria-hidden={ready && !error}
-          className={ready && !error ? 'terrain-poster is-hidden' : 'terrain-poster'}
-        />
-        {opened && (
-          <canvas
-            key={retry}
-            ref={canvas}
-            className={ready && !error ? 'terrain-webgl is-ready' : 'terrain-webgl'}
-            role="img"
-            aria-label="Interactive 3D view of NASA Product 90 terrain around dGR101; illustrative lighting, true vertical scale"
-            aria-hidden={!ready || error}
+      <div className="terrain-atlas-layout">
+        <div className="terrain-viewport" data-state={moving ? 'moving' : 'settled'}>
+          {/* A Blender render is the accessible fallback when WebGL is unavailable. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/visuals/terrain/dgr101-native80.webp"
+            width="1600"
+            height="1000"
+            loading="lazy"
+            alt="Blender rendering of the native NASA terrain patch near dGR101, with no vertical exaggeration"
+            aria-hidden={ready && !error}
+            className={ready && !error ? 'terrain-poster is-hidden' : 'terrain-poster'}
           />
-        )}
+          {opened && (
+            <canvas
+              key={retry}
+              ref={canvas}
+              className={ready && !error ? 'terrain-webgl is-ready' : 'terrain-webgl'}
+              role="img"
+              aria-label="Interactive 3D view of NASA Product 90 terrain around dGR101; illustrative lighting, true vertical scale"
+              aria-hidden={!ready || error}
+            />
+          )}
+          <span
+            ref={siteLabel}
+            className="terrain-site-label"
+            hidden={!ready || error}
+            aria-hidden="true"
+          >
+            dGR101
+          </span>
+        </div>
+        <aside className="terrain-reading-key" aria-label="How to read the terrain">
+          <span className="eyebrow">Reading this view</span>
+          <h4>A landscape with a known scale.</h4>
+          <dl>
+            <div>
+              <dt>
+                <i className="key-site" /> Site marker
+              </dt>
+              <dd>
+                dGR101 · 88.513° S<br />
+                68.015° W
+              </dd>
+            </div>
+            <div>
+              <dt>
+                <i className="key-contour" /> Elevation contours
+              </dt>
+              <dd>250 m radial-height intervals, traced on the displayed mesh.</dd>
+            </div>
+            <div>
+              <dt>
+                <i className="key-boundary" /> Cut boundary
+              </dt>
+              <dd>The sample patch ends here. Its vertical edges are display closures.</dd>
+            </div>
+          </dl>
+          <p className="terrain-reading-note">
+            This 80 m grid gives regional context. Use the 5 m / 80 m cross-section above to inspect
+            the nearby 49 m feature.
+          </p>
+        </aside>
       </div>
       <div className="terrain-control-row">
         <span className="terrain-scale">NASA PRODUCT 90 · 80 m SAMPLES · 1× HEIGHT SCALE</span>
@@ -152,9 +200,10 @@ export function TerrainStudy() {
         )}
       </p>
       <p className="terrain-provenance">
-        12.8 km across · native map sample centres · camera and lighting are illustrative. The gold
-        marker identifies the site, not the scientific observer height. This terrain view gives
-        spatial context; the frozen horizon evidence above supplies the audit.{' '}
+        12.8 km across in the native map plane · true vertical scale · 250 m contour interval.
+        Camera and lighting are illustrative, not the modeled Sun. The gold marker identifies the
+        site, not the scientific observer height. This terrain view gives spatial context; the
+        frozen horizon evidence above supplies the audit.{' '}
         <a href="/visuals/terrain/provenance.json">Inspect mesh provenance ↗</a>
       </p>
     </section>

@@ -1,6 +1,7 @@
 // Display-only WebGL viewer. Source vertices and normals are authored in Blender.
 export interface TerrainMesh {
   site: number[];
+  surface_triangles: number;
   binary: {
     href: string;
     bytes: number;
@@ -36,6 +37,7 @@ export async function mountTerrain(
   canvas: HTMLCanvasElement,
   mesh: TerrainMesh,
   signal: AbortSignal,
+  onProject?: (x: number, y: number) => void,
 ) {
   const response = await fetch(mesh.binary.href, { signal });
   if (!response.ok) throw new Error('Terrain asset unavailable');
@@ -52,6 +54,7 @@ export async function mountTerrain(
     preserveDrawingBuffer: false,
   });
   if (!gl) throw new Error('3D rendering is unavailable');
+  const derivatives = gl.getExtension('OES_standard_derivatives');
   function shader(type: number, source: string) {
     const item = gl!.createShader(type)!;
     gl!.shaderSource(item, source);
@@ -64,11 +67,26 @@ export async function mountTerrain(
   }
   const vertex = shader(
     gl.VERTEX_SHADER,
-    `attribute vec3 position; attribute vec3 normal; uniform mat4 matrix; varying vec3 surfaceNormal; void main(){surfaceNormal=normal;gl_Position=matrix*vec4(position,1.0);}`,
+    `attribute vec3 position; attribute vec3 normal; uniform mat4 matrix; varying vec3 surfaceNormal; varying float height; void main(){surfaceNormal=normal;height=position.z;gl_Position=matrix*vec4(position,1.0);}`,
   );
   const fragment = shader(
     gl.FRAGMENT_SHADER,
-    `precision mediump float; varying vec3 surfaceNormal; uniform float marker; void main(){vec3 n=normalize(surfaceNormal);float diffuse=max(0.0,dot(n,normalize(vec3(-0.4,-0.6,1.0))));vec3 stone=vec3(0.29,0.31,0.30)*(0.25+diffuse*0.85);gl_FragColor=vec4(mix(sqrt(stone),vec3(0.85,0.66,0.40),marker),1.0);}`,
+    `${derivatives ? '#extension GL_OES_standard_derivatives : enable\n' : ''}
+    precision highp float;
+    varying vec3 surfaceNormal; varying float height; uniform float marker;
+    void main(){
+      vec3 n=normalize(surfaceNormal);
+      float diffuse=max(0.0,dot(n,normalize(vec3(-0.75,-0.5,0.38))));
+      float width=${derivatives ? 'max(0.002,fwidth(height)*1.15)' : '0.012'};
+      float distance=abs(fract((height+1.532495605)/0.25+0.5)-0.5)*0.25;
+      float contour=1.0-smoothstep(0.0,width,distance);
+      vec3 stone=vec3(0.47,0.50,0.54)*(0.18+diffuse*1.15);
+      stone=mix(stone,vec3(0.12,0.21,0.28),contour*0.65);
+      vec3 color=sqrt(stone);
+      if(marker>1.5) color=vec3(0.12,0.17,0.23)*(0.6+diffuse*0.5);
+      else if(marker>0.5) color=vec3(1.0,0.76,0.35);
+      gl_FragColor=vec4(color,1.0);
+    }`,
   );
   const program = gl.createProgram()!;
   gl.attachShader(program, vertex);
@@ -155,7 +173,7 @@ export async function mountTerrain(
       canvas.height = h;
     }
     gl!.viewport(0, 0, w, h);
-    gl!.clearColor(0.045, 0.069, 0.075, 1);
+    gl!.clearColor(0.035, 0.055, 0.085, 1);
     gl!.clear(gl!.COLOR_BUFFER_BIT | gl!.DEPTH_BUFFER_BIT);
     const [yaw, pitch] = camera,
       radius = 28,
@@ -186,7 +204,7 @@ export async function mountTerrain(
       -dot(zz, eye),
       1,
     ];
-    const half = 9.8,
+    const half = Math.max(7.6, 10.5 / (w / h)),
       aspect = w / h,
       near = 0.1,
       far = 80;
@@ -208,13 +226,28 @@ export async function mountTerrain(
       -(far + near) / (far - near),
       1,
     ];
-    gl!.uniformMatrix4fv(matrix, false, multiply(projection, view));
+    const transform = multiply(projection, view);
+    gl!.uniformMatrix4fv(matrix, false, transform);
+    const project = (row: number) =>
+      transform[row] * x +
+      transform[4 + row] * y +
+      transform[8 + row] * (z + 0.6) +
+      transform[12 + row];
+    onProject?.((project(0) + 1) * 50, (1 - project(1)) * 50);
     gl!.bindBuffer(gl!.ARRAY_BUFFER, vertices);
     gl!.vertexAttribPointer(pos, 3, gl!.FLOAT, false, 24, 0);
     gl!.vertexAttribPointer(normal, 3, gl!.FLOAT, false, 24, 12);
     gl!.uniform1f(marker, 0);
     gl!.bindBuffer(gl!.ELEMENT_ARRAY_BUFFER, indices);
-    gl!.drawElements(gl!.TRIANGLES, mesh.binary.indices_count, gl!.UNSIGNED_SHORT, 0);
+    const surfaceIndices = mesh.surface_triangles * 3;
+    gl!.drawElements(gl!.TRIANGLES, surfaceIndices, gl!.UNSIGNED_SHORT, 0);
+    gl!.uniform1f(marker, 2);
+    gl!.drawElements(
+      gl!.TRIANGLES,
+      mesh.binary.indices_count - surfaceIndices,
+      gl!.UNSIGNED_SHORT,
+      surfaceIndices * 2,
+    );
     gl!.bindBuffer(gl!.ARRAY_BUFFER, pin);
     gl!.vertexAttribPointer(pos, 3, gl!.FLOAT, false, 24, 0);
     gl!.vertexAttribPointer(normal, 3, gl!.FLOAT, false, 24, 12);

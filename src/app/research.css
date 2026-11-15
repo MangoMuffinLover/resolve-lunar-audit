@@ -1,0 +1,683 @@
+/* Research atlas: consistent hierarchy, restrained color and explicit figure framing. */
+.audit-path a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.negative-finding {
+  background: #21384a;
+}
+.negative-finding h2 em {
+  color: #b2ccdf;
+}
+@media (min-width: 701px) {
+  .fracture-site {
+    top: 23px;
+  }
+  .fracture-clock {
+    top: 10px;
+  }
+}
+@media (max-width: 1300px) {
+  .audit-path {
+    margin-inline: 20px;
+  }
+}
+:root {
+  --canvas: #f3f5f8;
+  --paper: #ffffff;
+  --ink: #142538;
+  --muted: #526377;
+  --line: #d4dce5;
+  --accent: #185a96;
+  --copper: #185a96;
+  --teal: #336a85;
+  --accent-soft: #edf4fa;
+}
+body {
+  background: var(--canvas);
+}
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
+}
+button,
+summary,
+select {
+  touch-action: manipulation;
+}
+button:focus-visible,
+a:focus-visible,
+summary:focus-visible,
+select:focus-visible,
+input:focus-visible {
+  outline-color: #438ed1;
+}
+.site-header,
+.cinematic-page .site-header {
+  background: #fff;
+  color: #142538;
+  border-bottom: 1px solid #d4dce5;
+  box-shadow: none;
+}
+.cinematic-page .site-header nav a,
+.cinematic-page .site-brand {
+  color: #142538;
+}
+.site-brand {
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+.cinematic-page .site-brand svg {
+  color: #185a96;
+}
+.site-context {
+  color: #526377;
+  font-size: 12px;
+}
+.site-header nav a[aria-current='page'],
+.cinematic-page .site-header nav a[aria-current='page'] {
+  border-bottom-color: #185a96;
+}
+.site-header nav a[aria-current]:after {
+  background: #185a96;
+}
+.model-fracture {
+  background: #0c1725;
+}
+.fracture-heading h1 {
+  font-size: clamp(34px, 4.1vw, 60px);
+  letter-spacing: -0.045em;
+  font-weight: 550;
+}
+.fracture-heading em {
+  color: #a7cfee;
+}
+.fracture-heading .eyebrow {
+  color: #adc4d8;
+}
+.fracture-topline {
+  color: #b3c1d1;
+  letter-spacing: 0.12em;
+}
+.fracture-site strong {
+  font-family: var(--mono);
+  letter-spacing: 0.02em;
+}
+.fracture-readout {
+  border-top-color: #425267;
+}
+.fracture-reference-result output,
+.fracture-values output {
+  font-weight: 450;
+  letter-spacing: -0.055em;
+}
+.fracture-reference-result p,
+.fracture-opening-action > p {
+  color: #c0ccda;
+  font-size: 13px;
+}
+.model-fracture .primary-button {
+  background: #c4dff4;
+  border-color: #c4dff4;
+  color: #102940;
+  border-radius: 3px;
+}
+.model-fracture .primary-button:hover {
+  background: #e0effb;
+  border-color: #e0effb;
+}
+.fracture-status {
+  background: #3a2b19;
+  color: #f4cd92;
+  border-color: #9c7846;
+}
+.sky-grid {
+  stroke: #6d7f94;
+  stroke-width: 0.5;
+  opacity: 0.3;
+  vector-effect: non-scaling-stroke;
+}
+.sky-elevation-axis {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  font: 10px var(--mono);
+  color: #b8c8d8;
+}
+.sky-elevation-axis span {
+  position: absolute;
+  left: 1%;
+  transform: translateY(-50%);
+}
+.fracture-edge {
+  stroke: #c3d5e7;
+  stroke-width: 1.5;
+}
+.fracture-reference {
+  stroke: #aac8e5;
+  opacity: 1;
+}
+.fracture-geometry-note {
+  color: #b5c5d6;
+}
+.model-scrub,
+.fracture-selected-result {
+  border-color: #425267;
+}
+.scrub-stops {
+  margin-inline: 0;
+}
+.scrub-stops button {
+  border: 1px solid transparent;
+  border-radius: 3px;
+}
+.scrub-stops button[aria-pressed='true'] {
+  border-color: #819bb5;
+  background: #22354a;
+  color: #e2effa;
+}
+.model-scrub input[type='range'] {
+  accent-color: #b6d7f1;
+}
+.scrub-play {
+  border-color: #657b91;
+  border-radius: 3px;
+}
+.scrub-play:hover {
+  background: #22354a;
+}
+.fracture-disclaimer,
+.fracture-scope {
+  color: #b9c8d6;
+}
+.constant-story {
+  padding-block: 64px;
+  background: #e8eff6;
+  border-color: #d0dce8;
+}
+.constant-story h2 {
+  font-size: clamp(34px, 4.3vw, 58px);
+  max-width: 1000px;
+  letter-spacing: -0.045em;
+}
+.constant-story h2 em {
+  color: #185a96;
+}
+.constant-story > p:not(.eyebrow),
+.constant-clock,
+.constant-story .eyebrow {
+  color: #425b73;
+}
+.audit-path {
+  border-bottom: 1px solid #d4dce5;
+}
+.technical-audit-heading {
+  padding-bottom: 22px;
+  border-bottom: 1px solid #d4dce5;
+}
+.technical-audit-heading .eyebrow {
+  color: #185a96;
+}
+.technical-audit-heading h2 {
+  font-weight: 650;
+}
+.technical-audit-heading p {
+  color: #526377;
+}
+.analysis-settings,
+.representation-explorer,
+.selected-timeline,
+.legacy-evidence,
+.audit-mechanism,
+.assumption-cards article,
+.evidence-chapter,
+.evidence-overview article,
+.evidence-packet,
+.navigator-controls,
+.factor-controls,
+.factor-detail,
+.explain-comparison,
+.observer-datum {
+  background: #fff;
+  border-color: #d4dce5;
+  border-radius: 5px;
+  box-shadow: none;
+}
+.model-row {
+  border-radius: 3px;
+}
+.model-row.selected {
+  background: #edf4fa;
+  border-color: #7ba3c7;
+}
+.model-track {
+  background: #e6edf4;
+}
+.model-row.selected .model-line {
+  background: #9cbad6;
+}
+.model-row.selected .model-point {
+  background: #185a96;
+  border-color: #185a96;
+}
+.model-label strong {
+  font-weight: 650;
+}
+.model-value {
+  font-family: var(--mono);
+}
+.ladder-axis,
+.timeline-axis {
+  color: #526377;
+}
+.timeline-bar {
+  border-radius: 2px;
+}
+.redesigned-why > h2 {
+  font-size: clamp(32px, 4vw, 50px);
+  font-weight: 550;
+}
+.physical-reveal {
+  background: #fff;
+  padding: clamp(24px, 3.5vw, 48px);
+  border: 1px solid #cad5e0;
+  border-top: 3px solid #185a96;
+  border-radius: 4px;
+}
+.physics-intro h3 {
+  font-size: clamp(28px, 3.2vw, 43px);
+  font-weight: 550;
+  letter-spacing: -0.04em;
+}
+.physics-intro h3 em {
+  color: #185a96;
+}
+.physics-intro > p:last-child,
+.physics-intro > .eyebrow {
+  color: #526377;
+}
+.physics-step-controls {
+  border-color: #d4dce5;
+  padding-block: 20px;
+}
+.physics-step-controls button {
+  border-color: #b7c7d7;
+  color: #254765;
+  background: #f8fafc;
+  border-radius: 3px;
+}
+.physics-step-controls button[aria-pressed='true'] {
+  background: #174f80;
+  border-color: #174f80;
+  color: white;
+}
+.physics-step-controls > p[role='status'] {
+  background: #edf4fa;
+  border-left: 3px solid #477fae;
+  padding: 12px 16px;
+  min-height: 0;
+  color: #294760;
+  max-width: none;
+}
+.near-field-figure {
+  padding: 24px 20px 18px;
+  border: 1px solid #d5dee8;
+  border-radius: 3px;
+  background: #fbfcfe;
+}
+.profile-legend {
+  gap: 12px 24px;
+  color: #425b73;
+  font-size: 11px;
+}
+.profile-legend > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+.legend-reference:before,
+.legend-selected:before {
+  content: '';
+  display: inline-block;
+  width: 25px;
+  border-top: 2px dashed #355f88;
+}
+.legend-selected:before {
+  border-top: 2px solid #a34b20;
+}
+.profile-reference {
+  stroke: #355f88;
+  stroke-width: 2;
+}
+.profile-selected {
+  stroke: #a34b20;
+  stroke-width: 2.3;
+}
+.profile-grid {
+  stroke: #c5d0dc;
+  stroke-width: 0.7;
+}
+.profile-probe {
+  stroke: #7890a8;
+}
+.near-field-figure svg text {
+  fill: #4b6279;
+  font-size: 11px;
+}
+.near-field-figure svg .profile-axis-title {
+  font-weight: 700;
+  fill: #294760;
+}
+.profile-difference line {
+  stroke: #a34b20;
+  stroke-width: 2;
+}
+.profile-difference circle {
+  fill: #fff;
+  stroke: #a34b20;
+  stroke-width: 1.5;
+}
+.profile-difference text {
+  fill: #8e3d18 !important;
+  font-weight: 700 !important;
+}
+.near-field-figure figcaption,
+.physics-limit,
+.witness-heading p:not(.eyebrow),
+.ray-pair article > p,
+.ray-pair article > small {
+  color: #526377;
+}
+.physics-horizon-values {
+  border-color: #d4dce5;
+  background: #f5f8fb;
+  padding: 24px;
+  border-radius: 3px;
+}
+.physics-horizon-values p > span,
+.physics-horizon-values > span {
+  color: #526377;
+}
+.physics-horizon-values strong {
+  font-family: var(--mono);
+  font-size: clamp(20px, 2.6vw, 32px);
+  letter-spacing: -0.06em;
+}
+.witness-heading h3 {
+  font-size: 28px;
+}
+.ray-pair article {
+  background: #f6f9fc;
+  border-top-color: #355f88;
+  padding: 20px 16px;
+}
+.ray-pair article:last-child {
+  border-top-color: #a34b20;
+}
+.ray-pair article > strong {
+  font-size: 36px;
+  font-family: var(--mono);
+}
+.ray-pair svg,
+.ray-pair svg text {
+  fill: #425d78;
+}
+.ray-pair svg path {
+  stroke: #425d78;
+}
+.terrain-study {
+  background: #101d2c;
+  border: 1px solid #354960;
+  border-radius: 4px;
+  margin-top: 40px;
+  padding: clamp(20px, 3vw, 32px);
+}
+.terrain-study h3 {
+  font-size: clamp(29px, 3vw, 40px);
+  letter-spacing: -0.035em;
+}
+.terrain-study .eyebrow {
+  color: #a9c6e0;
+}
+.terrain-study-heading > p {
+  color: #b9cadd;
+}
+.terrain-atlas-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 2.4fr) minmax(210px, 1fr);
+  gap: 0;
+  margin-block: 28px;
+  border: 1px solid #354960;
+}
+.terrain-viewport {
+  border: 0;
+  margin: 0;
+  background: #090e16;
+  min-height: 380px;
+  aspect-ratio: 1.45;
+}
+.terrain-reading-key {
+  padding: 26px 22px;
+  border-left: 1px solid #354960;
+  background: #132337;
+}
+.terrain-reading-key h4 {
+  font-size: 19px;
+  font-weight: 550;
+  color: #eef4fb;
+  margin-top: 12px;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+}
+.terrain-reading-key dl {
+  margin: 26px 0 20px;
+}
+.terrain-reading-key dl > div {
+  margin: 20px 0;
+}
+.terrain-reading-key dt {
+  color: #e4edf6;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.terrain-reading-key dd {
+  color: #bdcddd;
+  font-size: 12px;
+  line-height: 1.7;
+  margin: 6px 0 0 22px;
+}
+.terrain-reading-key i {
+  display: inline-block;
+  flex: 0 0 12px;
+  height: 12px;
+}
+.key-site {
+  border: 2px solid #f4c36e;
+  border-radius: 50%;
+}
+.key-contour {
+  border-top: 1px solid #b9cadd;
+  border-bottom: 1px solid #b9cadd;
+  transform: skewY(-15deg);
+}
+.key-boundary {
+  border-bottom: 3px solid #8898ab;
+  border-right: 3px solid #8898ab;
+}
+.terrain-reading-note {
+  color: #b8cadc;
+  font-size: 12px;
+  line-height: 1.75;
+  border-top: 1px solid #40536b;
+  padding-top: 18px;
+}
+.terrain-site-label {
+  position: absolute;
+  pointer-events: none;
+  transform: translate(-50%, -170%);
+  font: 11px var(--mono);
+  color: #f9d394;
+  background: #172332;
+  border: 1px solid #826d4e;
+  padding: 4px 7px;
+}
+.terrain-scale {
+  color: #c5d5e4;
+}
+.terrain-open {
+  background: #c4dff4;
+  border-color: #c4dff4;
+  color: #142d45;
+  border-radius: 3px;
+}
+.terrain-view-controls button {
+  border-color: #718aa3;
+  border-radius: 3px;
+}
+.terrain-view-controls button[aria-pressed='true'] {
+  background: #c4dff4;
+  border-color: #c4dff4;
+  color: #142d45;
+}
+.terrain-status,
+.terrain-provenance {
+  color: #b9cadd;
+}
+.terrain-status {
+  min-height: 0;
+  margin-block: 18px;
+}
+.terrain-provenance {
+  border-color: #354960;
+  max-width: none;
+}
+.terrain-provenance a {
+  color: #c4dff4;
+}
+.trust-question h2 {
+  font-size: clamp(32px, 4vw, 56px);
+}
+.trust-question h2 em {
+  color: #185a96;
+}
+.research-journey {
+  border-color: #d4dce5;
+}
+.journey-heading h2 {
+  font-size: clamp(30px, 3.3vw, 44px);
+}
+.journey-heading h2 em {
+  color: #526d87;
+}
+.research-journey li {
+  border-color: #91a8bc;
+}
+.journey-id,
+.research-journey li > p,
+.journey-footnote {
+  color: #526377;
+}
+.research-journey li a {
+  color: #185a96;
+}
+.science-intro h1,
+.navigator-intro h1,
+.factor-intro h1,
+.explain-intro h1 {
+  font-weight: 550;
+}
+.site-footer {
+  background: #e8eef5;
+  border-top: 1px solid #d0dbe6;
+}
+@media (max-width: 1000px) {
+  .terrain-atlas-layout {
+    grid-template-columns: 1fr;
+  }
+  .terrain-viewport {
+    min-height: 330px;
+    aspect-ratio: 1.6;
+  }
+  .terrain-reading-key {
+    border-left: 0;
+    border-top: 1px solid #354960;
+  }
+  .terrain-reading-key dl {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-block: 12px;
+  }
+  .terrain-reading-key dl > div {
+    margin: 8px 0;
+  }
+}
+@media (max-width: 700px) {
+  .site-context {
+    display: none;
+  }
+  .fracture-heading h1 {
+    font-size: clamp(30px, 7.6vw, 45px);
+  }
+  .fracture-reference-result p,
+  .fracture-opening-action > p {
+    font-size: 11px;
+  }
+  .constant-story {
+    padding-block: 40px;
+  }
+  .physical-reveal {
+    padding: 24px 16px;
+  }
+  .near-field-figure {
+    padding: 18px 8px;
+    margin-inline: -4px;
+  }
+  .profile-legend {
+    font-size: 10px;
+  }
+  .physics-horizon-values {
+    padding: 18px 12px;
+  }
+  .physics-horizon-values strong {
+    font-size: clamp(19px, 5vw, 28px);
+  }
+  .ray-pair {
+    grid-template-columns: 1fr;
+  }
+  .ray-pair article > strong {
+    font-size: 34px;
+  }
+  .terrain-study {
+    margin-inline: 0;
+    padding: 24px 14px;
+  }
+  .terrain-viewport {
+    min-height: 230px;
+  }
+  .terrain-reading-key {
+    padding: 20px 16px;
+  }
+  .terrain-reading-key dl {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .terrain-reading-key h4 {
+    max-width: none;
+  }
+  .terrain-atlas-layout {
+    margin-block: 22px;
+  }
+  .terrain-site-label {
+    font-size: 10px;
+  }
+  .sky-elevation-axis {
+    font-size: 9px;
+  }
+}

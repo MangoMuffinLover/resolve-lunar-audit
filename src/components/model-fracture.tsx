@@ -70,6 +70,16 @@ function Scene({
             <stop offset="1" stopColor="#181f21" />
           </linearGradient>
         </defs>
+        {[0, 2, 4].map((elevation) => (
+          <line
+            key={elevation}
+            x1="50"
+            x2="950"
+            y1={y(elevation)}
+            y2={y(elevation)}
+            className="sky-grid"
+          />
+        ))}
         <line x1="50" x2="950" y1={y(0)} y2={y(0)} className="fracture-datum" />
         {audited && previous.key !== model.key && (
           <path
@@ -112,6 +122,13 @@ function Scene({
         <svg viewBox="0 0 40 40" aria-hidden="true">
           <path d="M20,13L27,20L20,27L13,20Z" className="fracture-earth" />
         </svg>
+      </div>
+      <div className="sky-elevation-axis" aria-hidden="true">
+        {[0, 2, 4].map((elevation) => (
+          <span key={elevation} style={{ top: `${y(elevation) / 3.6}%` }}>
+            {elevation}°
+          </span>
+        ))}
       </div>
       <div className="fracture-azimuth-axis" aria-hidden="true">
         {[40, 80, 120, 170].map((az) => (
@@ -263,7 +280,7 @@ export function ModelFracture({
           </div>
         )}
         <div className="fracture-geometry-note">
-          <span>FROZEN ANGULAR SKYLINE / 2.5D DISPLAY PROJECTION</span>
+          <span>HORIZON ELEVATION (°) / FROZEN ANGULAR SKYLINE</span>
           <span>
             {audited
               ? 'Dashed: P78 reference · solid: selected product'
