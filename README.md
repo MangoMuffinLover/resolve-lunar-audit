@@ -4,7 +4,7 @@
 
 **Live website: [resolve-lunar-audit.vercel.app](https://resolve-lunar-audit.vercel.app/)**
 
-This branch is the **local touch-controlled cinematic and Blender terrain candidate**. The public website remains on reviewed commit `87cc57f47dc858bbf5dc791c42c9870ab3d411c5`. The owner chose to keep this candidate local: no cinematic branch push, external verification workflow or Vercel deployment has been performed. `baseline/reviewed-2026-11-15` preserves the reviewed release.
+The **research atlas release** includes tap-controlled explanations, a Blender terrain atlas derived from native NASA Product 90 samples, and refined scientific figures. The owner approved public GitHub and Vercel publication on 15 November 2026. The verified presentation checkpoint is `35e2112e49802b6c7ac026e74193ef8e2799be59`; `baseline/reviewed-2026-11-15` preserves the earlier public release. See `docs/RESEARCH_ATLAS.md` for the design and verification scope.
 
 RESOLVE audits whether a modeled lunar Sun/Earth visibility result survives defensible changes in terrain representation, observer convention and reporting scope. It is a NASA Space Apps 2026 project, not a NASA-endorsed mission planning system.
 

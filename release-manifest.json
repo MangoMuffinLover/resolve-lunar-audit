@@ -2,7 +2,7 @@
   "schema": "resolve.public-release.v1",
   "scientific_contract_sha256": "a8a06dd4a5447acd1ee68a56779376d0b01ad081fde95c1d4b762434a521c48d",
   "deployment_root": "site",
-  "owner_review": "pending_current_candidate",
+  "owner_review": "publication_approved_2026-11-15",
   "independent_human_test": "not_run",
   "files": [
     {
@@ -57,8 +57,8 @@
     },
     {
       "path": "docs/RESEARCH_ATLAS.md",
-      "bytes": 2971,
-      "sha256": "98e84ebb46d2d6aea54bc1c8f476965789b6c42c5dbd6bd9ec420ac64b623134"
+      "bytes": 3017,
+      "sha256": "e554f44b230d695656a86bf77aece804b8ad8eace97d918cf4b24462e8ba8a0a"
     },
     {
       "path": "evidence/explanation-sources.json",
@@ -582,8 +582,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 6793,
-      "sha256": "e2dfa55a99004447dada62a619faf5b5e5f36ffb0926a56eb2deee268209ca50"
+      "bytes": 6877,
+      "sha256": "41c146d5f89c8ea822e03205e6b765454e85e18272b2a507f68f034ae6310a63"
     },
     {
       "path": "scripts/blender-terrain-study.py",

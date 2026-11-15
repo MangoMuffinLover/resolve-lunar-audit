@@ -1,6 +1,6 @@
 # Research atlas refinement — local candidate
 
-This pass refines the local touch-controlled candidate at `d2eee030c645997a0a6f8b4d915a90c76c7a9717`. It remains unpublished.
+This pass refines the local touch-controlled candidate at `d2eee030c645997a0a6f8b4d915a90c76c7a9717`. The owner approved publication of this candidate on 15 November 2026.
 
 ## Presentation
 
