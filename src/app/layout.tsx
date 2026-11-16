@@ -5,6 +5,7 @@ import './design.css';
 import './cinema.css';
 import './deliberate.css';
 import './research.css';
+import './brand.css';
 export const metadata: Metadata = {
   ...projectMetadata('Project RESOLVE — Lunar Visibility Decision-Convergence Audit'),
   metadataBase: new URL(projectIdentity.url),

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="50 110 1348 910" role="img" aria-label="Project RESOLVE logo"><title>Project RESOLVE</title><defs>
+ <linearGradient id="letter" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#10283C"/><stop offset="1" stop-color="#213F55"/></linearGradient>
+ <clipPath id="earth"><circle cx="1080" cy="234" r="47"/></clipPath>
+ <clipPath id="moon"><path d="M432 625 Q687 414 942 624 Q692 566 432 625Z"/></clipPath>
+ </defs>
+ <g fill="none" stroke="#10283C" stroke-width="3"><ellipse cx="742" cy="348" rx="464" ry="102" transform="rotate(-13 742 348)"/></g>
+ <ellipse cx="742" cy="348" rx="464" ry="102" transform="rotate(-13 742 348)" fill="none" stroke="#EEF4FA" stroke-width="12"/>
+ <path fill="url(#letter)" fill-rule="evenodd" stroke="#10283C" stroke-width="2" stroke-linejoin="round" d="M445 168H726C862 168 945 242 945 343C945 409 918 450 868 478L1056 628L898 590L740 466H555L445 582ZM650 287C765 279 832 308 832 362C832 412 801 443 741 443H654L700 402H741C779 402 795 386 795 358C795 318 755 289 650 287Z"/>
+ <path d="M302 421C466 310 833 185 1083 214" fill="none" stroke="#10283C" stroke-width="13"/>
+ <path d="M302 421C466 310 833 185 1083 214" fill="none" stroke="#F8FBFF" stroke-width="9"/>
+ <path fill="#EDB34F" d="M533 207L540 278L594 286L540 294L533 365L526 294L472 286L526 278Z"/>
+ <circle cx="533" cy="286" r="21" fill="#FFD279"/>
+ <path fill="#FFFFFF" stroke="#10283C" stroke-width="1.2" d="M718 315L725 340L751 347L725 354L718 380L711 354L685 347L711 340Z"/>
+ <g fill="#FFFFFF" stroke="#10283C" stroke-width="1"><circle cx="670" cy="376" r="4.5"/><circle cx="635" cy="400" r="3.8"/></g>
+ <circle cx="1080" cy="234" r="51" fill="#F3F7FB" stroke="#10283C" stroke-width="2"/>
+ <circle cx="1080" cy="234" r="47" fill="#102B43"/>
+ <g clip-path="url(#earth)" fill="#EDF4FA">
+ <path d="M1041 207L1050 194L1063 192L1064 198L1077 199L1071 207L1076 214L1064 222L1059 231L1048 227L1052 218L1044 215Z"/>
+ <path d="M1068 228L1074 234L1083 237L1083 243L1097 247L1103 257L1096 267L1088 279L1081 275L1078 261L1070 252L1071 241L1064 236Z"/>
+ <path d="M1090 190L1104 191L1113 204L1105 211L1097 207L1095 200L1086 198Z"/>
+ <path d="M1120 222L1129 233L1128 253L1121 250L1118 238Z"/>
+ </g>
+ <path d="M432 625Q687 414 942 624Q692 566 432 625Z" fill="#E5EBF0" stroke="#10283C" stroke-width="1.5"/>
+ <g clip-path="url(#moon)" fill="#97A5B2">
+ <ellipse cx="531" cy="583" rx="32" ry="11" transform="rotate(-20 531 583)"/><ellipse cx="586" cy="548" rx="20" ry="7" transform="rotate(-12 586 548)"/>
+ <ellipse cx="658" cy="548" rx="30" ry="11" transform="rotate(-8 658 548)"/><ellipse cx="699" cy="532" rx="12" ry="4"/>
+ <ellipse cx="720" cy="566" rx="27" ry="9" transform="rotate(12 720 566)"/><ellipse cx="819" cy="569" rx="27" ry="9" transform="rotate(20 819 569)"/>
+ <ellipse cx="628" cy="579" rx="16" ry="6"/><ellipse cx="773" cy="589" rx="14" ry="5"/>
+ </g>
+ <path d="M279 681Q691 496 1168 681Q721 544 279 681Z" fill="#10283C" stroke="#10283C" stroke-width="1.3"/><text x="724" y="762" text-anchor="middle" textLength="720" lengthAdjust="spacingAndGlyphs" fill="#10283C" font-family="Arial, Helvetica, sans-serif" font-weight="900" font-size="39" letter-spacing="16">PROJECT</text><text x="724" y="971" text-anchor="middle" textLength="1190" lengthAdjust="spacingAndGlyphs" fill="#10283C" font-family="Arial, Helvetica, sans-serif" font-weight="900" font-size="187" letter-spacing="8">RESOLVE</text></svg>

@@ -9,14 +9,13 @@ export function SiteHeader({
   return (
     <header className="site-header">
       <a href="/" className="site-brand" aria-label="Project RESOLVE home">
-        <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true">
-          <path
-            d="M5 25V7h11c10 0 10 11 0 11H5m11 0 10 7"
-            stroke="currentColor"
-            fill="none"
-            strokeWidth="2"
-          />
-        </svg>
+        <img
+          className="site-brand-mark"
+          src="/brand/resolve-emblem-dark.svg"
+          width="62"
+          height="37"
+          alt=""
+        />
         <span>RESOLVE</span>
       </a>
       <span className="site-context">{context || projectIdentity.descriptor}</span>
@@ -42,7 +41,14 @@ export function SiteFooter() {
     <footer className="site-footer">
       <div>
         <a href="/" className="site-footer-brand">
-          PROJECT RESOLVE<span aria-hidden="true">↗</span>
+          <img
+            className="site-footer-logo"
+            src="/brand/resolve-logo-dark.svg"
+            width="180"
+            height="122"
+            alt="Project RESOLVE"
+            loading="lazy"
+          />
         </a>
         <p className="footer-formal-name">{projectIdentity.name}</p>
         <p>Modeled visibility. Explicit assumptions.</p>

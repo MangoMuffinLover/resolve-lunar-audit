@@ -1,0 +1,30 @@
+.site-brand .site-brand-mark {
+  display: block;
+  width: 62px;
+  height: 37px;
+  object-fit: contain;
+  flex: none;
+}
+
+.site-footer-brand .site-footer-logo {
+  display: block;
+  width: 180px;
+  height: auto;
+  margin-bottom: 12px;
+}
+
+@media (max-width: 500px) {
+  .site-brand .site-brand-mark {
+    width: 45px;
+    height: 28px;
+  }
+
+  .site-brand {
+    gap: 6px;
+    letter-spacing: 0.08em;
+  }
+
+  .site-header nav {
+    gap: 14px;
+  }
+}
